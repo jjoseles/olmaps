@@ -78,11 +78,14 @@ UI.MapVector = (function (mapUtils) {
             })
         })
     };
-
+    /**
+     * @private
+     * @desc Renderiza el selector de vectores
+     **/
     function renderVectorSwitcher()
     {
         $("#map-vector-selection").empty();
-        $(".vector-switcher").show();
+
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
             //Solo los mapas base
             if(lyr.get('type') === 'vector') {
@@ -90,12 +93,13 @@ UI.MapVector = (function (mapUtils) {
                     lyr.get('title') + "</a></li>");
             }
         });
+        $(".vector-switcher").show();
         prepareEvents();
 
     }
     /**
      * @private
-     * @desc Prepara los eventos sobre los elementos del mapa
+     * @desc Prepara los eventos sobre los elementos del mapa para vectores
      **/
     function prepareEvents() {
         //Selección del base map
@@ -137,7 +141,7 @@ UI.MapVector = (function (mapUtils) {
                 format: new ol.format.GeoJSON()
             }),
             title: name,
-            type: 'vector',
+            type: 'vector'
 
 
         });
