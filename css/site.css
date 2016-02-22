@@ -5,7 +5,7 @@
     left: 220px;
     right: 0;
     top: 54px;
-    /* height siempre en px, si no no aparece */
+    /* height siempre en px, si no no aparece el de goohle*/
     height: 800px;
     width: 100%;
 }
@@ -13,6 +13,7 @@
     padding: 0 25px;
     z-index: 100;
 }
+
 /* Tile switcher */
 .tile-switcher.shown.ol-control { background-color: transparent; }
 

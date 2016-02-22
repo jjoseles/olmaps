@@ -22,7 +22,6 @@
     <div class="map-content">
         <div class="ol-unselectable ol-control tile-switcher">
             <div class="btn-group pull-right">
-
                 <button type="button" class="dropdown-toggle " data-toggle="dropdown">
                 </button>
                 <ul class="user-menu dropdown-menu-right dropdown-menu
@@ -42,9 +41,10 @@
 <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAZH-whAk0IwQoKzruViuPCxPxBA0etCbI"></script>
 <script src="scripts/ol/ol3gm.js"></script>
 <script src="scripts/ui/ui.map.js"></script>
+<script src="scripts/ui/ui.map.baseLayer.js"></script>
 <script type="text/javascript">
     $(function() {
-        UI.map.init("map");
+        var mapa = UI.Map.init("map");
     });
 </script>
 </body>
