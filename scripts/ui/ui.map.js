@@ -18,16 +18,30 @@ UI.map = (function () {
         return _currentMap;
     }
 
+    /**
+     * @public
+     * @desc devuelve una capa basada en el nombre
+     **/
     function getLayerByName(layerName)
     {
         _currentMap.getLayers().forEach(function (grp, idx, a) {
             grp.getLayers().forEach(function (lyr, idx, a) {
-                console.log(lyr.get('title'))
                 if (lyr.get('title') === layerName)
                    return lyr;
-
             });
         });
+    }
+    /**
+     * @private
+     * @desc Renderiza la lista de tiles para el mapa
+     **/
+    function renderTileSwitcher()
+    {
+            _currentMap.getLayers().forEach(function (lyr, idx, a) {
+                $("#map-tile-selection").append("<li><a href='javascript:' data-map-name='" + lyr.get('name') + "'>" +
+                    lyr.get('title') + "</a></li>");
+            });
+
     }
     /**
      * @private
@@ -35,26 +49,26 @@ UI.map = (function () {
      **/
     function prepareEvents() {
         //Selección del base map
-        $('[data-map-tile]').click(function () {
+        $('[data-map-name]').click(function () {
 
-            var targetTheme = $(this).attr('data-map-tile');
+            var targetTile = $(this).attr('data-map-name');
             var targetLi = $(this).closest('li');
             var targetText = $(this).text();
             var inverseContentMode = false;
             $('#map-tile-selection li').not(targetLi).removeClass('active');
-            $('#map-tile-text').text(targetText);
+
             $(targetLi).addClass('active');
 
-            _currentMap.getLayers().forEach(function (grp, idx, a) {
-                grp.getLayers().forEach(function (lyr, idx, a) {
-                    console.log(lyr.get('title'))
-                    if (lyr.get('title') === targetTheme) {
+
+                _currentMap.getLayers().forEach(function (lyr, idx, a) {
+
+                    if (lyr.get('name') === targetTile) {
                         lyr.setVisible(true);
                     } else {
                         lyr.setVisible(false);
                     }
                 });
-            });
+
         });
 
     }
@@ -64,11 +78,11 @@ UI.map = (function () {
      * @desc Tiles por defecto para el mapa
      **/
     function defaultBaseMaps() {
-        var baseMaps = new ol.layer.Group({
-            'title': "Base maps",
-            layers: [
-                new ol.layer.Tile({
+
+        return [
+            new ol.layer.Tile({
                     title: "Open Street Map",
+                    name: "OSM",
                     type: "base",
                     visible: true,
                     source: new ol.source.OSM()
@@ -76,40 +90,66 @@ UI.map = (function () {
                 new ol.layer.Tile({
                     title: "BingMaps Aereal",
                     type: "base",
+                    name: "BING_AEREAL",
                     visible: false,
                     source: new ol.source.BingMaps({
+                        culture:"es-es",
                         imagerySet: "Aerial",
                         key: "AmmSA7tKit_tgOFp7a1EUsrk5vPDb7BCud4Zm893Q-173mejBtEZGAUt95TYGdrl",
-
                     })
                 }),
                 new ol.layer.Tile({
                     title: "BingMaps road",
                     type: "base",
+                    name: "BING_ROAD",
                     visible: false,
                     source: new ol.source.BingMaps({
+                        culture:"es-es",
                         imagerySet: "Road",
                         key: "AmmSA7tKit_tgOFp7a1EUsrk5vPDb7BCud4Zm893Q-173mejBtEZGAUt95TYGdrl",
-
                     })
                 }),
                 new ol.layer.Tile({
                     title: "MapQuest Satellite",
                     type: "base",
+                    name:"MAPQUEST",
                     visible: false,
-                    source: new ol.source.MapQuest({layer: "sat"})
+                    source: new ol.source.MapQuest({
+                        layer: "sat"
+                    })
                 }),
                 new ol.layer.Tile({
                     title: "MapQuest OSM",
                     type: "base",
+                    name:"MAPQUEST_OSM",
                     visible: false,
-                    source: new ol.source.MapQuest({layer: "osm"})
+                    source: new ol.source.MapQuest({
+                        layer: "osm"
+                    })
+                }),
+                new ol.layer.Tile({
+                    title: "MapQuest Hyb",
+                    type: "base",
+                    name:"MAPQUEST_HYB",
+                    visible: false,
+                    source: new ol.source.MapQuest({
+                        layer: "hyb"
+                    })
+                }),
+                //Siempre visible aunque no esté por defecto en inicio, porque si no no carga
+                new olgm.layer.Google({
+                    title: "Google Road",
+                    name:"GOOGLE_ROAD",
+                    visible: true,
+                    mapTypeId:google.maps.MapTypeId.ROADMAP
+                }),
+                new olgm.layer.Google({
+                    title: "Google Satellite",
+                    name:"GOOGLE_SAT",
+                    visible: true,
+                    mapTypeId:google.maps.MapTypeId.SATELLITE
                 })
-
-
-            ]
-        });
-        return baseMaps;
+            ];
     }
 
     /**
@@ -121,18 +161,7 @@ UI.map = (function () {
         var map = new ol.Map({
             // use OL3-Google-Maps recommended default interactions
             interactions: olgm.interaction.defaults(),
-            layers: [
-                defaultBaseMaps(),
-                //La capa base de gooble con olgm no puede ir en grupos
-                //porque olgm hereda de o.Layer.Group
-                //Siempre visible aunque no esté por defecto en inicio, porque si no no carga
-                new olgm.layer.Google({
-                    title: "Google",
-                    visible: true
-
-
-                })
-            ],
+            layers: defaultBaseMaps(),
             //Vista por defecto, centrada en la península
             view: new ol.View({
                 center: [-2.6865266, 40.2398021],
@@ -155,8 +184,10 @@ UI.map = (function () {
         var olGM = new olgm.OLGoogleMaps({ map: map }); // map is the ol.Map instance
         olGM.activate();
 
-        prepareEvents();
         _currentMap = map;
+
+        renderTileSwitcher();
+        prepareEvents();
         return map;
 
 
