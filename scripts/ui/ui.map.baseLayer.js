@@ -41,8 +41,11 @@ UI.MapBaseLayer = (function (mapUtils) {
     function renderTileSwitcher()
     {
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-            $("#map-tile-selection").append("<li><a href='javascript:' data-map-name='" + lyr.get('name') + "'>" +
-                lyr.get('title') + "</a></li>");
+            //Solo los mapas base
+            if(lyr.get('type') === 'base') {
+                $("#map-tile-selection").append("<li><a href='javascript:' data-map-name='" + lyr.get('name') + "'>" +
+                    lyr.get('title') + "</a></li>");
+            }
         });
         prepareEvents();
         setGoogleLayersAsNotVisible();
@@ -63,13 +66,13 @@ UI.MapBaseLayer = (function (mapUtils) {
 
             $(targetLi).addClass('active');
             mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-                if (lyr.get('name') === targetTile) {
-                 // if (targetTile.indexOf("GOOGLE") >= 0)
-
-                      //$('#' + mapUtils.getMap().get('target')).css('height',"98%");
-                    lyr.setVisible(true);
-                } else {
-                    lyr.setVisible(false);
+                //Solo los mapas base
+                if(lyr.get('type') === 'base') {
+                    if (lyr.get('name') === targetTile) {
+                        lyr.setVisible(true);
+                    } else {
+                        lyr.setVisible(false);
+                    }
                 }
             });
 
@@ -145,11 +148,13 @@ UI.MapBaseLayer = (function (mapUtils) {
                 title: "Google Road",
                 name:"GOOGLE_ROAD",
                 visible: true,
+                type: "base",
                 mapTypeId:google.maps.MapTypeId.ROADMAP
             }),
             new olgm.layer.Google({
                 title: "Google Satellite",
                 name:"GOOGLE_SAT",
+                type: "base",
                 visible: true,
                 mapTypeId:google.maps.MapTypeId.SATELLITE
             })

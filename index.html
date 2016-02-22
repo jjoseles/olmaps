@@ -31,6 +31,17 @@
                 </ul>
             </div>
         </div>
+        <div class="ol-unselectable ol-control vector-switcher">
+            <div class="btn-group pull-right">
+                <button type="button" class="dropdown-toggle " data-toggle="dropdown">
+                </button>
+                <ul class="user-menu dropdown-menu-right dropdown-menu
+                            dropdown-light-blue dropdown-caret dropdown-close"
+                    id="map-vector-selection">
+                    <!-- Generado por javascript en renderVectorSwitcher-->
+                </ul>
+            </div>
+        </div>
     </div>
 
 <!-- /.container -->
@@ -42,9 +53,13 @@
 <script src="scripts/ol/ol3gm.js"></script>
 <script src="scripts/ui/ui.map.js"></script>
 <script src="scripts/ui/ui.map.baseLayer.js"></script>
+    <script src="scripts/ui/ui.map.vector.js"></script>
 <script type="text/javascript">
     $(function() {
         var mapa = UI.Map.init("map");
+        UI.MapVector.initGeoJsonVector('http://openlayers.org/en/v3.2.1/examples/data/geojson/countries.geojson','Límites fronterizos');
+        UI.MapVector.initGeoJsonVector('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json','Natural Earth River and Lake Centerlines');
+        UI.MapVector.initGeoJsonVector('https://raw.githubusercontent.com/jsongeo/10m-rivers-lake-centerlines/master/10m-rivers-lake-centerlines.json','0m-rivers-lake-centerlines');
     });
 </script>
 </body>
