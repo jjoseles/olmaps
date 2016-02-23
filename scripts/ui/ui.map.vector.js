@@ -169,7 +169,7 @@ UI.MapVector = (function (mapUtils) {
             'title': name,
             'type': 'vector',
             weight : function(e) {
-                //TODO
+
                 return 2;
             },
             blur: parseInt(5, 10),

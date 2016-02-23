@@ -18,7 +18,22 @@ UI.Map = (function () {
             $('#mouse3857').text(ol.coordinate.toStringXY(coord3857, 2));
             $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
         });
+
+
+
+
+        $(".export-button").click(function () {
+            console.log("sadfasdf")
+                _currentMap.once('postcompose', function(event) {
+                    var canvas = event.context.canvas;
+                    $(".export-button").attr("href", canvas.toDataURL('image/png'));
+                });
+            _currentMap.renderSync();
+            });
+
     }
+
+
     function globalEvents(){
         $('[data-rel=tooltip]').tooltip({
             container: 'body'
