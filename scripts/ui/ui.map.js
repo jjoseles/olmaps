@@ -10,6 +10,25 @@ UI.Map = (function () {
 
     var _currentMap;
 
+    function mapGlobalEvents(){
+        _currentMap.on('pointermove', function(event) {
+            var coord3857 = event.coordinate;
+            var coord4326 = ol.proj.transform(coord3857, 'EPSG:3857', 'EPSG:4326');
+
+            $('#mouse3857').text(ol.coordinate.toStringXY(coord3857, 2));
+            $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
+        });
+    }
+    function globalEvents(){
+        $('[data-rel=tooltip]').tooltip({
+            container: 'body'
+        });
+        $('.map-info-panel-button').click(function () {
+            $('.map-info-panel-content').toggle();
+        });
+    }
+
+
     /**
     * @public
     * @desc Devuelve la vista asociada al mapa
@@ -26,10 +45,6 @@ UI.Map = (function () {
     function getMap() {
         return _currentMap;
     }
-
-
-
-
 
     /**
      * @public
@@ -55,7 +70,8 @@ UI.Map = (function () {
 
 
         map.addControl(new ol.control.ZoomSlider());
-        map.addControl(new ol.control.FullScreen());
+        //El control fs no funciona bién con el position fixed
+        //map.addControl(new ol.control.FullScreen());
         map.addControl(new ol.control.OverviewMap());
 
         var olGM = new olgm.OLGoogleMaps({ map: map }); // map is the ol.Map instance
@@ -65,7 +81,9 @@ UI.Map = (function () {
 
         UI.MapBaseLayer.renderTileSwitcher();
 
+        mapGlobalEvents();
 
+        globalEvents();
         return map;
 
 
@@ -74,7 +92,7 @@ UI.Map = (function () {
 
     return {
         init: init,
-        getMap: getMap,
+        getMap: getMap
 
     }
 })();

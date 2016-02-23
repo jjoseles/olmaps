@@ -87,7 +87,7 @@ UI.MapVector = (function (mapUtils) {
         $("#map-vector-selection").empty();
 
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-            //Solo los mapas base
+            //Solo capas de vectores
             if(lyr.get('type') === 'vector') {
                 $("#map-vector-selection").append("<li><a href='javascript:' data-vector-name='" + lyr.get('title') + "'>" +
                     lyr.get('title') + "</a></li>");
@@ -124,35 +124,67 @@ UI.MapVector = (function (mapUtils) {
                 }
             });
 
+
         });
+
+
 
     }
 
     /**
      * @public
-     * @desc Devuelve la vista asociada al mapa
+     * @desc Inicializa el vector trayéndose el GeoJson
      **/
-    function initGeoJsonVector(url,name)
+    function loadGeoJSONData(url,name)
     {
-
         var vectorLayer = new ol.layer.Vector({
             source: new ol.source.Vector({
                 url: url,
                 format: new ol.format.GeoJSON()
             }),
-            title: name,
-            type: 'vector'
-
-
+            'title': name,
+            'type': 'vector'
         });
-
+        //Asignamos el vector al mapa
         mapUtils.getMap().addLayer(vectorLayer);
+        //Renderizamos el botoón de vectores
         renderVectorSwitcher();
 
+
+
+
     }
+    /**
+     * @public
+     * @desc Inicializa el vector trayéndose el GeoJson
+     * renderizando un mapa caliente
+     **/
+    function LoadGeoJSONDataAsHeatMap(url,name)
+    {
+        var vectorLayer = new ol.layer.Heatmap({
+            source: new ol.source.Vector({
+                url: url,
+                format: new ol.format.GeoJSON()
+            }),
+            'title': name,
+            'type': 'vector',
+            weight : function(e) {
+                //TODO
+                return 2;
+            },
+            blur: parseInt(5, 10),
+            radius: parseInt(5, 10)
+        });
+        //Asignamos el vector al mapa
+        mapUtils.getMap().addLayer(vectorLayer);
+        //Renderizamos el botoón de vectores
+        renderVectorSwitcher();
 
+
+
+    }
     return {
-        initGeoJsonVector: initGeoJsonVector
-
+        loadGeoJSONData: loadGeoJSONData,
+        LoadGeoJSONDataAsHeatMap: LoadGeoJSONDataAsHeatMap
     }
 })(UI.Map);

@@ -17,7 +17,7 @@ UI.MapBaseLayer = (function (mapUtils) {
     function setGoogleLayersAsNotVisible()
     {
         getLayerByName("GOOGLE_ROAD").setVisible(false);
-        getLayerByName("GOOGLE_SAT").setVisible(false);
+        getLayerByName("GOOGLE_HYBRID").setVisible(false);
     }
 
 
@@ -81,7 +81,7 @@ UI.MapBaseLayer = (function (mapUtils) {
     }
 
     /**
-     * @private
+     * @public
      * @desc Tiles por defecto para el mapa
      **/
     function defaultBaseMaps() {
@@ -95,13 +95,14 @@ UI.MapBaseLayer = (function (mapUtils) {
                 source: new ol.source.OSM()
             }),
             new ol.layer.Tile({
-                title: "BingMaps Aereal",
+                title: "BingMaps Aerial WithL abels",
                 type: "base",
                 name: "BING_AEREAL",
                 visible: false,
                 source: new ol.source.BingMaps({
                     culture:"es-es",
-                    imagerySet: "Aerial",
+                    maxZoom: 19,
+                    imagerySet: "AerialWithLabels",
                     key: "AmmSA7tKit_tgOFp7a1EUsrk5vPDb7BCud4Zm893Q-173mejBtEZGAUt95TYGdrl",
                 })
             }),
@@ -116,15 +117,7 @@ UI.MapBaseLayer = (function (mapUtils) {
                     key: "AmmSA7tKit_tgOFp7a1EUsrk5vPDb7BCud4Zm893Q-173mejBtEZGAUt95TYGdrl",
                 })
             }),
-            new ol.layer.Tile({
-                title: "MapQuest Satellite",
-                type: "base",
-                name:"MAPQUEST",
-                visible: false,
-                source: new ol.source.MapQuest({
-                    layer: "sat"
-                })
-            }),
+
             new ol.layer.Tile({
                 title: "MapQuest OSM",
                 type: "base",
@@ -134,15 +127,7 @@ UI.MapBaseLayer = (function (mapUtils) {
                     layer: "osm"
                 })
             }),
-            new ol.layer.Tile({
-                title: "MapQuest Hyb",
-                type: "base",
-                name:"MAPQUEST_HYB",
-                visible: false,
-                source: new ol.source.MapQuest({
-                    layer: "hyb"
-                })
-            }),
+
             //Siempre visible aunque no esté por defecto en inicio, porque si no no carga
             new olgm.layer.Google({
                 title: "Google Road",
@@ -152,11 +137,11 @@ UI.MapBaseLayer = (function (mapUtils) {
                 mapTypeId:google.maps.MapTypeId.ROADMAP
             }),
             new olgm.layer.Google({
-                title: "Google Satellite",
-                name:"GOOGLE_SAT",
+                title: "Google Satellite (Hybrid)",
+                name:"GOOGLE_HYBRID",
                 type: "base",
                 visible: true,
-                mapTypeId:google.maps.MapTypeId.SATELLITE
+                mapTypeId:google.maps.MapTypeId.HYBRID
             })
         ];
     }
@@ -164,8 +149,7 @@ UI.MapBaseLayer = (function (mapUtils) {
 
     return {
         renderTileSwitcher: renderTileSwitcher,
-        defaultBaseMaps: defaultBaseMaps,
-        getLayerByName : getLayerByName
-
+        getLayerByName : getLayerByName,
+        defaultBaseMaps: defaultBaseMaps
     };
 })(UI.Map);

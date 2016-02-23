@@ -16,13 +16,14 @@
 </head>
 <body>
 
-
+    <!-- Mapa -->
     <div id="map" class="map"></div>
 
+    <!-- Map content -->
     <div class="map-content">
         <div class="ol-unselectable ol-control tile-switcher">
             <div class="btn-group pull-right">
-                <button type="button" class="dropdown-toggle " data-toggle="dropdown">
+                <button type="button" class="dropdown-toggle " data-toggle="dropdown" data-rel="tooltip" data-placement="left" title="" data-original-title="Mapas base">
                 </button>
                 <ul class="user-menu dropdown-menu-right dropdown-menu
                             dropdown-light-blue dropdown-caret dropdown-close"
@@ -33,7 +34,7 @@
         </div>
         <div class="ol-unselectable ol-control vector-switcher">
             <div class="btn-group pull-right">
-                <button type="button" class="dropdown-toggle " data-toggle="dropdown">
+                <button type="button" class="dropdown-toggle " data-toggle="dropdown" data-rel="tooltip" data-placement="left" title="" data-original-title="Capas">
                 </button>
                 <ul class="user-menu dropdown-menu-right dropdown-menu
                             dropdown-light-blue dropdown-caret dropdown-close"
@@ -42,7 +43,16 @@
                 </ul>
             </div>
         </div>
+
+        <div class="ol-unselectable ol-control ol-collapsed map-info-panel">
+            <button type="button" title="Attributions" class="map-info-panel-button"><span>i</span></button>
+            <div class="map-info-panel-content">
+            EPSG:3857 <span id="mouse3857" class="label label-info">-1191153.03, 5039114.23</span>
+            EPSG:4326 <span id="mouse4326" class="label label-info">-10.7003, 41.1813</span>
+            </div>
+        </div>
     </div>
+
 
 <!-- /.container -->
 <script src="scripts/jquery/jquery.min.js"></script>
@@ -56,10 +66,16 @@
     <script src="scripts/ui/ui.map.vector.js"></script>
 <script type="text/javascript">
     $(function() {
+        //TODO Pasar parámemtros de inicialización al mapa
         var mapa = UI.Map.init("map");
-        UI.MapVector.initGeoJsonVector('http://openlayers.org/en/v3.2.1/examples/data/geojson/countries.geojson','Límites fronterizos');
-        UI.MapVector.initGeoJsonVector('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json','Natural Earth River and Lake Centerlines');
-        UI.MapVector.initGeoJsonVector('https://raw.githubusercontent.com/jsongeo/10m-rivers-lake-centerlines/master/10m-rivers-lake-centerlines.json','0m-rivers-lake-centerlines');
+       /* UI.MapVector.loadGeoJSONData('http://openlayers.org/en/v3.2.1/examples/data/geojson/countries.geojson', 'Límites fronterizos');
+        UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
+                'Natural Earth River and Lake Centerlines');
+        UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-rivers-lake-centerlines/master/10m-rivers-lake-centerlines.json',
+                '0m-rivers-lake-centerlines');
+        UI.MapVector.LoadGeoJSONDataAsHeatMap('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
+               'Ciudades del mundo'); */
+
     });
 </script>
 </body>
