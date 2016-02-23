@@ -14,8 +14,7 @@ UI.MapBaseLayer = (function (mapUtils) {
      * visibles porque si no no renderiza en mapa. Las ponemos invisibles cuando
      * arranque la carga inicial del mapa
      **/
-    function setGoogleLayersAsNotVisible()
-    {
+    function setGoogleLayersAsNotVisible() {
         getLayerByName("GOOGLE_ROAD").setVisible(false);
         getLayerByName("GOOGLE_HYBRID").setVisible(false);
     }
@@ -25,8 +24,7 @@ UI.MapBaseLayer = (function (mapUtils) {
      * @public
      * @desc devuelve una capa basada en el nombre
      **/
-    function getLayerByName(layerName)
-    {
+    function getLayerByName(layerName) {
         var currentLayer = null;
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
             if (lyr.get('name') === layerName)
@@ -34,15 +32,15 @@ UI.MapBaseLayer = (function (mapUtils) {
         });
         return currentLayer;
     }
+
     /**
      * @private
      * @desc Renderiza la lista de tiles para el mapa
      **/
-    function renderTileSwitcher()
-    {
+    function renderTileSwitcher() {
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
             //Solo los mapas base
-            if(lyr.get('type') === 'base') {
+            if (lyr.get('type') === 'base') {
                 $("#map-tile-selection").append("<li><a href='javascript:' data-map-name='" + lyr.get('name') + "'>" +
                     lyr.get('title') + "</a></li>");
             }
@@ -50,6 +48,7 @@ UI.MapBaseLayer = (function (mapUtils) {
         prepareEvents();
         setGoogleLayersAsNotVisible();
     }
+
     /**
      * @private
      * @desc Prepara los eventos sobre los elementos del mapa
@@ -67,9 +66,13 @@ UI.MapBaseLayer = (function (mapUtils) {
             $(targetLi).addClass('active');
             mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
                 //Solo los mapas base
-                if(lyr.get('type') === 'base') {
+                if (lyr.get('type') === 'base') {
                     if (lyr.get('name') === targetTile) {
                         lyr.setVisible(true);
+                        if(lyr.get('name').indexOf("GOOGLE") > -1)
+                            $('.export-button-area').hide();
+                         else
+                            $('.export-button-area').show();
                     } else {
                         lyr.setVisible(false);
                     }
@@ -100,7 +103,7 @@ UI.MapBaseLayer = (function (mapUtils) {
                 name: "BING_AEREAL",
                 visible: false,
                 source: new ol.source.BingMaps({
-                    culture:"es-es",
+                    culture: "es-es",
                     maxZoom: 19,
                     imagerySet: "AerialWithLabels",
                     key: "AmmSA7tKit_tgOFp7a1EUsrk5vPDb7BCud4Zm893Q-173mejBtEZGAUt95TYGdrl",
@@ -112,7 +115,7 @@ UI.MapBaseLayer = (function (mapUtils) {
                 name: "BING_ROAD",
                 visible: false,
                 source: new ol.source.BingMaps({
-                    culture:"es-es",
+                    culture: "es-es",
                     imagerySet: "Road",
                     key: "AmmSA7tKit_tgOFp7a1EUsrk5vPDb7BCud4Zm893Q-173mejBtEZGAUt95TYGdrl",
                 })
@@ -121,7 +124,7 @@ UI.MapBaseLayer = (function (mapUtils) {
             new ol.layer.Tile({
                 title: "MapQuest OSM",
                 type: "base",
-                name:"MAPQUEST_OSM",
+                name: "MAPQUEST_OSM",
                 visible: false,
                 source: new ol.source.MapQuest({
                     layer: "osm"
@@ -131,17 +134,17 @@ UI.MapBaseLayer = (function (mapUtils) {
             //Siempre visible aunque no esté por defecto en inicio, porque si no no carga
             new olgm.layer.Google({
                 title: "Google Road",
-                name:"GOOGLE_ROAD",
+                name: "GOOGLE_ROAD",
                 visible: true,
                 type: "base",
-                mapTypeId:google.maps.MapTypeId.ROADMAP
+                mapTypeId: google.maps.MapTypeId.ROADMAP
             }),
             new olgm.layer.Google({
                 title: "Google Satellite (Hybrid)",
-                name:"GOOGLE_HYBRID",
+                name: "GOOGLE_HYBRID",
                 type: "base",
                 visible: true,
-                mapTypeId:google.maps.MapTypeId.HYBRID
+                mapTypeId: google.maps.MapTypeId.HYBRID
             })
         ];
     }
@@ -149,7 +152,7 @@ UI.MapBaseLayer = (function (mapUtils) {
 
     return {
         renderTileSwitcher: renderTileSwitcher,
-        getLayerByName : getLayerByName,
+        getLayerByName: getLayerByName,
         defaultBaseMaps: defaultBaseMaps
     };
 })(UI.Map);

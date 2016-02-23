@@ -78,17 +78,17 @@ UI.MapVector = (function (mapUtils) {
             })
         })
     };
+
     /**
      * @private
      * @desc Renderiza el selector de vectores
      **/
-    function renderVectorSwitcher()
-    {
+    function renderVectorSwitcher() {
         $("#map-vector-selection").empty();
 
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
             //Solo capas de vectores
-            if(lyr.get('type') === 'vector') {
+            if (lyr.get('type') === 'vector') {
                 $("#map-vector-selection").append("<li><a href='javascript:' data-vector-name='" + lyr.get('title') + "'>" +
                     lyr.get('title') + "</a></li>");
             }
@@ -97,6 +97,7 @@ UI.MapVector = (function (mapUtils) {
         prepareEvents();
 
     }
+
     /**
      * @private
      * @desc Prepara los eventos sobre los elementos del mapa para vectores
@@ -114,7 +115,7 @@ UI.MapVector = (function (mapUtils) {
             $(targetLi).addClass('active');
             mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
                 //Solo los mapas base
-                if(lyr.get('type') === 'vector') {
+                if (lyr.get('type') === 'vector') {
                     console.log(targetTile);
                     if (lyr.get('title') === targetTile) {
                         lyr.setVisible(true);
@@ -128,15 +129,13 @@ UI.MapVector = (function (mapUtils) {
         });
 
 
-
     }
 
     /**
      * @public
      * @desc Inicializa el vector trayéndose el GeoJson
      **/
-    function loadGeoJSONData(url,name)
-    {
+    function loadGeoJSONData(url, name) {
         var vectorLayer = new ol.layer.Vector({
             source: new ol.source.Vector({
                 url: url,
@@ -151,16 +150,14 @@ UI.MapVector = (function (mapUtils) {
         renderVectorSwitcher();
 
 
-
-
     }
+
     /**
      * @public
      * @desc Inicializa el vector trayéndose el GeoJson
      * renderizando un mapa caliente
      **/
-    function LoadGeoJSONDataAsHeatMap(url,name)
-    {
+    function LoadGeoJSONDataAsHeatMap(url, name) {
         var vectorLayer = new ol.layer.Heatmap({
             source: new ol.source.Vector({
                 url: url,
@@ -168,7 +165,7 @@ UI.MapVector = (function (mapUtils) {
             }),
             'title': name,
             'type': 'vector',
-            weight : function(e) {
+            weight: function (e) {
 
                 return 2;
             },
@@ -181,8 +178,8 @@ UI.MapVector = (function (mapUtils) {
         renderVectorSwitcher();
 
 
-
     }
+
     return {
         loadGeoJSONData: loadGeoJSONData,
         LoadGeoJSONDataAsHeatMap: LoadGeoJSONDataAsHeatMap
