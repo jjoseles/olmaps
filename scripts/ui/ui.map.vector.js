@@ -8,76 +8,26 @@ UI = window.UI || {};
  **/
 UI.MapVector = (function (mapUtils) {
 
-    var image = new ol.style.Circle({
-        radius: 5,
-        fill: null,
-        stroke: new ol.style.Stroke({color: 'red', width: 1})
-    });
 
-    var styles = {
-        'Point': new ol.style.Style({
-            image: image
+    var style = new ol.style.Style({
+        fill: new ol.style.Fill({
+            color: 'rgba(255, 255, 255, 0.6)'
         }),
-        'LineString': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'green',
-                width: 1
-            })
+        stroke: new ol.style.Stroke({
+            color: '#319FD3',
+            width: 1
         }),
-        'MultiLineString': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'green',
-                width: 1
-            })
-        }),
-        'MultiPoint': new ol.style.Style({
-            image: image
-        }),
-        'MultiPolygon': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'yellow',
-                width: 1
-            }),
+        text: new ol.style.Text({
+            font: '12px Calibri,sans-serif',
             fill: new ol.style.Fill({
-                color: 'rgba(255, 255, 0, 0.1)'
-            })
-        }),
-        'Polygon': new ol.style.Style({
+                color: '#000'
+            }),
             stroke: new ol.style.Stroke({
-                color: 'blue',
-                lineDash: [4],
+                color: '#fff',
                 width: 3
-            }),
-            fill: new ol.style.Fill({
-                color: 'rgba(0, 0, 255, 0.1)'
-            })
-        }),
-        'GeometryCollection': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'magenta',
-                width: 2
-            }),
-            fill: new ol.style.Fill({
-                color: 'magenta'
-            }),
-            image: new ol.style.Circle({
-                radius: 10,
-                fill: null,
-                stroke: new ol.style.Stroke({
-                    color: 'magenta'
-                })
-            })
-        }),
-        'Circle': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'red',
-                width: 2
-            }),
-            fill: new ol.style.Fill({
-                color: 'rgba(255,0,0,0.2)'
             })
         })
-    };
+    });
 
     /**
      * @private
@@ -89,8 +39,12 @@ UI.MapVector = (function (mapUtils) {
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
             //Solo capas de vectores
             if (lyr.get('type') === 'vector') {
-                $("#map-vector-selection").append("<li><a href='javascript:' data-vector-name='" + lyr.get('title') + "'>" +
-                    lyr.get('title') + "</a></li>");
+
+                var li = "<li";
+                li += lyr.getVisible() ? " class='active'" : '';
+                li+= "><a href='javascript:' data-vector-name='" + lyr.get('title') + "'>" +
+                    lyr.get('title') + "</a></li>";
+                $("#map-vector-selection").append(li);
             }
         });
         $(".vector-switcher").show();
@@ -108,19 +62,28 @@ UI.MapVector = (function (mapUtils) {
 
             var targetTile = $(this).attr('data-vector-name');
             var targetLi = $(this).closest('li');
-            var targetText = $(this).text();
-            var inverseContentMode = false;
-            $('#map-vector-selection li').not(targetLi).removeClass('active');
 
-            $(targetLi).addClass('active');
+           // $('#map-vector-selection li').not(targetLi).removeClass('active');
+
+
+
             mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-                //Solo los mapas base
+                //Solo los vectores
                 if (lyr.get('type') === 'vector') {
-                    console.log(targetTile);
+
                     if (lyr.get('title') === targetTile) {
-                        lyr.setVisible(true);
-                    } else {
-                        lyr.setVisible(false);
+
+                        if($(targetLi).hasClass('active'))
+                        {
+                            lyr.setVisible(false);
+                            $(targetLi).removeClass('active');
+                        }
+                        else
+                        {
+                            lyr.setVisible(true);
+                            $(targetLi).addClass('active');
+                        }
+
                     }
                 }
             });
@@ -130,6 +93,8 @@ UI.MapVector = (function (mapUtils) {
 
 
     }
+
+
 
     /**
      * @public
@@ -142,10 +107,31 @@ UI.MapVector = (function (mapUtils) {
                 format: new ol.format.GeoJSON()
             }),
             'title': name,
-            'type': 'vector'
+            'type': 'vector',
+            style: function(feature, resolution) {
+                //DEvuelve el nombre de la feature y lo pinta en el mapa
+                //style.getText().setText(resolution < 5000 ? feature.get('CITY_NAME') : '');
+                return new ol.style.Style({
+                    fill: new ol.style.Fill({
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    }),
+                    stroke: new ol.style.Stroke({
+                        color: '#ffcc33',
+                        width: 2
+                    }),
+                    image: new ol.style.Circle({
+                        radius: 7,
+                        fill: new ol.style.Fill({
+                            color: '#ffcc33'
+                        })
+                    })
+                })
+            }
         });
         //Asignamos el vector al mapa
         mapUtils.getMap().addLayer(vectorLayer);
+
+        mapUtils.getMap().addLayer(UI.FeatureOverlay.addFeatureOverlay());
         //Renderizamos el botoón de vectores
         renderVectorSwitcher();
 
@@ -170,10 +156,17 @@ UI.MapVector = (function (mapUtils) {
                 return 2;
             },
             blur: parseInt(5, 10),
-            radius: parseInt(5, 10)
+            radius: parseInt(5, 10),
+            style: function(feature, resolution) {
+                //DEvuelve el nombre de la feature y lo pinta en el mapa
+                style.getText().setText(resolution < 5000 ? feature.get('CITY_NAME') : '');
+                return style;
+            }
         });
         //Asignamos el vector al mapa
         mapUtils.getMap().addLayer(vectorLayer);
+
+        mapUtils.getMap().addLayer(UI.FeatureOverlay.addFeatureOverlay());
         //Renderizamos el botoón de vectores
         renderVectorSwitcher();
 
@@ -183,5 +176,6 @@ UI.MapVector = (function (mapUtils) {
     return {
         loadGeoJSONData: loadGeoJSONData,
         LoadGeoJSONDataAsHeatMap: LoadGeoJSONDataAsHeatMap
+
     }
 })(UI.Map);

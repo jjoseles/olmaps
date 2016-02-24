@@ -17,6 +17,8 @@ UI.MapBaseLayer = (function (mapUtils) {
     function setGoogleLayersAsNotVisible() {
         getLayerByName("GOOGLE_ROAD").setVisible(false);
         getLayerByName("GOOGLE_HYBRID").setVisible(false);
+        getLayerByName("GOOGLE_ROAD_DARKRED").setVisible(false);
+        getLayerByName("GOOGLE_ROAD_COBALT").setVisible(false);
     }
 
 
@@ -38,15 +40,20 @@ UI.MapBaseLayer = (function (mapUtils) {
      * @desc Renderiza la lista de tiles para el mapa
      **/
     function renderTileSwitcher() {
+        setGoogleLayersAsNotVisible();
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
             //Solo los mapas base
             if (lyr.get('type') === 'base') {
-                $("#map-tile-selection").append("<li><a href='javascript:' data-map-name='" + lyr.get('name') + "'>" +
-                    lyr.get('title') + "</a></li>");
+                var li = "<li";
+                li += lyr.getVisible() ? " class='active'" : '';
+                li+= "><a href='javascript:' data-map-name='" + lyr.get('name') + "'>" +
+                    lyr.get('title') + "</a></li>";
+                $("#map-tile-selection").append(li);
+
             }
         });
         prepareEvents();
-        setGoogleLayersAsNotVisible();
+
     }
 
     /**
@@ -130,20 +137,41 @@ UI.MapBaseLayer = (function (mapUtils) {
                     layer: "osm"
                 })
             }),
-
-            //Siempre visible aunque no esté por defecto en inicio, porque si no no carga
             new olgm.layer.Google({
                 title: "Google Road",
                 name: "GOOGLE_ROAD",
                 visible: true,
                 type: "base",
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            }),
+                disableDefaultUI: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+               }),
+            //Siempre visible aunque no esté por defecto en inicio, porque si no no carga
             new olgm.layer.Google({
-                title: "Google Satellite (Hybrid)",
+                title: "Google Road - (Dark red)",
+                name: "GOOGLE_ROAD_DARKRED",
+                visible: true,
+                type: "base",
+                disableDefaultUI: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                styles : [{"featureType":"all","elementType":"all","stylers":[{"invert_lightness":true},{"saturation":10},{"lightness":10},{"gamma":0.8},{"hue":"#000000"}]},{"featureType":"water","stylers":[{"visibility":"on"},{"color":"#293036"}]}]
+            }),
+
+            new olgm.layer.Google({
+                title: "Google Road - (Cobalt)",
+                name: "GOOGLE_ROAD_COBALT",
+                visible: true,
+                type: "base",
+                disableDefaultUI: true,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                styles : [{"featureType":"all","elementType":"all","stylers":[{"invert_lightness":true},{"saturation":10},{"lightness":10},{"gamma":0.8},{"hue":"#293036"}]},{"featureType":"water","stylers":[{"visibility":"on"},{"color":"#293036"}]}]
+            }),
+
+            new olgm.layer.Google({
+                title: "Google Satellite - (Hybrid)",
                 name: "GOOGLE_HYBRID",
                 type: "base",
                 visible: true,
+
                 mapTypeId: google.maps.MapTypeId.HYBRID
             })
         ];

@@ -60,6 +60,9 @@
             EPSG:4326 <span id="mouse4326" class="label label-info"></span>
         </div>
     </div>
+    <div id="info" class="ol-unselectable ol-control">xxxxxxx</div>
+
+
 </div>
 
 
@@ -73,16 +76,17 @@
 <script src="scripts/ui/ui.map.js"></script>
 <script src="scripts/ui/ui.map.baseLayer.js"></script>
 <script src="scripts/ui/ui.map.vector.js"></script>
+<script src="scripts/ui/ui.map.featureOverlay.js"></script>
 <script type="text/javascript">
     $(function () {
         //TODO Pasar parámemtros de inicialización al mapa
         var mapa = UI.Map.init("map");
         /* UI.MapVector.loadGeoJSONData('http://openlayers.org/en/v3.2.1/examples/data/geojson/countries.geojson', 'Límites fronterizos');*/
-        UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
+       /* UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
                 'Natural Earth River and Lake Centerlines');
         UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-rivers-lake-centerlines/master/10m-rivers-lake-centerlines.json',
-                '0m-rivers-lake-centerlines');
-        UI.MapVector.LoadGeoJSONDataAsHeatMap('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
+                '0m-rivers-lake-centerlines');*/
+        UI.MapVector.loadGeoJSONData('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
                 'Ciudades del mundo');
 
     });

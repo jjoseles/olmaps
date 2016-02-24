@@ -19,17 +19,19 @@ UI.Map = (function () {
             $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
         });
 
+        _currentMap.on('pointermove', function(evt) {
+            if (evt.dragging) {
+                return;
+            }
+            var pixel = _currentMap.getEventPixel(evt.originalEvent);
+            UI.FeatureOverlay.displayFeatureInfo(pixel);
+        });
+
+        _currentMap.on('click', function(evt) {
+            UI.FeatureOverlay.displayFeatureInfo(evt.pixel);
+        });
 
 
-
-        $(".export-button").click(function () {
-            console.log("sadfasdf")
-                _currentMap.once('postcompose', function(event) {
-                    var canvas = event.context.canvas;
-                    $(".export-button").attr("href", canvas.toDataURL('image/png'));
-                });
-            _currentMap.renderSync();
-            });
 
     }
 
@@ -40,6 +42,14 @@ UI.Map = (function () {
         });
         $('.map-info-panel-button').click(function () {
             $('.map-info-panel-content').toggle();
+        });
+        $(".export-button").click(function () {
+
+            _currentMap.once('postcompose', function(event) {
+                var canvas = event.context.canvas;
+                $(".export-button").attr("href", canvas.toDataURL('image/png'));
+            });
+            _currentMap.renderSync();
         });
     }
 
@@ -69,7 +79,7 @@ UI.Map = (function () {
 
         var map = new ol.Map({
             // use OL3-Google-Maps recommended default interactions
-            interactions: olgm.interaction.defaults(),
+            interactions:  ol.interaction.defaults({mouseWheelZoom:false}),
             layers: UI.MapBaseLayer.defaultBaseMaps(),
             //Vista por defecto, centrada en la península
             view: new ol.View({

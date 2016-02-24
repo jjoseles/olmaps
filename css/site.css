@@ -26,7 +26,6 @@
     width: 420px;
     margin-left: 35px !important;
     margin-top: 1px;
-
 }
 
 /* Tile switcher */
@@ -127,3 +126,11 @@
     bottom: 1em;
 }
 
+/* Map float table */
+.map-float-table {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    background: url(../img/transparent/black-0.6.png);
+    background: rgba(0,0,0,0.6);
+}
