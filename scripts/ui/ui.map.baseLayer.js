@@ -14,13 +14,28 @@ UI.MapBaseLayer = (function (mapUtils) {
      * visibles porque si no no renderiza en mapa. Las ponemos invisibles cuando
      * arranque la carga inicial del mapa
      **/
-    function setGoogleLayersAsNotVisible() {
-        getLayerByName("GOOGLE_ROAD").setVisible(false);
-        getLayerByName("GOOGLE_HYBRID").setVisible(false);
-        getLayerByName("GOOGLE_ROAD_DARKRED").setVisible(false);
-        getLayerByName("GOOGLE_ROAD_COBALT").setVisible(false);
+    function setGoogleLayersVisibility(visible) {
+        getLayerByName("GOOGLE_ROAD").setVisible(visible);
+        getLayerByName("GOOGLE_HYBRID").setVisible(visible);
+        getLayerByName("GOOGLE_ROAD_DARKRED").setVisible(visible);
+        getLayerByName("GOOGLE_ROAD_COBALT").setVisible(visible);
     }
-
+    /**
+     * @public
+     * @desc devuelve  la capa visible
+     **/
+    function getVisibleLayer()
+    {
+        mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
+                //Solo los mapas base
+                if (lyr.get('type') === 'base') {
+                    if(lyr.getVisible())
+                    {
+                        return lyr;
+                    }
+                }
+            })
+    }
 
     /**
      * @public
@@ -40,7 +55,7 @@ UI.MapBaseLayer = (function (mapUtils) {
      * @desc Renderiza la lista de tiles para el mapa
      **/
     function renderTileSwitcher() {
-        setGoogleLayersAsNotVisible();
+        setGoogleLayersVisibility(false);
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
             //Solo los mapas base
             if (lyr.get('type') === 'base') {
@@ -181,6 +196,8 @@ UI.MapBaseLayer = (function (mapUtils) {
     return {
         renderTileSwitcher: renderTileSwitcher,
         getLayerByName: getLayerByName,
-        defaultBaseMaps: defaultBaseMaps
+        defaultBaseMaps: defaultBaseMaps,
+        getVisibleLayer : getVisibleLayer,
+        setGoogleLayersVisibility: setGoogleLayersVisibility
     };
 })(UI.Map);

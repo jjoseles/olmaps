@@ -47,7 +47,7 @@ UI.FeatureOverlay = (function (mapUtils) {
 
                     var text = resolution < 5000 ? feature.get('name') : '';
                     if (!highlightStyleCache[text]) {
-                        console.log(feature.getGeometry().getType())
+
                         if (feature.getGeometry().getType() === 'Point') {
                             return new ol.style.Style({
                                 fill: new ol.style.Fill({

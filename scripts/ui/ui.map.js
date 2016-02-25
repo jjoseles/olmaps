@@ -19,6 +19,8 @@ UI.Map = (function () {
             $('#mouse4326').text(ol.coordinate.toStringXY(coord4326, 4));
         });
 
+        // Sólo con interaccion con featureOverlay
+      /*
         _currentMap.on('pointermove', function(evt) {
             if (evt.dragging) {
                 return;
@@ -29,7 +31,7 @@ UI.Map = (function () {
 
         _currentMap.on('click', function(evt) {
             UI.FeatureOverlay.displayFeatureInfo(evt.pixel);
-        });
+        }); */
 
 
 
