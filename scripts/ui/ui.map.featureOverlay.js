@@ -4,32 +4,84 @@
 UI = window.UI || {};
 
 /**
- * @desc Herramientas de mapas openlayers
+ * @desc Herramientas de overlay de features del geoJson
  **/
 UI.FeatureOverlay = (function (mapUtils) {
-
+    this.cursor_ = 'pointer';
+    this.previousCursor_ = undefined;
     var highlight;
     var featureOverlay;
-    var styles = {
-        'route': new ol.style.Style({
+    var image = new ol.style.Circle({
+
+            radius: 10,
+            //snapToPixel: false,
+            fill: new ol.style.Fill({color: 'black'}),
             stroke: new ol.style.Stroke({
-                width: 6, color: [237, 212, 0, 0.8]
+                color: 'white', width: 4
+            })
+
+    });
+    var styles = {
+        'Point': new ol.style.Style({
+            image: image
+        }),
+        'LineString': new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'green',
+                width: 1
             })
         }),
-        'icon': new ol.style.Style({
-            image: new ol.style.Icon({
-                anchor: [0.5, 1],
-                src: 'data/icon.png'
+        'MultiLineString': new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'green',
+                width: 1
             })
         }),
-        'point': new ol.style.Style({
+        'MultiPoint': new ol.style.Style({
+            image: image
+        }),
+        'MultiPolygon': new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'yellow',
+                width: 1
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(255, 255, 0, 0.1)'
+            })
+        }),
+        'Polygon': new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'blue',
+                lineDash: [4],
+                width: 3
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(0, 0, 255, 0.1)'
+            })
+        }),
+        'GeometryCollection': new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'magenta',
+                width: 2
+            }),
+            fill: new ol.style.Fill({
+                color: 'magenta'
+            }),
             image: new ol.style.Circle({
-                radius: 7,
-                snapToPixel: false,
-                fill: new ol.style.Fill({color: 'black'}),
+                radius: 10,
+                fill: null,
                 stroke: new ol.style.Stroke({
-                    color: 'white', width: 2
+                    color: 'magenta'
                 })
+            })
+        }),
+        'Circle': new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'red',
+                width: 2
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(255,0,0,0.2)'
             })
         })
     };
@@ -40,69 +92,83 @@ UI.FeatureOverlay = (function (mapUtils) {
 
          featureOverlay = new ol.layer.Vector({
             source: new ol.source.Vector(),
+            //Con olgm no funcionan las llamadas a funciones
+            style:new ol.style.Style({
+                image: new ol.style.Circle({
+                   radius: 10,
+                    //snapToPixel: false,
+                    'fill': new ol.style.Fill({color: 'blak'}),
+                    stroke: new ol.style.Stroke({
+                        color: 'white', width: 4
+                    })
+                }),
+                stroke: new ol.style.Stroke({
+                    width: 8,
+                    color: 'black',
 
-            style: function(feature, resolution) {
+                })
+
+            })
+
+            /*    function(feature, resolution) {
                 if (feature) {
 
 
                     var text = resolution < 5000 ? feature.get('name') : '';
                     if (!highlightStyleCache[text]) {
 
-                        if (feature.getGeometry().getType() === 'Point') {
-                            return new ol.style.Style({
-                                fill: new ol.style.Fill({
-                                    color: 'rgba(255, 255, 255, 0.2)'
-                                }),
-                                stroke: new ol.style.Stroke({
-                                    color: '#ffcc33',
-                                    width: 2
-                                }),
-                                image: new ol.style.Circle({
-                                    radius: 7,
-                                    fill: new ol.style.Fill({
-                                        color: 'red'
-                                    })
-                                })
-                            })
-                        }
-                        else {
-                            highlightStyleCache[text] = new ol.style.Style({
-                                stroke: new ol.style.Stroke({
-                                    color: '#f00',
-                                    width: 1
-                                }),
-                                fill: new ol.style.Fill({
-                                    color: 'rgba(255,0,0,0.1)'
-                                }),
-                                text: new ol.style.Text({
-                                    font: '12px Calibri,sans-serif',
-                                    text: text,
-                                    fill: new ol.style.Fill({
-                                        color: '#000'
-                                    }),
-                                    stroke: new ol.style.Stroke({
-                                        color: '#f00',
-                                        width: 3
-                                    })
-                                })
-                            });
-                        }
+                        return styles[feature.getGeometry().getType()]
                     }
                     return highlightStyleCache[text];
-                }
-                else return new ol.style.Style();
-            }
-        });
+                } */
+                //else return new ol.style.Style();
+            })
+
         return featureOverlay;
     }
 
+function showHidePointer(evt)
+{
 
-   function displayFeatureInfo(pixel) {
+    if (cursor_) {
+        var map = evt.map;
+        var feature = map.forEachFeatureAtPixel(evt.pixel,
+            function(feature) {
+                return feature;
+            });
+        var element = evt.map.getTargetElement();
+        if (feature) {
+            if (element.style.cursor != cursor_) {
+                previousCursor_ = element.style.cursor;
+                element.style.cursor = cursor_;
+            }
+        } else if (previousCursor_ !== undefined) {
+            element.style.cursor = previousCursor_;
+            this.previousCursor_ = undefined;
+        }
+    }
+}
+   function displayFeatureInfo(evt) {
 
-        var feature = mapUtils.getMap().forEachFeatureAtPixel(pixel, function(feature) {
-            return feature;
-        });
 
+       var feature = mapUtils.getMap().forEachFeatureAtPixel(evt.pixel, function(feature) {
+           return feature;
+       });
+
+       //Visualizamos cursor
+       var element = evt.map.getTargetElement();
+       if (feature) {
+           if (element.style.cursor != this.cursor_) {
+               this.previousCursor_ = element.style.cursor;
+               element.style.cursor = this.cursor_;
+           }
+       } else if (this.previousCursor_ !== undefined) {
+           element.style.cursor = this.previousCursor_;
+           this.previousCursor_ = undefined;
+       }
+
+
+        //Visualiza info sobre la feature
         var info = document.getElementById('info');
         if (feature) {
             info.innerHTML = feature.getId() + ': ' + feature.get('CITY_NAME');
@@ -124,6 +190,7 @@ UI.FeatureOverlay = (function (mapUtils) {
     return {
 
         displayFeatureInfo: displayFeatureInfo,
-        addFeatureOverlay : addFeatureOverlay
+        addFeatureOverlay : addFeatureOverlay,
+        showHidePointer: showHidePointer
     }
 })(UI.Map);

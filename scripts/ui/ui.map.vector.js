@@ -8,82 +8,87 @@ UI = window.UI || {};
  **/
 UI.MapVector = (function (mapUtils) {
 
-function renderStyleFunction(feature, resolution) {
+    function renderStyleFunction(feature, resolution) {
 
-    var image = new ol.style.Circle({
-        radius: 5,
-        fill: null,
-        stroke: new ol.style.Stroke({color: 'red', width: 1})
-    });
-
-    var styles = {
-        'Point': new ol.style.Style({
-            image: image
-        }),
-        'LineString': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'green',
-                width: 1
-            })
-        }),
-        'MultiLineString': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'green',
-                width: 1
-            })
-        }),
-        'MultiPoint': new ol.style.Style({
-            image: image
-        }),
-        'MultiPolygon': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'yellow',
-                width: 1
-            }),
-            fill: new ol.style.Fill({
-                color: 'rgba(255, 255, 0, 0.1)'
-            })
-        }),
-        'Polygon': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'blue',
-                lineDash: [4],
-                width: 3
-            }),
-            fill: new ol.style.Fill({
-                color: 'rgba(0, 0, 255, 0.1)'
-            })
-        }),
-        'GeometryCollection': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'magenta',
-                width: 2
-            }),
-            fill: new ol.style.Fill({
-                color: 'magenta'
-            }),
-            image: new ol.style.Circle({
-                radius: 10,
-                fill: null,
+            var image = new ol.style.Circle({
+                radius: 5,
+                fill: new ol.style.Fill({color: 'red'}),
                 stroke: new ol.style.Stroke({
-                    color: 'magenta'
+                    color: 'white', width: 3
                 })
-            })
-        }),
-        'Circle': new ol.style.Style({
-            stroke: new ol.style.Stroke({
-                color: 'red',
-                width: 2
-            }),
-            fill: new ol.style.Fill({
-                color: 'rgba(255,0,0,0.2)'
-            })
-        })
-    };
-    if(feature)
-        return styles[feature.getGeometry().getType()];
-    else return new ol.style.Style();
-}
+            });
+
+            var styles = {
+                'Point': new ol.style.Style({
+                    image: image
+                }),
+                'LineString': new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'green',
+                        width: 1
+                    })
+                }),
+                'MultiLineString': new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'green',
+                        width: 1
+                    })
+                }),
+                'MultiPoint': new ol.style.Style({
+                    image: image
+                }),
+                'MultiPolygon': new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'yellow',
+                        width: 1
+                    }),
+                    fill: new ol.style.Fill({
+                        color: 'rgba(255, 255, 0, 0.1)'
+                    })
+                }),
+                'Polygon': new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'blue',
+                        lineDash: [4],
+                        width: 3
+                    }),
+                    fill: new ol.style.Fill({
+                        color: 'rgba(0, 0, 255, 0.1)'
+                    })
+                }),
+                'GeometryCollection': new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'magenta',
+                        width: 2
+                    }),
+                    fill: new ol.style.Fill({
+                        color: 'magenta'
+                    }),
+                    image: new ol.style.Circle({
+                        radius: 10,
+                        fill: null,
+                        stroke: new ol.style.Stroke({
+                            color: 'magenta'
+                        })
+                    })
+                }),
+                'Circle': new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'red',
+                        width: 2
+                    }),
+                    fill: new ol.style.Fill({
+                        color: 'rgba(255,0,0,0.2)'
+                    })
+                })
+            };
+            if (feature)
+                return styles[feature.getGeometry().getType()];
+
+
+        // else return new ol.style.Style();
+    }
+
     /**
      * @private
      * @desc Renderiza el selector de vectores
@@ -97,7 +102,7 @@ function renderStyleFunction(feature, resolution) {
 
                 var li = "<li";
                 li += lyr.getVisible() ? " class='active'" : '';
-                li+= "><a href='javascript:' data-vector-name='" + lyr.get('title') + "'>" +
+                li += "><a href='javascript:' data-vector-name='" + lyr.get('title') + "'>" +
                     lyr.get('title') + "</a></li>";
                 $("#map-vector-selection").append(li);
             }
@@ -118,8 +123,7 @@ function renderStyleFunction(feature, resolution) {
             var targetTile = $(this).attr('data-vector-name');
             var targetLi = $(this).closest('li');
 
-           // $('#map-vector-selection li').not(targetLi).removeClass('active');
-
+            // $('#map-vector-selection li').not(targetLi).removeClass('active');
 
 
             mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
@@ -128,13 +132,11 @@ function renderStyleFunction(feature, resolution) {
 
                     if (lyr.get('title') === targetTile) {
 
-                        if($(targetLi).hasClass('active'))
-                        {
+                        if ($(targetLi).hasClass('active')) {
                             lyr.setVisible(false);
                             $(targetLi).removeClass('active');
                         }
-                        else
-                        {
+                        else {
                             lyr.setVisible(true);
                             $(targetLi).addClass('active');
                         }
@@ -150,7 +152,6 @@ function renderStyleFunction(feature, resolution) {
     }
 
 
-
     /**
      * @public
      * @desc Inicializa el vector trayéndose el GeoJson
@@ -164,20 +165,31 @@ function renderStyleFunction(feature, resolution) {
             }),
             'title': name,
             'type': 'vector',
-             style:  renderStyleFunction
+            style: new ol.style.Style({
+                image: new ol.style.Circle({
+                    radius: 5,
+                    fill: new ol.style.Fill({color: 'red'}),
+                    stroke: new ol.style.Stroke({
+                        color: 'white', width: 3
+                    })
+                }),
+                stroke: new ol.style.Stroke({
+                    width: 4,
+                    color: 'blue'
+                })
+
+            }),
 
         });
         //Asignamos el vector al mapa
         mapUtils.getMap().addLayer(vectorLayer);
 
-       // mapUtils.getMap().addLayer(UI.FeatureOverlay.addFeatureOverlay());
+        mapUtils.getMap().addLayer(UI.FeatureOverlay.addFeatureOverlay());
         //Renderizamos el botoón de vectores
         renderVectorSwitcher();
 
 
     }
-
-
 
 
     return {

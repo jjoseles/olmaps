@@ -17,8 +17,8 @@ UI.MapBaseLayer = (function (mapUtils) {
     function setGoogleLayersVisibility(visible) {
         getLayerByName("GOOGLE_ROAD").setVisible(visible);
         getLayerByName("GOOGLE_HYBRID").setVisible(visible);
-        getLayerByName("GOOGLE_ROAD_DARKRED").setVisible(visible);
-        getLayerByName("GOOGLE_ROAD_COBALT").setVisible(visible);
+       /* getLayerByName("GOOGLE_ROAD_DARKRED").setVisible(visible);
+        getLayerByName("GOOGLE_ROAD_COBALT").setVisible(visible); */
     }
     /**
      * @public
@@ -161,14 +161,33 @@ UI.MapBaseLayer = (function (mapUtils) {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                }),
             //Siempre visible aunque no esté por defecto en inicio, porque si no no carga
-            new olgm.layer.Google({
+           /* new olgm.layer.Google({
                 title: "Google Road - (Dark red)",
                 name: "GOOGLE_ROAD_DARKRED",
                 visible: true,
                 type: "base",
                 disableDefaultUI: true,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles : [{"featureType":"all","elementType":"all","stylers":[{"invert_lightness":true},{"saturation":10},{"lightness":10},{"gamma":0.8},{"hue":"#000000"}]},{"featureType":"water","stylers":[{"visibility":"on"},{"color":"#293036"}]}]
+                styles : [
+                    {
+                        "featureType":"all",
+                        "elementType":"all",
+                        "stylers":[
+                            {"invert_lightness":true},
+                            {"saturation":10},
+                            {"lightness":10},
+                            {"gamma":0.8},
+                            {"hue":"#000000"}
+                        ]
+                    },
+                    {
+                        "featureType":"water",
+                        "stylers":[
+                            {"visibility":"on"},
+                            {"color":"#293036"}
+                        ]
+                    }
+                ]
             }),
 
             new olgm.layer.Google({
@@ -178,8 +197,26 @@ UI.MapBaseLayer = (function (mapUtils) {
                 type: "base",
                 disableDefaultUI: true,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles : [{"featureType":"all","elementType":"all","stylers":[{"invert_lightness":true},{"saturation":10},{"lightness":10},{"gamma":0.8},{"hue":"#293036"}]},{"featureType":"water","stylers":[{"visibility":"on"},{"color":"#293036"}]}]
-            }),
+                styles : [
+                    {
+                        "featureType":"all",
+                        "elementType":"all",
+                        "stylers":[
+                            {"invert_lightness":true},
+                            {"saturation":10},
+                            {"lightness":10},
+                            {"gamma":0.8},
+                            {"hue":"#293036"}
+                        ]
+                    },
+                    {
+                        "featureType":"water","stylers":[
+                        {"visibility":"on"},
+                        {"color":"#293036"}
+                    ]
+                    }
+                ]
+            }),*/
 
             new olgm.layer.Google({
                 title: "Google Satellite - (Hybrid)",

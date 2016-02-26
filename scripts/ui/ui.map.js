@@ -20,18 +20,21 @@ UI.Map = (function () {
         });
 
         // Sólo con interaccion con featureOverlay
-      /*
-        _currentMap.on('pointermove', function(evt) {
+
+       _currentMap.on('pointermove', function(evt) {
             if (evt.dragging) {
                 return;
             }
-            var pixel = _currentMap.getEventPixel(evt.originalEvent);
-            UI.FeatureOverlay.displayFeatureInfo(pixel);
+
+            UI.FeatureOverlay.showHidePointer(evt);
         });
 
-        _currentMap.on('click', function(evt) {
-            UI.FeatureOverlay.displayFeatureInfo(evt.pixel);
-        }); */
+       _currentMap.on('click', function(evt) {
+
+            UI.FeatureOverlay.displayFeatureInfo(evt);
+
+        });
+
 
 
 
