@@ -3,11 +3,15 @@
  */
 UI = window.UI || {};
 
-UI.Feature = (function (mapUtils) {
+UI.Overlay = (function (mapUtils) {
 
     /**
      * @public
      * @desc Añade un punto al mapa y centra el mapa en ese punto. Puntos basados en estilos
+     * @param {center} array [lat,lon]
+     * @param {styleId} string clase de estilo asignada al punto
+     * @param {callback} function. Función de callback en el click
+     * @param {data} {object}. Objeto key-value. Se asignarán data atributes para key
      **/
     function addOverlayPoint(center,styleId,callback,data) {
         var pos = ol.proj.fromLonLat(center);
@@ -24,7 +28,6 @@ UI.Feature = (function (mapUtils) {
         //Asignamos atributos al elemento
         if(data)
         {
-
             for(var k in data) {
                 elem.setAttribute('data-' + k, data[k]);
              }
@@ -47,7 +50,5 @@ UI.Feature = (function (mapUtils) {
 
     return {
         addOverlayPoint: addOverlayPoint
-
-
     }
 })(UI.Map);
