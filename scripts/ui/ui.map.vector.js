@@ -188,12 +188,30 @@ UI.MapVector = (function (mapUtils) {
         //Renderizamos el botoón de vectores
         renderVectorSwitcher();
 
-
+        return vectorLayer;
+    }
+    /**
+     * @public
+     * @desc Crea un vector con source vacío para incluir features en cliente
+     **/
+    function addVector(name) {
+        var vector = new ol.layer.Vector({
+            source : new ol.source.Vector(),
+            'title': name,
+            'type': 'vector',
+        });
+        mapUtils.getMap().addLayer(vector);
+       // mapUtils.getMap().addLayer(UI.FeatureOverlay.addFeatureOverlay());
+        //Renderizamos el botoón de vectores
+        renderVectorSwitcher();
+        return vector;
     }
 
 
+
     return {
-        loadGeoJSONData: loadGeoJSONData
+        loadGeoJSONData: loadGeoJSONData,
+        addVector: addVector
 
 
     }

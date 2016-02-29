@@ -64,8 +64,11 @@
 
 
 </div>
-
-
+<div style="display: none;">
+    <!-- Clickable markers location -->
+    <div id="location_marker"></div>
+    <div id="simple_marker"></div>
+</div>
 <!-- /.container -->
 <script src="thirty-party/jquery/jquery.min.js"></script>
 <script src="thirty-party/bootstrap/js/bootstrap.min.js"></script>
@@ -77,16 +80,20 @@
 <script src="scripts/ui/ui.map.baseLayer.js"></script>
 <script src="scripts/ui/ui.map.vector.js"></script>
 <script src="scripts/ui/ui.map.featureOverlay.js"></script>
+<script src="scripts/ui/ui.map.overlay.js"></script>
 <script type="text/javascript">
     $(function () {
         //TODO Pasar parámemtros de inicialización al mapa
         var mapa = UI.Map.init("map");
       /* UI.MapVector.loadGeoJSONData('http://openlayers.org/en/v3.2.1/examples/data/geojson/countries.geojson', 'Límites fronterizos'); */
-      UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
+   /*   UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
                 'Natural Earth River and Lake Centerlines');
      UI.MapVector.loadGeoJSONData('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
-                'Ciudades del mundo');
+                'Ciudades del mundo'); */
 
+        //Añade un punto basado en estilos definidos en #marker
+        UI.Feature.addOverlayPoint([16.3725, 48.208889],'location_marker');
+        UI.Feature.addOverlayPoint([15, 46],'simple_marker');
     });
 </script>
 </body>
