@@ -31,9 +31,12 @@ UI.Map = (function () {
 
        _currentMap.on('click', function(evt) {
 
+
             UI.FeatureOverlay.displayFeatureInfo(evt);
 
         });
+
+
 
 
 

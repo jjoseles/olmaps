@@ -64,12 +64,8 @@
 
 
 </div>
-<div style="display: none;">
-    <!-- Clickable markers location -->
-    <div id="location_marker"></div>
-    <div id="simple_marker"></div>
-</div>
-<!-- /.container -->
+
+ <!-- /.container -->
 <script src="thirty-party/jquery/jquery.min.js"></script>
 <script src="thirty-party/bootstrap/js/bootstrap.min.js"></script>
 <script src="thirty-party/ol/ol-debug.js"></script>
@@ -83,17 +79,40 @@
 <script src="scripts/ui/ui.map.overlay.js"></script>
 <script type="text/javascript">
     $(function () {
+        //Abre el popover
+        var openPopover = function(e)
+        {
+            var elem = e.currentTarget;
+            $(elem).popover(
+                    {
+                        trigger: 'manual',
+                        html: true,
+                        container: "body",
+                        content: $(elem).data("description"),
+                        title:  $(elem).data("name"),
+                        placement: 'auto'
+                    }
+            );
+            $(elem).popover('toggle');
+        }
+
+
         //TODO Pasar parámemtros de inicialización al mapa
         var mapa = UI.Map.init("map");
+
+
+
+
       /* UI.MapVector.loadGeoJSONData('http://openlayers.org/en/v3.2.1/examples/data/geojson/countries.geojson', 'Límites fronterizos'); */
    /*   UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
-                'Natural Earth River and Lake Centerlines');
+                'Natural Earth River and Lake Centerlines'); */
      UI.MapVector.loadGeoJSONData('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
-                'Ciudades del mundo'); */
+                'Ciudades del mundo');
 
         //Añade un punto basado en estilos definidos en #marker
-        UI.Feature.addOverlayPoint([16.3725, 48.208889],'location_marker');
-        UI.Feature.addOverlayPoint([15, 46],'simple_marker');
+        UI.Feature.addOverlayPoint([16.3725, 48.208889],'location_marker',null);
+        UI.Feature.addOverlayPoint([15, 46],'simple_marker',openPopover,{ "name": "punto número 1", "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "});
+       UI.Feature.addOverlayPoint([12, 42],'simple_marker',openPopover, { "name": "punto número 2", "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "});
     });
 </script>
 </body>

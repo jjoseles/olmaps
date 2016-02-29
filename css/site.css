@@ -136,7 +136,7 @@
 }
 
 /* MArcas por overlay location_marker. Se maquetan con estilos*/
-#location_marker {
+.location_marker {
     width: 50px;
     height:50px;
     border: 3px solid white;
@@ -150,7 +150,7 @@
     height: 0;
 }
 
-#location_marker:before {
+.location_marker:before {
     position: relative;
     top: -.8em;
     left: -1em;
@@ -179,7 +179,7 @@
     -webkit-animation-direction: forwards;
     animation-direction: forwards;
 }
-#location_marker:after {
+.location_marker:after {
     position: absolute;
     top: -.8em;
     left: -1em;
@@ -239,7 +239,7 @@
     }
 }
 
-#simple_marker {
+.simple_marker {
     width: 30px;
     height:30px;
     border: 3px solid white;
