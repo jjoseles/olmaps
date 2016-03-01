@@ -8,6 +8,26 @@ UI = window.UI || {};
  **/
 UI.MapVector = (function (mapUtils) {
 
+
+
+
+    /**
+     * @private
+     * @desc Crea un overlay para visualizar el popover
+     **/
+    function createBaseOverlay(element)
+    {
+            var popup = new ol.Overlay({
+                element: element,
+                positioning: 'center-center',
+                stopEvent: false
+            });
+        mapUtils.getMap().addOverlay(popup);
+        return popup;
+
+    }
+
+
     function renderStyleFunction(feature, resolution) {
 
             var image = new ol.style.Circle({
@@ -112,11 +132,14 @@ UI.MapVector = (function (mapUtils) {
 
     }
 
+
     /**
      * @private
      * @desc Prepara los eventos sobre los elementos del mapa para vectores
      **/
     function prepareEvents() {
+
+
         //Selección del base map
         $('[data-vector-name]').click(function () {
 
@@ -158,6 +181,11 @@ UI.MapVector = (function (mapUtils) {
      **/
     function loadGeoJSONData(url, name) {
 
+        //Elemento base para el overlay sobre las features
+        var elem = document.createElement('div');
+        elem.setAttribute('id', name);
+        var overlay = createBaseOverlay(elem);
+
         var vectorLayer = new ol.layer.Vector({
             source: new ol.source.Vector({
                 url: url,
@@ -165,6 +193,7 @@ UI.MapVector = (function (mapUtils) {
             }),
             'title': name,
             'type': 'vector',
+            'overlay' : overlay,
             style: new ol.style.Style({
                 image: new ol.style.Circle({
                     radius: 5,
@@ -174,19 +203,55 @@ UI.MapVector = (function (mapUtils) {
                     })
                 }),
                 stroke: new ol.style.Stroke({
-                    width: 4,
+                    width: 3,
                     color: 'blue'
+                }),
+                fill: new ol.style.Fill({
+                    color: [0, 0, 255, 0.1]
                 })
 
-            }),
+
+            })
 
         });
         //Asignamos el vector al mapa
         mapUtils.getMap().addLayer(vectorLayer);
 
-        mapUtils.getMap().addLayer(UI.FeatureOverlay.addFeatureOverlay());
+
+
+
+        //Click sobre las features estilos
+      var selectInteraction = new ol.interaction.Select({
+
+            style: new ol.style.Style({
+                //Color de los puntos
+                image: new ol.style.Circle({
+                    radius: 10,
+                    //snapToPixel: false,
+                    'fill': new ol.style.Fill({color: 'blak'}),
+                    stroke: new ol.style.Stroke({
+                        color: 'white', width: 4
+                    })
+                }),
+                //Color de las líneas
+                stroke: new ol.style.Stroke({
+                    width: 3,
+                    color: 'black',
+                }),
+                //Color de relleno
+                fill: new ol.style.Fill({
+                    color: [0, 0, 255, 0.3]
+                })
+            }),
+
+        });
+
+
+        mapUtils.getMap().addInteraction(selectInteraction);
         //Renderizamos el botoón de vectores
         renderVectorSwitcher();
+
+
 
         return vectorLayer;
     }
@@ -201,7 +266,7 @@ UI.MapVector = (function (mapUtils) {
             'type': 'vector',
         });
         mapUtils.getMap().addLayer(vector);
-       // mapUtils.getMap().addLayer(UI.FeatureOverlay.addFeatureOverlay());
+
         //Renderizamos el botoón de vectores
         renderVectorSwitcher();
         return vector;

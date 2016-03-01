@@ -60,12 +60,11 @@
             EPSG:4326 <span id="mouse4326" class="label label-info"></span>
         </div>
     </div>
-    <div id="info" class="ol-unselectable ol-control">xxxxxxx</div>
 
 
 </div>
 
- <!-- /.container -->
+<!-- /.container -->
 <script src="thirty-party/jquery/jquery.min.js"></script>
 <script src="thirty-party/bootstrap/js/bootstrap.min.js"></script>
 <script src="thirty-party/ol/ol-debug.js"></script>
@@ -75,44 +74,88 @@
 <script src="scripts/ui/ui.map.js"></script>
 <script src="scripts/ui/ui.map.baseLayer.js"></script>
 <script src="scripts/ui/ui.map.vector.js"></script>
-<script src="scripts/ui/ui.map.featureOverlay.js"></script>
+<script src="scripts/ui/ui.map.feature.js"></script>
 <script src="scripts/ui/ui.map.overlay.js"></script>
 <script type="text/javascript">
     $(function () {
-        //Abre el popover
-        var openPopover = function(e)
-        {
+
+        var titleLayer_WorldCities = "Ciudades del mundo";
+        var titleLayer_Lakes = "Lakes";
+        //Popover geoJson
+        var openPopoverGeoJson = function (data, layerName, element,coordinate) {
+            if(data) {
+               var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
+                        coordinate, 'EPSG:3857', 'EPSG:4326'));
+
+                var header = '<code>' + hdms + '</code><br/>', content;
+                switch (layerName) {
+                    case titleLayer_WorldCities:
+                    {
+                        header = header + data["STATUS"] + "<br/>" + data["ADMIN_NAME"]
+                        content = data["CITY_NAME"] + "<br/>" + data["CNTRY_NAME"];
+                        break;
+                    }
+                    case titleLayer_Lakes:
+                    {
+                        header = header +data["featurecla"] + " " + data["name"]
+                        content = data["featurecla"] + "<br/>" + data["name_abb"] + "<br/>" + data["name"] + "<br/>" + data["year"] + "<br/>" + data["scalerank"];
+                        break;
+                    }
+                }
+
+
+                $(element).popover('destroy');
+                // the keys are quoted to prevent renaming in ADVANCED mode.
+                $(element).popover({
+                    'placement': 'top',
+                    'animation': false,
+                    'html': true,
+                    'content': content,
+                    'title': header
+                });
+                $(element).popover('show');
+            }
+        }
+
+        //Abre el popover sobre un overlay
+        var openPopover = function (e) {
+            e.preventDefault();
             var elem = e.currentTarget;
             $(elem).popover(
                     {
-                        trigger: 'manual',
+                        'animation': false,
                         html: true,
-                        container: "body",
+                        'placement': 'top',
                         content: $(elem).data("description"),
-                        title:  $(elem).data("name"),
-                        placement: 'auto'
+                        title: $(elem).data("name"),
+
                     }
             );
             $(elem).popover('toggle');
+
         }
 
 
         //TODO Pasar parámemtros de inicialización al mapa
-        var mapa = UI.Map.init("map");
+        var mapa = UI.Map.init("map", openPopoverGeoJson);
 
 
-
-
-      /* UI.MapVector.loadGeoJSONData('http://openlayers.org/en/v3.2.1/examples/data/geojson/countries.geojson', 'Límites fronterizos'); */
-   /*   UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
-                'Natural Earth River and Lake Centerlines'); */
-     UI.MapVector.loadGeoJSONData('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
-                'Ciudades del mundo');
+        //UI.MapVector.loadGeoJSONData('http://localhost:63342/olmaps/data/geo.json', 'Paises',openPopoverGeoJson);
+         UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
+                 titleLayer_Lakes);
+        UI.MapVector.loadGeoJSONData('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
+                titleLayer_WorldCities);
 
         //Añade un punto basado en estilos definidos en #marker
-        UI.Overlay.addOverlayPoint([16.3725, 48.208889],'location_marker',null);
-        UI.Overlay.addOverlayPoint([15, 46],'simple_marker',openPopover,{ "name": "punto número 1", "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "});
-       UI.Overlay.addOverlayPoint([12, 42],'simple_marker',openPopover, { "name": "punto número 2", "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "});
+        UI.Overlay.addOverlayPoint([16.3725, 48.208889], 'location_marker', null);
+        UI.Overlay.addOverlayPoint([15, 46], 'simple_marker', openPopover, {
+            "name": "punto número 1",
+            "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "
+        });
+        UI.Overlay.addOverlayPoint([12, 42], 'simple_marker', openPopover, {
+            "name": "punto número 2",
+            "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "
+        });
     });
 </script>
 </body>

@@ -33,7 +33,7 @@ UI.Overlay = (function (mapUtils) {
              }
         }
 
-        // Vienna marker
+        //  marker
         var marker = new ol.Overlay({
             position: pos,
             positioning: 'center-center',

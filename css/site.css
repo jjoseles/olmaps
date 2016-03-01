@@ -137,11 +137,11 @@
 
 /* MArcas por overlay location_marker. Se maquetan con estilos*/
 .location_marker {
-    width: 50px;
-    height:50px;
+    width: 30px;
+    height:30px;
     border: 3px solid white;
     border-radius: 10px;
-    background-color: red;
+    background-color: green;
     cursor: pointer;
     position: relative;
     margin: 0 auto;
@@ -160,7 +160,7 @@
     margin: 0 auto;
     width: 2em;
     height: 2em;
-    border: 0.5em solid red;
+    border: 0.5em solid green;
     border-radius: 100%;
     content: "";
     -webkit-transform-origin: center;
@@ -189,7 +189,7 @@
     margin: 0 auto;
     width: 2em;
     height: 2em;
-    border: 0.2em solid red;
+    border: 0.2em solid green;
     border-radius: 100%;
     content: "";
     -webkit-transform-origin: center;
@@ -244,9 +244,14 @@
     height:30px;
     border: 3px solid white;
     border-radius: 10px;
-    background-color: red;
+    background-color: green;
     cursor: pointer;
     position: relative;
     border-radius: 100%;
 
+}
+
+/* Bootstrap overrides */
+.popover {
+    width: 300px;
 }
