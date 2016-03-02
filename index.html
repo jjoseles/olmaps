@@ -46,9 +46,15 @@
             </ul>
         </div>
     </div>
-    <div class="ol-unselectable ol-control export-button-area">
+    <div class="ol-unselectable ol-control export-button-area custom-button">
         <a class="export-button  fa fa-download fa-2x" download="map.png" data-rel="tooltip" data-placement="left"
            title="" data-original-title="Exportar mapa">
+        </a>
+    </div>
+
+    <div class="ol-unselectable ol-control poi-button-area custom-button">
+        <a class="poi-button fa fa-thumb-tack  fa-2x"  data-rel="tooltip" data-placement="left"
+           title="" data-original-title="Marcar punto">
         </a>
     </div>
     <!-- Botón de información (coordenadas) -->
@@ -76,6 +82,7 @@
 <script src="scripts/ui/ui.map.vector.js"></script>
 <script src="scripts/ui/ui.map.feature.js"></script>
 <script src="scripts/ui/ui.map.overlay.js"></script>
+<script src="scripts/ui/ui.map.interactions.js"></script>
 <script type="text/javascript">
     $(function () {
 
@@ -134,10 +141,12 @@
             $(elem).popover('toggle');
 
         }
-
-
+        var createPointCallback = function(coordinates)
+        {
+            console.log("creamos un punto en " + coordinates)
+        }
         //TODO Pasar parámemtros de inicialización al mapa
-        var mapa = UI.Map.init("map", openPopoverGeoJson);
+        var mapa = UI.Map.init("map", openPopoverGeoJson,createPointCallback);
 
 
         //UI.MapVector.loadGeoJSONData('http://localhost:63342/olmaps/data/geo.json', 'Paises',openPopoverGeoJson);

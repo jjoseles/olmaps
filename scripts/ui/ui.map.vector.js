@@ -219,35 +219,7 @@ UI.MapVector = (function (mapUtils) {
 
 
 
-
-        //Click sobre las features estilos
-      var selectInteraction = new ol.interaction.Select({
-
-            style: new ol.style.Style({
-                //Color de los puntos
-                image: new ol.style.Circle({
-                    radius: 10,
-                    //snapToPixel: false,
-                    'fill': new ol.style.Fill({color: 'blak'}),
-                    stroke: new ol.style.Stroke({
-                        color: 'white', width: 4
-                    })
-                }),
-                //Color de las líneas
-                stroke: new ol.style.Stroke({
-                    width: 3,
-                    color: 'black',
-                }),
-                //Color de relleno
-                fill: new ol.style.Fill({
-                    color: [0, 0, 255, 0.3]
-                })
-            }),
-
-        });
-
-
-        mapUtils.getMap().addInteraction(selectInteraction);
+        UI.Interactions.addDefaultSelectInteraction();
         //Renderizamos el botoón de vectores
         renderVectorSwitcher();
 

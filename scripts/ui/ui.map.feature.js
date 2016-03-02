@@ -77,15 +77,14 @@ UI.Feature = (function (mapUtils) {
     function displayFeatureInfo(feature,callback,map,coordinate) {
 
         var layer = feature.getLayer(map);
-        var overlay = layer.get('overlay');
-        var element  = overlay.getElement();
-
-
-        overlay.setPosition(coordinate);
-        // the keys are quoted to prevent renaming in ADVANCED mode.
-
-
-               callback(feature.getProperties(),layer.get('title'),element,coordinate)
+        if(layer) {
+            var overlay = layer.get('overlay');
+            if(overlay) {
+                var element = overlay.getElement();
+                overlay.setPosition(coordinate);
+                callback(feature.getProperties(), layer.get('title'), element, coordinate)
+            }
+        }
     }
 
     return {

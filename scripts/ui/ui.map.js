@@ -12,6 +12,13 @@ UI.Map = (function () {
     var _currentMap;
     var _featureClickCallback;
 
+
+
+
+    /**
+     * @private
+     * @desc Eventos sobre elementos del mapa
+     **/
     function mapGlobalEvents(){
         _currentMap.on('pointermove', function(event) {
             if (event.dragging) {
@@ -33,17 +40,24 @@ UI.Map = (function () {
             });
             if(feature)
             {
+                if(_featureClickCallback)
+                {
+                    UI.Feature.displayFeatureInfo(feature,_featureClickCallback,_currentMap,event.coordinate);
+                }
 
-
-
-               UI.Feature.displayFeatureInfo(feature,_featureClickCallback,_currentMap,event.coordinate);
+            }
+            else {
+               // No feature
             }
 
         });
     }
 
-
-    function globalEvents(){
+    /**
+     * @private
+     * @desc Eventos sobre elementos no openlayers
+     **/
+    function globalEvents(createPointCallback){
         $('[data-rel=tooltip]').tooltip({
             container: 'body'
         });
@@ -51,12 +65,15 @@ UI.Map = (function () {
             $('.map-info-panel-content').toggle();
         });
         $(".export-button").click(function () {
-
             _currentMap.once('postcompose', function(event) {
                 var canvas = event.context.canvas;
                 $(".export-button").attr("href", canvas.toDataURL('image/png'));
             });
             _currentMap.renderSync();
+        });
+
+        $(".poi-button").click(function () {
+           UI.Interactions.addSelectPointInteraction(createPointCallback);
         });
     }
 
@@ -82,7 +99,7 @@ UI.Map = (function () {
      * @public
      * @desc Inicializa el mapa con los tiles por defecto
      **/
-    function init(mapId,featureClickCallback) {
+    function init(mapId,featureClickCallback,createPointCallback) {
 
         var map = new ol.Map({
             // use OL3-Google-Maps recommended default interactions
@@ -115,9 +132,11 @@ UI.Map = (function () {
 
         UI.MapBaseLayer.renderTileSwitcher();
 
+
+
         mapGlobalEvents();
 
-        globalEvents();
+        globalEvents(createPointCallback);
 
 
         return map;

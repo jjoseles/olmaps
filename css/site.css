@@ -65,16 +65,22 @@
 }
 
 /* button-export-area */
-.export-button-area {
+.custom-button {
     position: absolute;
     right: .5em;
     text-align: left;
-    top: 6.5em;
     height: 38px;
     width: 38px;
 }
+.poi-button-area {
+    top: 9.5em;
+}
 
-.export-button-area a {
+.export-button-area {
+    top: 6.5em;
+}
+
+.custom-button a {
     background-color: transparent;
     float: right;
     cursor: pointer;
@@ -89,10 +95,10 @@
     border-radius: 2px;
 }
 
-.export-button-area a:hover {
+.custom-button a:hover, .custom-button a:hover{
     background: rgba(255,255,255,0.8);
 }
-.export-button-area a.fa {
+.custom-button a.fa,.custom-button a.fa {
     padding-top: 12px;
 }
 
