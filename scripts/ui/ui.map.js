@@ -128,6 +128,11 @@ UI.Map = (function () {
         var olGM = new olgm.OLGoogleMaps({ map: map }); // map is the ol.Map instance
         olGM.activate();
 
+        var gmap = olGM.getGoogleMapsMap();
+
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(gmap);
+
         _currentMap = map;
 
         UI.MapBaseLayer.renderTileSwitcher();
