@@ -10,7 +10,33 @@ UI.Interactions = (function (mapUtils) {
 
     var defaultInteraction, addPointInteraction;
 
-
+    /**
+     * @private
+     * @desc estilo por defecto para la interacción
+     **/
+    function getDefaultStyle()
+    {
+        return new ol.style.Style({
+            //Color de los puntos
+            image: new ol.style.Circle({
+                radius: 10,
+                //snapToPixel: false,
+                'fill': new ol.style.Fill({color: 'red'}),
+                stroke: new ol.style.Stroke({
+                    color: 'white', width: 4
+                })
+            }),
+            //Color de las líneas
+            stroke: new ol.style.Stroke({
+                width: 3,
+                color: 'black'
+            }),
+            //Color de relleno
+            fill: new ol.style.Fill({
+                color: [0, 0, 255, 0.3]
+            })
+        });
+    }
     function addFeatureOverlay(currentMap)
     {
         var features = new ol.Collection();
@@ -78,36 +104,27 @@ UI.Interactions = (function (mapUtils) {
 
 
 
-    var addDefaultSelectInteraction = function() {
+    var addDefaultSelectInteraction = function(style) {
+        var currentMap =mapUtils.getMap();
+        currentMap.removeInteraction(defaultInteraction);
+        defaultInteraction = null;
+        currentMap.renderSync();
+
+
+        if(style == 'undefined')
+            style = getDefaultStyle();
+
+
 
         //Click sobre las features estilos
         var selectInteraction = new ol.interaction.Select({
             'name': 'default',
-            style: new ol.style.Style({
-                //Color de los puntos
-                image: new ol.style.Circle({
-                    radius: 10,
-                    //snapToPixel: false,
-                    'fill': new ol.style.Fill({color: 'red'}),
-                    stroke: new ol.style.Stroke({
-                        color: 'white', width: 4
-                    })
-                }),
-                //Color de las líneas
-                stroke: new ol.style.Stroke({
-                    width: 3,
-                    color: 'black',
-                }),
-                //Color de relleno
-                fill: new ol.style.Fill({
-                    color: [0, 0, 255, 0.3]
-                })
-            }),
+            style: style,
 
         });
 
 
-        mapUtils.getMap().addInteraction(selectInteraction);
+        currentMap.addInteraction(selectInteraction)
         defaultInteraction = selectInteraction;
     }
     return {

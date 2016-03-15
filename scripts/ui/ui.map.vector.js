@@ -8,8 +8,31 @@ UI = window.UI || {};
  **/
 UI.MapVector = (function (mapUtils) {
 
+    /**
+     * @private
+     * @desc estilo por defecto para las capas
+     **/
+    function getDefaultStyle()
+    {
+       return new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 5,
+                fill: new ol.style.Fill({color: 'red'}),
+                stroke: new ol.style.Stroke({
+                    color: 'white', width: 3
+                })
+            }),
+            stroke: new ol.style.Stroke({
+                width: 3,
+                color: 'blue'
+            }),
+            fill: new ol.style.Fill({
+                color: [0, 0, 255, 0.1]
+            })
 
 
+        });
+    }
 
     /**
      * @private
@@ -132,6 +155,40 @@ UI.MapVector = (function (mapUtils) {
 
     }
 
+    function removeVectorLayerByTitle(title)
+    {
+        var currentLayer = null;
+        var currentMap = mapUtils.getMap();
+        currentMap.getLayers().forEach(function (lyr, idx, a) {
+            //Solo los vectores
+            if (lyr.get('type') === 'vector') {
+
+                if (lyr.get('title') === title)
+                {
+                    currentMap.removeLayer(lyr);
+                    currentMap.render();
+                    return;
+                }
+
+            }
+        });
+
+    }
+
+    function getVectorLayerByTitle(title)
+    {
+        var currentLayer = null;
+
+        mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
+            //Solo los vectores
+            if (lyr.get('type') === 'vector') {
+
+                if (lyr.get('title') === title)
+                    currentLayer = lyr;
+            }
+            });
+        return currentLayer;
+    }
 
     /**
      * @private
@@ -179,8 +236,10 @@ UI.MapVector = (function (mapUtils) {
      * @public
      * @desc Inicializa el vector trayéndose el GeoJson
      **/
-    function loadGeoJSONData(url, name) {
+    function loadGeoJSONData(url, name, style, interactionStyle) {
 
+        if(style == 'undefined')
+            style = getDefaultStyle();
         //Elemento base para el overlay sobre las features
         var elem = document.createElement('div');
         elem.setAttribute('id', name);
@@ -194,24 +253,7 @@ UI.MapVector = (function (mapUtils) {
             'title': name,
             'type': 'vector',
             'overlay' : overlay,
-            style: new ol.style.Style({
-                image: new ol.style.Circle({
-                    radius: 5,
-                    fill: new ol.style.Fill({color: 'red'}),
-                    stroke: new ol.style.Stroke({
-                        color: 'white', width: 3
-                    })
-                }),
-                stroke: new ol.style.Stroke({
-                    width: 3,
-                    color: 'blue'
-                }),
-                fill: new ol.style.Fill({
-                    color: [0, 0, 255, 0.1]
-                })
-
-
-            })
+            style:style
 
         });
         //Asignamos el vector al mapa
@@ -219,7 +261,7 @@ UI.MapVector = (function (mapUtils) {
 
 
 
-        UI.Interactions.addDefaultSelectInteraction();
+        UI.Interactions.addDefaultSelectInteraction(interactionStyle);
         //Renderizamos el botoón de vectores
         renderVectorSwitcher();
 
@@ -248,7 +290,9 @@ UI.MapVector = (function (mapUtils) {
 
     return {
         loadGeoJSONData: loadGeoJSONData,
-        addVector: addVector
+        addVector: addVector,
+        getVectorLayerByTitle: getVectorLayerByTitle,
+        removeVectorLayerByTitle: removeVectorLayerByTitle
 
 
     }

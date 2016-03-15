@@ -1,0 +1,54 @@
+
+<!-- Mapa -->
+<div id="map" class="map"></div>
+
+<!-- Map content -->
+<div class="map-content">
+    <div class="ol-unselectable ol-control tile-switcher">
+        <div class="btn-group pull-right">
+            <button type="button" class="dropdown-toggle " data-toggle="dropdown" data-rel="tooltip"
+                    data-placement="left" title="" data-original-title="Mapas base">
+            </button>
+            <ul class="user-menu dropdown-menu-right dropdown-menu
+                            dropdown-light-blue dropdown-caret dropdown-close"
+                id="map-tile-selection">
+                <!-- Generado por javascript en renderTileSwitcher-->
+            </ul>
+        </div>
+    </div>
+    <div class="ol-unselectable ol-control vector-switcher">
+        <div class="btn-group pull-right">
+            <button type="button" class="dropdown-toggle " data-toggle="dropdown" data-rel="tooltip"
+                    data-placement="left" title="" data-original-title="Capas">
+            </button>
+            <ul class="user-menu dropdown-menu-right dropdown-menu
+                            dropdown-light-blue dropdown-caret dropdown-close"
+                id="map-vector-selection">
+                <!-- Generado por javascript en renderVectorSwitcher-->
+            </ul>
+        </div>
+    </div>
+    <div class="ol-unselectable ol-control export-button-area custom-button">
+        <a class="export-button  fa fa-download fa-2x" download="map.png" data-rel="tooltip" data-placement="left"
+           title="" data-original-title="Exportar mapa">
+        </a>
+    </div>
+
+    <div class="ol-unselectable ol-control poi-button-area custom-button">
+        <a class="poi-button fa fa-thumb-tack  fa-2x"  data-rel="tooltip" data-placement="left"
+           title="" data-original-title="Marcar punto">
+        </a>
+    </div>
+    <!-- Botón de información (coordenadas) -->
+    <div class="ol-unselectable ol-control ol-collapsed map-info-panel">
+        <button type="button" title="Coordenadas" class="map-info-panel-button" data-rel="tooltip"
+                data-placement="bottom" title="" data-original-title="Coordenadas"><span>i</span></button>
+        <div class="map-info-panel-content">
+            EPSG:3857 <span id="mouse3857" class="label label-info"></span>
+            EPSG:4326 <span id="mouse4326" class="label label-info"></span>
+        </div>
+    </div>
+
+
+</div>
+

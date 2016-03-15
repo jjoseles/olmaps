@@ -67,8 +67,11 @@
         </div>
     </div>
 
-
 </div>
+
+<a class=" fa fa-globe  fa-2x "  data-rel="tooltip" data-placement="left" id="openModal"
+   title="" data-original-title="Abrir mapa">
+</a>
 
 <!-- /.container -->
 <script src="thirty-party/jquery/jquery.min.js"></script>
@@ -77,15 +80,30 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAZH-whAk0IwQoKzruViuPCxPxBA0etCbI"></script>
 <script src="thirty-party/ol/ol3gm.js"></script>
+<script src="scripts/ui.js"></script>
 <script src="scripts/ui/ui.map.js"></script>
 <script src="scripts/ui/ui.map.baseLayer.js"></script>
 <script src="scripts/ui/ui.map.vector.js"></script>
 <script src="scripts/ui/ui.map.feature.js"></script>
 <script src="scripts/ui/ui.map.overlay.js"></script>
 <script src="scripts/ui/ui.map.interactions.js"></script>
+
+<script src="scripts/ui.map.customScripts.js"></script>
+<script src="scripts/ui.messages-and-dialogs.js"></script>
 <script type="text/javascript">
     $(function () {
 
+      $("#openModal").on('click', function () {
+
+            UI.messageAndDialogs.showGenericModalRemoteContent("dialogId", 'mapModal.html', {
+                onShowDialog: function () {
+                    UI.CustomScriptsMap.loadMap();
+                    UI.CustomScriptsMap.loadData('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json', 'lagos');
+                }, width: '80%', title: "Lagos", backgroundColor: "#fff", textColor: "#4D6883"
+            });
+
+
+        });
         var titleLayer_WorldCities = "Ciudades del mundo";
         var titleLayer_Lakes = "Lakes";
         //Popover geoJson
@@ -146,7 +164,8 @@
             console.log("creamos un punto en " + coordinates)
         }
         //TODO Pasar parámemtros de inicialización al mapa
-        var mapa = UI.Map.init("map", openPopoverGeoJson,createPointCallback);
+        var mapa;
+        mapa = UI.Map.init("map", openPopoverGeoJson, createPointCallback);
 
 
         //UI.MapVector.loadGeoJSONData('http://localhost:63342/olmaps/data/geo.json', 'Paises',openPopoverGeoJson);

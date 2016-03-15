@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="es">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="thirty-party/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="thirty-party/ol/ol-debug.css"/>
+    <link rel="stylesheet" href="css/site.css"/>
+    <link rel="stylesheet" href="thirty-party/font-awesome/css/font-awesome.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<a class=" fa fa-globe  fa-2x "  data-rel="tooltip" data-placement="left" id="openModal"
+   title="" data-original-title="Abrir mapa">Abrir mapa en modal
+</a>
+<script src="thirty-party/jquery/jquery.min.js"></script>
+<script src="thirty-party/bootstrap/js/bootstrap.min.js"></script>
+<script src="thirty-party/ol/ol-debug.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAZH-whAk0IwQoKzruViuPCxPxBA0etCbI"></script>
+<script src="thirty-party/ol/ol3gm.js"></script>
+<script src="scripts/ui.js"></script>
+<script src="scripts/ui/ui.map.js"></script>
+<script src="scripts/ui/ui.map.baseLayer.js"></script>
+<script src="scripts/ui/ui.map.vector.js"></script>
+<script src="scripts/ui/ui.map.feature.js"></script>
+<script src="scripts/ui/ui.map.overlay.js"></script>
+<script src="scripts/ui/ui.map.interactions.js"></script>
+
+<script src="scripts/ui.map.customScripts.js"></script>
+<script src="scripts/ui.messages-and-dialogs.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $("#openModal").on('click', function () {
+
+
+
+            UI.messageAndDialogs.showGenericModalRemoteContent("dialogId", 'mapModal.html', {
+                onShowDialog: function () {
+                    var layerName = "Ciudades";
+                    UI.CustomScriptsMap.loadMap();
+                    UI.CustomScriptsMap.loadData('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json', layerName);
+                    setInterval(function () {
+
+                        var l = UI.MapVector.removeVectorLayerByTitle(layerName)
+
+
+                        UI.CustomScriptsMap.loadData('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json', layerName);
+                    }, 20000);
+
+
+                }, width: '80%', title: "Ciudades del mundo", backgroundColor: "#fff",hideFooter: true, textColor: "#4D6883"
+            });
+
+
+        });
+    });
+</script>
+</body>
+</html>
