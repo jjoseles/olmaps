@@ -12,9 +12,8 @@ UI.MapVector = (function (mapUtils) {
      * @private
      * @desc estilo por defecto para las capas
      **/
-    function getDefaultStyle()
-    {
-       return new ol.style.Style({
+    function getDefaultStyle() {
+        return new ol.style.Style({
             image: new ol.style.Circle({
                 radius: 5,
                 fill: new ol.style.Fill({color: 'red'}),
@@ -38,95 +37,98 @@ UI.MapVector = (function (mapUtils) {
      * @private
      * @desc Crea un overlay para visualizar el popover
      **/
-    function createBaseOverlay(element)
-    {
-            var popup = new ol.Overlay({
-                element: element,
-                positioning: 'center-center',
-                stopEvent: false
-            });
+    function createBaseOverlay(element) {
+        var popup = new ol.Overlay({
+            element: element,
+            positioning: 'center-center',
+            stopEvent: false
+        });
         mapUtils.getMap().addOverlay(popup);
         return popup;
 
     }
 
-
+    /**
+     * @private
+     * @desc Función no utilzada de momento hasta que funcionen las funciones en ol3-google-maps
+     * https://github.com/mapgears/ol3-google-maps/blob/master/LIMITATIONS.md
+     **/
     function renderStyleFunction(feature, resolution) {
 
-            var image = new ol.style.Circle({
-                radius: 5,
-                fill: new ol.style.Fill({color: 'red'}),
-                stroke: new ol.style.Stroke({
-                    color: 'white', width: 3
-                })
-            });
+        var image = new ol.style.Circle({
+            radius: 5,
+            fill: new ol.style.Fill({color: 'red'}),
+            stroke: new ol.style.Stroke({
+                color: 'white', width: 3
+            })
+        });
 
-            var styles = {
-                'Point': new ol.style.Style({
-                    image: image
+        var styles = {
+            'Point': new ol.style.Style({
+                image: image
+            }),
+            'LineString': new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    color: 'green',
+                    width: 1
+                })
+            }),
+            'MultiLineString': new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    color: 'green',
+                    width: 1
+                })
+            }),
+            'MultiPoint': new ol.style.Style({
+                image: image
+            }),
+            'MultiPolygon': new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    color: 'yellow',
+                    width: 1
                 }),
-                'LineString': new ol.style.Style({
+                fill: new ol.style.Fill({
+                    color: 'rgba(255, 255, 0, 0.1)'
+                })
+            }),
+            'Polygon': new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    color: 'blue',
+                    lineDash: [4],
+                    width: 3
+                }),
+                fill: new ol.style.Fill({
+                    color: 'rgba(0, 0, 255, 0.1)'
+                })
+            }),
+            'GeometryCollection': new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    color: 'magenta',
+                    width: 2
+                }),
+                fill: new ol.style.Fill({
+                    color: 'magenta'
+                }),
+                image: new ol.style.Circle({
+                    radius: 10,
+                    fill: null,
                     stroke: new ol.style.Stroke({
-                        color: 'green',
-                        width: 1
-                    })
-                }),
-                'MultiLineString': new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: 'green',
-                        width: 1
-                    })
-                }),
-                'MultiPoint': new ol.style.Style({
-                    image: image
-                }),
-                'MultiPolygon': new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: 'yellow',
-                        width: 1
-                    }),
-                    fill: new ol.style.Fill({
-                        color: 'rgba(255, 255, 0, 0.1)'
-                    })
-                }),
-                'Polygon': new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: 'blue',
-                        lineDash: [4],
-                        width: 3
-                    }),
-                    fill: new ol.style.Fill({
-                        color: 'rgba(0, 0, 255, 0.1)'
-                    })
-                }),
-                'GeometryCollection': new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: 'magenta',
-                        width: 2
-                    }),
-                    fill: new ol.style.Fill({
                         color: 'magenta'
-                    }),
-                    image: new ol.style.Circle({
-                        radius: 10,
-                        fill: null,
-                        stroke: new ol.style.Stroke({
-                            color: 'magenta'
-                        })
-                    })
-                }),
-                'Circle': new ol.style.Style({
-                    stroke: new ol.style.Stroke({
-                        color: 'red',
-                        width: 2
-                    }),
-                    fill: new ol.style.Fill({
-                        color: 'rgba(255,0,0,0.2)'
                     })
                 })
-            };
-            if (feature)
-                return styles[feature.getGeometry().getType()];
+            }),
+            'Circle': new ol.style.Style({
+                stroke: new ol.style.Stroke({
+                    color: 'red',
+                    width: 2
+                }),
+                fill: new ol.style.Fill({
+                    color: 'rgba(255,0,0,0.2)'
+                })
+            })
+        };
+        if (feature)
+            return styles[feature.getGeometry().getType()];
 
 
         // else return new ol.style.Style();
@@ -155,48 +157,12 @@ UI.MapVector = (function (mapUtils) {
 
     }
 
-    function removeVectorLayerByTitle(title)
-    {
-        var currentLayer = null;
-        var currentMap = mapUtils.getMap();
-        currentMap.getLayers().forEach(function (lyr, idx, a) {
-            //Solo los vectores
-            if (lyr.get('type') === 'vector') {
-
-                if (lyr.get('title') === title)
-                {
-                    currentMap.removeLayer(lyr);
-                    currentMap.render();
-                    return;
-                }
-
-            }
-        });
-
-    }
-
-    function getVectorLayerByTitle(title)
-    {
-        var currentLayer = null;
-
-        mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-            //Solo los vectores
-            if (lyr.get('type') === 'vector') {
-
-                if (lyr.get('title') === title)
-                    currentLayer = lyr;
-            }
-            });
-        return currentLayer;
-    }
 
     /**
      * @private
      * @desc Prepara los eventos sobre los elementos del mapa para vectores
      **/
     function prepareEvents() {
-
-
         //Selección del base map
         $('[data-vector-name]').click(function () {
 
@@ -204,7 +170,6 @@ UI.MapVector = (function (mapUtils) {
             var targetLi = $(this).closest('li');
 
             // $('#map-vector-selection li').not(targetLi).removeClass('active');
-
 
             mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
                 //Solo los vectores
@@ -224,22 +189,66 @@ UI.MapVector = (function (mapUtils) {
                     }
                 }
             });
-
-
         });
+    }
 
+    /**
+     * @public
+     * @desc Borra una capa de vector por su title
+     * @param {string} title Title asociado al vector
+     **/
+    function removeVectorLayerByTitle(title) {
+        var currentLayer = null;
+        var currentMap = mapUtils.getMap();
+        currentMap.getLayers().forEach(function (lyr, idx, a) {
+            //Solo los vectores
+            if (lyr.get('type') === 'vector') {
+
+                if (lyr.get('title') === title) {
+                    currentMap.removeLayer(lyr);
+                    currentMap.render();
+                    return;
+                }
+
+            }
+        });
 
     }
 
+    /**
+     * @public
+     * @desc Obtiene la capa por su title
+     * @param {string} title Title asociado al vector
+     **/
+    function getVectorLayerByTitle(title) {
+        var currentLayer = null;
+
+        mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
+            //Solo los vectores
+            if (lyr.get('type') === 'vector') {
+
+                if (lyr.get('title') === title)
+                    currentLayer = lyr;
+            }
+        });
+        return currentLayer;
+    }
 
     /**
      * @public
      * @desc Inicializa el vector trayéndose el GeoJson
+     * @param  {string} url, url del geoJson
+     * @param {string} name. Title de la capa
+     * @param {object} style ol.style.Style asociado al vector
+     * @param {object}  interactionStyle ol.style.Style asociado al la interaión select
      **/
     function loadGeoJSONData(url, name, style, interactionStyle) {
 
-        if(style == 'undefined')
+        if (style == undefined || style == null){
+
             style = getDefaultStyle();
+        }
+
         //Elemento base para el overlay sobre las features
         var elem = document.createElement('div');
         elem.setAttribute('id', name);
@@ -252,13 +261,12 @@ UI.MapVector = (function (mapUtils) {
             }),
             'title': name,
             'type': 'vector',
-            'overlay' : overlay,
-            style:style
+            'overlay': overlay,
+            style: style
 
         });
         //Asignamos el vector al mapa
         mapUtils.getMap().addLayer(vectorLayer);
-
 
 
         UI.Interactions.addDefaultSelectInteraction(interactionStyle);
@@ -266,18 +274,19 @@ UI.MapVector = (function (mapUtils) {
         renderVectorSwitcher();
 
 
-
         return vectorLayer;
     }
+
     /**
      * @public
      * @desc Crea un vector con source vacío para incluir features en cliente
+     * @param {string} name Title asociado al vector
      **/
     function addVector(name) {
         var vector = new ol.layer.Vector({
-            source : new ol.source.Vector(),
+            source: new ol.source.Vector(),
             'title': name,
-            'type': 'vector',
+            'type': 'vector'
         });
         mapUtils.getMap().addLayer(vector);
 
@@ -287,13 +296,10 @@ UI.MapVector = (function (mapUtils) {
     }
 
 
-
     return {
         loadGeoJSONData: loadGeoJSONData,
         addVector: addVector,
         getVectorLayerByTitle: getVectorLayerByTitle,
         removeVectorLayerByTitle: removeVectorLayerByTitle
-
-
     }
 })(UI.Map);

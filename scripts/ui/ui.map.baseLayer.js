@@ -17,24 +17,23 @@ UI.MapBaseLayer = (function (mapUtils) {
     function setGoogleLayersVisibility(visible) {
         getLayerByName("GOOGLE_ROAD").setVisible(visible);
         getLayerByName("GOOGLE_HYBRID").setVisible(visible);
-       /* getLayerByName("GOOGLE_ROAD_DARKRED").setVisible(visible);
-        getLayerByName("GOOGLE_ROAD_COBALT").setVisible(visible); */
+        /* getLayerByName("GOOGLE_ROAD_DARKRED").setVisible(visible);
+         getLayerByName("GOOGLE_ROAD_COBALT").setVisible(visible); */
     }
+
     /**
      * @public
      * @desc devuelve  la capa visible
      **/
-    function getVisibleLayer()
-    {
+    function getVisibleLayer() {
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-                //Solo los mapas base
-                if (lyr.get('type') === 'base') {
-                    if(lyr.getVisible())
-                    {
-                        return lyr;
-                    }
+            //Solo los mapas base
+            if (lyr.get('type') === 'base') {
+                if (lyr.getVisible()) {
+                    return lyr;
                 }
-            })
+            }
+        })
     }
 
     /**
@@ -61,7 +60,7 @@ UI.MapBaseLayer = (function (mapUtils) {
             if (lyr.get('type') === 'base') {
                 var li = "<li";
                 li += lyr.getVisible() ? " class='active'" : '';
-                li+= "><a href='javascript:' data-map-name='" + lyr.get('name') + "'>" +
+                li += "><a href='javascript:' data-map-name='" + lyr.get('name') + "'>" +
                     lyr.get('title') + "</a></li>";
                 $("#map-tile-selection").append(li);
 
@@ -91,9 +90,9 @@ UI.MapBaseLayer = (function (mapUtils) {
                 if (lyr.get('type') === 'base') {
                     if (lyr.get('name') === targetTile) {
                         lyr.setVisible(true);
-                        if(lyr.get('name').indexOf("GOOGLE") > -1)
+                        if (lyr.get('name').indexOf("GOOGLE") > -1)
                             $('.export-button-area').hide();
-                         else
+                        else
                             $('.export-button-area').show();
                     } else {
                         lyr.setVisible(false);
@@ -159,64 +158,8 @@ UI.MapBaseLayer = (function (mapUtils) {
                 type: "base",
                 disableDefaultUI: true,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-               }),
-            //Siempre visible aunque no esté por defecto en inicio, porque si no no carga
-           /* new olgm.layer.Google({
-                title: "Google Road - (Dark red)",
-                name: "GOOGLE_ROAD_DARKRED",
-                visible: true,
-                type: "base",
-                disableDefaultUI: true,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles : [
-                    {
-                        "featureType":"all",
-                        "elementType":"all",
-                        "stylers":[
-                            {"invert_lightness":true},
-                            {"saturation":10},
-                            {"lightness":10},
-                            {"gamma":0.8},
-                            {"hue":"#000000"}
-                        ]
-                    },
-                    {
-                        "featureType":"water",
-                        "stylers":[
-                            {"visibility":"on"},
-                            {"color":"#293036"}
-                        ]
-                    }
-                ]
             }),
 
-            new olgm.layer.Google({
-                title: "Google Road - (Cobalt)",
-                name: "GOOGLE_ROAD_COBALT",
-                visible: true,
-                type: "base",
-                disableDefaultUI: true,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles : [
-                    {
-                        "featureType":"all",
-                        "elementType":"all",
-                        "stylers":[
-                            {"invert_lightness":true},
-                            {"saturation":10},
-                            {"lightness":10},
-                            {"gamma":0.8},
-                            {"hue":"#293036"}
-                        ]
-                    },
-                    {
-                        "featureType":"water","stylers":[
-                        {"visibility":"on"},
-                        {"color":"#293036"}
-                    ]
-                    }
-                ]
-            }),*/
 
             new olgm.layer.Google({
                 title: "Google Satellite - (Hybrid)",
@@ -234,7 +177,7 @@ UI.MapBaseLayer = (function (mapUtils) {
         renderTileSwitcher: renderTileSwitcher,
         getLayerByName: getLayerByName,
         defaultBaseMaps: defaultBaseMaps,
-        getVisibleLayer : getVisibleLayer,
+        getVisibleLayer: getVisibleLayer,
         setGoogleLayersVisibility: setGoogleLayersVisibility
     };
 })(UI.Map);

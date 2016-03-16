@@ -8,17 +8,17 @@ UI = window.UI || {};
  **/
 UI.Feature = (function (mapUtils) {
 
-    ol.Feature.prototype.getLayer = function(map) {
+    ol.Feature.prototype.getLayer = function (map) {
         var this_ = this, layer_, layersToLookFor = [];
         /**
          * Populates array layersToLookFor with only
          * layers that have features
          */
-        var check = function(layer){
+        var check = function (layer) {
             var source = layer.getSource();
-            if(source instanceof ol.source.Vector){
+            if (source instanceof ol.source.Vector) {
                 var features = source.getFeatures();
-                if(features.length > 0){
+                if (features.length > 0) {
                     layersToLookFor.push({
                         layer: layer,
                         features: features
@@ -27,26 +27,24 @@ UI.Feature = (function (mapUtils) {
             }
         };
         //loop through map layers
-        map.getLayers().forEach(function(layer){
+        map.getLayers().forEach(function (layer) {
             if (layer instanceof ol.layer.Group) {
                 layer.getLayers().forEach(check);
             } else {
                 check(layer);
             }
         });
-        layersToLookFor.forEach(function(obj){
-            var found = obj.features.some(function(feature){
+        layersToLookFor.forEach(function (obj) {
+            var found = obj.features.some(function (feature) {
                 return this_ === feature;
             });
-            if(found){
+            if (found) {
                 //this is the layer we want
                 layer_ = obj.layer;
             }
         });
         return layer_;
     };
-
-
 
 
     this.cursor_ = 'pointer';
@@ -74,12 +72,12 @@ UI.Feature = (function (mapUtils) {
         }
     }
 
-    function displayFeatureInfo(feature,callback,map,coordinate) {
+    function displayFeatureInfo(feature, callback, map, coordinate) {
 
         var layer = feature.getLayer(map);
-        if(layer) {
+        if (layer) {
             var overlay = layer.get('overlay');
-            if(overlay) {
+            if (overlay) {
                 var element = overlay.getElement();
                 overlay.setPosition(coordinate);
                 callback(feature.getProperties(), layer.get('title'), element, coordinate)

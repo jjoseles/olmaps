@@ -11,11 +11,10 @@ UI.Interactions = (function (mapUtils) {
     var defaultInteraction, addPointInteraction;
 
     /**
-     * @private
+     * @public
      * @desc estilo por defecto para la interacción
      **/
-    function getDefaultStyle()
-    {
+    function getDefaultStyle() {
         return new ol.style.Style({
             //Color de los puntos
             image: new ol.style.Circle({
@@ -37,31 +36,31 @@ UI.Interactions = (function (mapUtils) {
             })
         });
     }
-    function addFeatureOverlay(currentMap)
-    {
+
+    function addFeatureOverlay(currentMap) {
         var features = new ol.Collection();
         var featureOverlay = new ol.layer.Vector({
             source: new ol.source.Vector({features: features}),
             style: new ol.style.Style({
 
-                    //Color de los puntos
-                    image: new ol.style.Circle({
-                        radius: 10,
-                        //snapToPixel: false,
-                        'fill': new ol.style.Fill({color: 'yellow'}),
-                        stroke: new ol.style.Stroke({
-                            color: 'white', width: 4
-                        })
-                    }),
-                    //Color de las líneas
+                //Color de los puntos
+                image: new ol.style.Circle({
+                    radius: 10,
+                    //snapToPixel: false,
+                    'fill': new ol.style.Fill({color: 'yellow'}),
                     stroke: new ol.style.Stroke({
-                        width: 3,
-                        color: 'black',
-                    }),
-                    //Color de relleno
-                    fill: new ol.style.Fill({
-                        color: [0, 0, 255, 0.3]
+                        color: 'white', width: 4
                     })
+                }),
+                //Color de las líneas
+                stroke: new ol.style.Stroke({
+                    width: 3,
+                    color: 'black'
+                }),
+                //Color de relleno
+                fill: new ol.style.Fill({
+                    color: [0, 0, 255, 0.3]
+                })
 
             })
         });
@@ -69,16 +68,14 @@ UI.Interactions = (function (mapUtils) {
         return features;
     }
 
-    var addSelectPointInteraction = function(createPointCallback) {
-        var currentMap =mapUtils.getMap();
-        if(addPointInteraction)
-        {
+    var addSelectPointInteraction = function (createPointCallback) {
+        var currentMap = mapUtils.getMap();
+        if (addPointInteraction) {
             currentMap.removeInteraction(addPointInteraction);
             addPointInteraction = null;
             currentMap.renderSync();
         }
-        else
-        {
+        else {
             currentMap.removeInteraction(defaultInteraction);
             var features = addFeatureOverlay(currentMap);
             var draw = new ol.interaction.Draw({
@@ -89,44 +86,38 @@ UI.Interactions = (function (mapUtils) {
             currentMap.addInteraction(draw);
             addPointInteraction = draw;
             currentMap.renderSync();
-            if(createPointCallback)
-            {
-                draw.on('drawend', function(evt) {
+            if (createPointCallback) {
+                draw.on('drawend', function (evt) {
 
                     createPointCallback(evt.feature.getGeometry().getCoordinates());
                 }, this);
             }
-
-
         }
-
-    }
-
+    };
 
 
-    var addDefaultSelectInteraction = function(style) {
-        var currentMap =mapUtils.getMap();
+    var addDefaultSelectInteraction = function (style) {
+        var currentMap = mapUtils.getMap();
         currentMap.removeInteraction(defaultInteraction);
         defaultInteraction = null;
         currentMap.renderSync();
 
 
-        if(style == 'undefined')
+        if (style == undefined || style == null)
             style = getDefaultStyle();
-
 
 
         //Click sobre las features estilos
         var selectInteraction = new ol.interaction.Select({
             'name': 'default',
-            style: style,
+            style: style
 
         });
 
 
-        currentMap.addInteraction(selectInteraction)
+        currentMap.addInteraction(selectInteraction);
         defaultInteraction = selectInteraction;
-    }
+    };
     return {
         addSelectPointInteraction: addSelectPointInteraction,
         addDefaultSelectInteraction: addDefaultSelectInteraction
