@@ -116,7 +116,8 @@ UI.Map = (function () {
         map.addControl(new ol.control.ZoomSlider());
         //El control fs no funciona bién con el position fixed
         //map.addControl(new ol.control.FullScreen());
-        map.addControl(new ol.control.OverviewMap());
+        //El overview no funciona en ventanas modales
+        //map.addControl(new ol.control.OverviewMap());
 
         var olGM = new olgm.OLGoogleMaps({map: map}); // map is the ol.Map instance
         olGM.activate();
