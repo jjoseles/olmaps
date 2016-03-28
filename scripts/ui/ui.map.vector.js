@@ -140,19 +140,24 @@ UI.MapVector = (function (mapUtils) {
      **/
     function renderVectorSwitcher() {
         $("#map-vector-selection").empty();
-
+        var existsOne = false;
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-            //Solo capas de vectores
-            if (lyr.get('type') === 'vector') {
 
-                var li = "<li";
-                li += lyr.getVisible() ? " class='active'" : '';
-                li += "><a href='javascript:' data-vector-name='" + lyr.get('title') + "'>" +
-                    lyr.get('title') + "</a></li>";
-                $("#map-vector-selection").append(li);
+console.log(lyr.get('visibleInSwitcher') )
+            //Solo capas de vectores
+            if ((lyr.get('type') === 'vector') ) {
+                if (lyr.get('visibleInSwitcher') == true) {
+                    existsOne = true;
+                    var li = "<li";
+                    li += lyr.getVisible() ? " class='active'" : '';
+                    li += "><a href='javascript:' data-vector-name='" + lyr.get('title') + "'>" +
+                        lyr.get('title') + "</a></li>";
+                    $("#map-vector-selection").append(li);
+                }
             }
         });
-        $(".vector-switcher").show();
+        if(existsOne)
+            $(".vector-switcher").show();
         prepareEvents();
 
     }
@@ -237,44 +242,77 @@ UI.MapVector = (function (mapUtils) {
     /**
      * @public
      * @desc Inicializa el vector trayéndose el GeoJson
+     * @param  {options} Opciones
      * @param  {string} url, url del geoJson
-     * @param {string} name. Title de la capa
+     * @param {string} title. Title de la capa
+     * @param {string} type. Tipo de la capa (definido por el programador)
+     * @param {string} code. código asociado a la capa (definido por el programador)
      * @param {object} style ol.style.Style asociado al vector
      * @param {object}  interactionStyle ol.style.Style asociado al la interaión select
+     * @param {bool} visibleInSwitcher indica si la capa va visible en el selector de capas
      **/
-    function loadGeoJSONData(url, name, style, interactionStyle) {
+    function loadGeoJSONData(options) {
+        if(options)
+        {
+            var style,title,type,code,url,visibleInSwitcher;
+            if (options.style == undefined || options.style == null){
 
-        if (style == undefined || style == null){
+                style = getDefaultStyle();
+            }
+            if(options.title == undefined || options.title == null || options.title == '')
+                  console.log("Define 'title' de la capa")
+            else
+                title = options.title;
 
-            style = getDefaultStyle();
+            if(options.type == undefined || options.type == null || options.type == '')
+                type='vector'
+            else
+                type = options.type;
+
+            if(options.code == undefined || options.code == null || options.code == '')
+                console.log("Define código de la capa")
+            else
+                code = options.code;
+
+            if(options.url == undefined || options.url == null || options.url == '')
+                console.log("Define url de la capa")
+            else
+                url = options.url;
+
+
+            visibleInSwitcher = options.visibleInSwitcher;
+
+            //Elemento base para el overlay sobre las features
+            var elem = document.createElement('div');
+            elem.setAttribute('id', name);
+            var overlay = createBaseOverlay(elem);
+
+            var vectorLayer = new ol.layer.Vector({
+                source: new ol.source.Vector({
+                    url: url,
+                    format: new ol.format.GeoJSON()
+                }),
+                'title': title,
+                'type': 'vector',
+                'customType': type,
+                'code' : code,
+                'overlay': overlay,
+                 'style': style,
+                'visibleInSwitcher' : visibleInSwitcher
+
+            });
+            //Asignamos el vector al mapa
+            mapUtils.getMap().addLayer(vectorLayer);
+
+
+          //  UI.Interactions.addDefaultSelectInteraction(interactionStyle);
+            //Renderizamos el botoón de vectores
+            renderVectorSwitcher();
+
+
+            return vectorLayer;
         }
 
-        //Elemento base para el overlay sobre las features
-        var elem = document.createElement('div');
-        elem.setAttribute('id', name);
-        var overlay = createBaseOverlay(elem);
-
-        var vectorLayer = new ol.layer.Vector({
-            source: new ol.source.Vector({
-                url: url,
-                format: new ol.format.GeoJSON()
-            }),
-            'title': name,
-            'type': 'vector',
-            'overlay': overlay,
-            style: style
-
-        });
-        //Asignamos el vector al mapa
-        mapUtils.getMap().addLayer(vectorLayer);
-
-
-        UI.Interactions.addDefaultSelectInteraction(interactionStyle);
-        //Renderizamos el botoón de vectores
-        renderVectorSwitcher();
-
-
-        return vectorLayer;
     }
 
     /**

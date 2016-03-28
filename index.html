@@ -128,7 +128,7 @@
                     }
                 }
 
-
+                var genericCloseBtnHtml = "<button type=\"button\" class=\"close\" aria-hidden=\"true\">&times;</button>";
                 $(element).popover('destroy');
                 // the keys are quoted to prevent renaming in ADVANCED mode.
                 $(element).popover({
@@ -136,9 +136,15 @@
                     'animation': false,
                     'html': true,
                     'content': content,
-                    'title': header
-                });
-                $(element).popover('show');
+                    'title': genericCloseBtnHtml + header
+                }).on("shown.bs.popover", function (e) {
+                    var $pop = $(element).data("bs.popover").$tip;
+                    $pop.find(".close").click(function () {
+                        $(element).popover("destroy");
+                    });
+
+              });
+              $(element).popover("show");
             }
         }
 
@@ -169,10 +175,44 @@
 
 
         //UI.MapVector.loadGeoJSONData('http://localhost:63342/olmaps/data/geo.json', 'Paises',openPopoverGeoJson);
-         UI.MapVector.loadGeoJSONData('https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
+         UI.MapVector.loadGeoJSONData(
+                 {
+                     'url' : 'https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
+                     'title' : titleLayer_Lakes,
+                     'code' : 'L001',
+                     'type' : 'polygon',
+
+                     'visibleInSwitcher' : false
+                 },
                  titleLayer_Lakes);
-        UI.MapVector.loadGeoJSONData('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
-                titleLayer_WorldCities);
+        UI.MapVector.loadGeoJSONData(
+                {
+                    'url' : 'http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
+                    'title' : titleLayer_WorldCities,
+                    'code' : 'WC001',
+                    'type' : 'point',
+                    'style' :  new ol.style.Style({
+                        image: new ol.style.Circle({
+                            radius: 5,
+                            fill: new ol.style.Fill({
+                                color: 'rgba(154,0,217,0.8)'
+                            }),
+                            stroke: new ol.style.Stroke({
+                                color: 'rgba(217,217,217,1)',
+                                width: 3
+                            })
+                        })
+                        , stroke: new ol.style.Stroke({
+                            width: 3,
+                            color: 'rgba(0,154,217,0.8)',
+                        })
+                        , fill: new ol.style.Fill({
+                            color: 'rgba(0,154,217,0.5)',
+                        })
+
+                    }),
+                    'visibleInSwitcher' : true
+                });
 
         //Añade un punto basado en estilos definidos en #marker
         UI.Overlay.addOverlayPoint([16.3725, 48.208889], 'location_marker', null);
