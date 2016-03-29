@@ -139,25 +139,49 @@ UI.MapVector = (function (mapUtils) {
      * @desc Renderiza el selector de vectores
      **/
     function renderVectorSwitcher() {
-        $("#map-vector-selection").empty();
+        $(".vector-switcher-content").empty();
         var existsOne = false;
+
+        var retHtml = "<table        data-ordering=\"true\"     data-order=\"[[1,&quot;asc&quot;]]\" class=' table table-striped table-bordered table-hover' id='table-layer'>";
+        retHtml += "<thead><tr><th   data-searchable=\"false\" data-orderable=\"false\">Opciones</th><th>Capa</th></tr></thead>"
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
 
-console.log(lyr.get('visibleInSwitcher') )
             //Solo capas de vectores
             if ((lyr.get('type') === 'vector') ) {
                 if (lyr.get('visibleInSwitcher') == true) {
                     existsOne = true;
-                    var li = "<li";
-                    li += lyr.getVisible() ? " class='active'" : '';
-                    li += "><a href='javascript:' data-vector-name='" + lyr.get('title') + "'>" +
-                        lyr.get('title') + "</a></li>";
-                    $("#map-vector-selection").append(li);
+                     retHtml += "<tr>";
+
+                    retHtml += "<td><a class=\"btn btn-default\"><i class='ace-icon fa fa-eye";
+                    if(lyr.getVisible())
+                        retHtml += " blue";
+                    else  retHtml +=" red";
+                    retHtml += "'></i></a>";
+                    retHtml += "<a class=\"btn btn-default\"><i class='ace-icon fa fa-refresh'></i></a>"
+                    retHtml += "</td>";
+
+                    retHtml += "<td data-vector-name='" + lyr.get('title') + "'>" +
+                        lyr.get('title') + "</td> </tr>";
+
                 }
             }
         });
+        retHtml += "</tbody></table>";
+        $(".vector-switcher-content").append(retHtml);
         if(existsOne)
             $(".vector-switcher").show();
+
+        var otable = $("#table-layer",$(".vector-switcher-content")).dataTable({
+
+            "ordering": true,
+            "stateSave": false,
+            "pageLength": 10,
+            "language": { "sSearch": "" },
+            'sDom': 'ftlp',
+            "columnDefs": [
+                { "orderable": false, "targets": 0 }
+            ]
+        });
         prepareEvents();
 
     }
@@ -199,17 +223,18 @@ console.log(lyr.get('visibleInSwitcher') )
 
     /**
      * @public
-     * @desc Borra una capa de vector por su title
-     * @param {string} title Title asociado al vector
+     * @desc Borra una capa de vector buscándola por una determinada propiedad
+     * @param {string} propertyName Nombre de la propiedad
+     * @param {string} propertyValue Valor de la propiedad
      **/
-    function removeVectorLayerByTitle(title) {
+    function removeVectorLayerByProperty(propertyName,propertyValue) {
         var currentLayer = null;
         var currentMap = mapUtils.getMap();
         currentMap.getLayers().forEach(function (lyr, idx, a) {
             //Solo los vectores
             if (lyr.get('type') === 'vector') {
 
-                if (lyr.get('title') === title) {
+                if (lyr.get(propertyName) === propertyValue) {
                     currentMap.removeLayer(lyr);
                     currentMap.render();
                     return;
@@ -222,17 +247,18 @@ console.log(lyr.get('visibleInSwitcher') )
 
     /**
      * @public
-     * @desc Obtiene la capa por su title
-     * @param {string} title Title asociado al vector
+     * @desc Obtiene la capa por el valor que toma una de sus propiedades
+     * @param {string} propertyName Nombre de la propiedad
+     * @param {string} propertyValue Valor de la propiedad
      **/
-    function getVectorLayerByTitle(title) {
+    function getVectorLayerByProperty(propertyName,propertyValue) {
         var currentLayer = null;
 
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
             //Solo los vectores
             if (lyr.get('type') === 'vector') {
 
-                if (lyr.get('title') === title)
+                if (lyr.get(propertyName) === propertyValue)
                     currentLayer = lyr;
             }
         });
@@ -254,44 +280,49 @@ console.log(lyr.get('visibleInSwitcher') )
     function loadGeoJSONData(options) {
         if(options)
         {
-            var style,title,type,code,url,visibleInSwitcher;
-            if (options.style == undefined || options.style == null){
 
+            var style,title,type,code,url,visibleInSwitcher;
+            if (typeof options.style === 'undefined')
                 style = getDefaultStyle();
-            }
-            if(options.title == undefined || options.title == null || options.title == '')
+            else
+                style = options.style;
+
+            if(typeof options.title === 'undefined' || options.title == '')
                   console.log("Define 'title' de la capa")
             else
                 title = options.title;
 
-            if(options.type == undefined || options.type == null || options.type == '')
+            if(typeof options.type === 'undefined' || options.type == '')
                 type='vector'
             else
                 type = options.type;
 
-            if(options.code == undefined || options.code == null || options.code == '')
+            if(typeof options.code === 'undefined' || options.code == '')
                 console.log("Define código de la capa")
             else
                 code = options.code;
 
-            if(options.url == undefined || options.url == null || options.url == '')
+            if(typeof options.url === 'undefined' || options.url == '')
                 console.log("Define url de la capa")
             else
                 url = options.url;
 
-
-            visibleInSwitcher = options.visibleInSwitcher;
+            if(typeof options.visibleInSwitcher === 'undefined' )
+                visibleInSwitcher = true;
+           else
+                 visibleInSwitcher = options.visibleInSwitcher;
 
             //Elemento base para el overlay sobre las features
             var elem = document.createElement('div');
             elem.setAttribute('id', name);
             var overlay = createBaseOverlay(elem);
 
+            var source = new ol.source.Vector({
+                url: url,
+                format: new ol.format.GeoJSON()
+            });
             var vectorLayer = new ol.layer.Vector({
-                source: new ol.source.Vector({
-                    url: url,
-                    format: new ol.format.GeoJSON()
-                }),
+                source : source,
                 'title': title,
                 'type': 'vector',
                 'customType': type,
@@ -301,11 +332,13 @@ console.log(lyr.get('visibleInSwitcher') )
                 'visibleInSwitcher' : visibleInSwitcher
 
             });
+
+
             //Asignamos el vector al mapa
             mapUtils.getMap().addLayer(vectorLayer);
 
 
-          //  UI.Interactions.addDefaultSelectInteraction(interactionStyle);
+           // UI.Interactions.addDefaultSelectInteraction(interactionStyle);
             //Renderizamos el botoón de vectores
             renderVectorSwitcher();
 
@@ -333,11 +366,38 @@ console.log(lyr.get('visibleInSwitcher') )
         return vector;
     }
 
+    /**
+     * @public
+     * @desc Devuelve el source de una capa
+     * @param {object} vecor
+     **/
+    function getVecorLayerSource(layer){
+        return layer.getSource();
+    }
 
+    /**
+     * @public
+     * @desc Centra el mapa y hace zoom sobre un conjunto de puntos del source de una capa
+     * @param {object} layer
+     **/
+    function fixToExtend(layer)
+    {
+        var map = mapUtils.getMap();
+        var source = getVecorLayerSource(layer);
+        source.on("change", function(evt) {
+            extent = source.getExtent();
+            map.getView().fit(extent, map.getSize());
+        });
+
+
+        //map.getView().fitExtent(extent, map.getSize());
+    }
     return {
         loadGeoJSONData: loadGeoJSONData,
         addVector: addVector,
-        getVectorLayerByTitle: getVectorLayerByTitle,
-        removeVectorLayerByTitle: removeVectorLayerByTitle
+        getVectorLayerByProperty: getVectorLayerByProperty,
+        removeVectorLayerByProperty: removeVectorLayerByProperty,
+        getVecorLayerSource: getVecorLayerSource,
+        fixToExtend:fixToExtend
     }
 })(UI.Map);

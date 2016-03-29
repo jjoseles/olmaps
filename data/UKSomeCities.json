@@ -1,0 +1,29 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-SCT", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 5, "ADMIN_NAME": "Scotland", "STATUS": "Other", "PORT_ID": 32170, "CITY_NAME": "Dundee", "POP_CLASS": "100,000 to 250,000" }, "geometry": { "type": "Point", "coordinates": [ -2.966700, 56.466702 ] } }
+  ,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-SCT", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 7, "ADMIN_NAME": "Scotland", "STATUS": "Other", "PORT_ID": 33515, "CITY_NAME": "Hunterston", "POP_CLASS": "Less than 50,000" }, "geometry": { "type": "Point", "coordinates": [ -4.856786, 55.736744 ] } }
+,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-ENG", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 5, "ADMIN_NAME": "England", "STATUS": "Other", "PORT_ID": 35580, "CITY_NAME": "Southampton", "POP_CLASS": "100,000 to 250,000" }, "geometry": { "type": "Point", "coordinates": [ -1.400000, 50.899998 ] } }
+  ,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-ENG", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 7, "ADMIN_NAME": "England", "STATUS": "Other", "PORT_ID": 35590, "CITY_NAME": "Fawley", "POP_CLASS": "Less than 50,000" }, "geometry": { "type": "Point", "coordinates": [ -1.333300, 50.816700 ] } }
+,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-SCT", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 4, "ADMIN_NAME": "Scotland", "STATUS": "Provincial capital", "PORT_ID": 31930, "CITY_NAME": "Edinburgh", "POP_CLASS": "250,000 to 500,000" }, "geometry": { "type": "Point", "coordinates": [ -3.250000, 55.924000 ] } }
+  ,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-SCT", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 3, "ADMIN_NAME": "Scotland", "STATUS": "Other", "PORT_ID": 33490, "CITY_NAME": "Glasgow", "POP_CLASS": "500,000 to 1,000,000" }, "geometry": { "type": "Point", "coordinates": [ -4.269948, 55.862808 ] } }
+,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-NIR", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 4, "ADMIN_NAME": "Northern Ireland", "STATUS": "Provincial capital", "PORT_ID": 33770, "CITY_NAME": "Belfast", "POP_CLASS": "250,000 to 500,000" }, "geometry": { "type": "Point", "coordinates": [ -5.910000, 54.587002 ] } }
+,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-ENG", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 2, "ADMIN_NAME": "England", "STATUS": "Other", "PORT_ID": 0, "CITY_NAME": "Leeds", "POP_CLASS": "1,000,000 to 5,000,000" }, "geometry": { "type": "Point", "coordinates": [ -1.497527, 53.808712 ] } }
+,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-ENG", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 3, "ADMIN_NAME": "England", "STATUS": "Other", "PORT_ID": 0, "CITY_NAME": "Sheffield", "POP_CLASS": "500,000 to 1,000,000" }, "geometry": { "type": "Point", "coordinates": [ -1.462989, 53.374043 ] } }
+,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-ENG", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 2, "ADMIN_NAME": "England", "STATUS": "Other", "PORT_ID": 0, "CITY_NAME": "Birmingham", "POP_CLASS": "1,000,000 to 5,000,000" }, "geometry": { "type": "Point", "coordinates": [ -1.863348, 52.492752 ] } }
+,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-ENG", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 1, "ADMIN_NAME": "England", "STATUS": "National and provincial capital", "PORT_ID": 31470, "CITY_NAME": "London", "POP_CLASS": "5,000,000 and greater" }, "geometry": { "type": "Point", "coordinates": [ -0.177998, 51.487911 ] } }
+  ,
+    { "type": "Feature", "properties": { "GMI_ADMIN": "GBR-WLS", "FIPS_CNTRY": "UK", "CNTRY_NAME": "United Kingdom", "POP_RANK": 4, "ADMIN_NAME": "Wales", "STATUS": "Provincial capital", "PORT_ID": 35010, "CITY_NAME": "Cardiff", "POP_CLASS": "250,000 to 500,000" }, "geometry": { "type": "Point", "coordinates": [ -3.216667, 51.483334 ] } }
+
+  ]
+}

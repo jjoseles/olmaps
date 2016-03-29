@@ -69,6 +69,15 @@ UI.Map = (function () {
         $(".poi-button").click(function () {
             UI.Interactions.addSelectPointInteraction(createPointCallback);
         });
+
+        $('.vector-switcher button').click(function(e){
+
+           e.preventDefault();
+
+
+            $('.vector-switcher-content').toggleClass('open');
+
+        })
     }
 
 
@@ -90,9 +99,19 @@ UI.Map = (function () {
 
     /**
      * @public
+     * @desc {array} array de latitud,longitud en decimal [16.3725, 48.208889]
+     **/
+    function setCenter(center)
+    {
+        var pos = ol.proj.fromLonLat(center);
+        _currentMap.getView().setCenter(pos);
+    }
+    /**
+     * @public
      * @desc Inicializa el mapa con los tiles por defecto
      **/
     function init(mapId, featureClickCallback, createPointCallback) {
+
 
         var map = new ol.Map({
             // use OL3-Google-Maps recommended default interactions
@@ -118,6 +137,10 @@ UI.Map = (function () {
         //map.addControl(new ol.control.FullScreen());
         //El overview no funciona en ventanas modales
         //map.addControl(new ol.control.OverviewMap());
+
+        var scaleLineControl = new ol.control.ScaleLine();
+        scaleLineControl.setUnits(ol.control.ScaleLineUnits.METRIC);
+        map.addControl(scaleLineControl);
 
         var olGM = new olgm.OLGoogleMaps({map: map}); // map is the ol.Map instance
         olGM.activate();
@@ -145,7 +168,8 @@ UI.Map = (function () {
 
     return {
         init: init,
-        getMap: getMap
+        getMap: getMap,
+        setCenter:setCenter
 
     }
 })();

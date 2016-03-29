@@ -63,6 +63,41 @@
     height: 32px;
     width: 32px;
 }
+.vector-switcher .vector-switcher-content{
+    display: block;
+    float: left;
+    max-width: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+
+    background-color: #FFF;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+width: 400px;
+    margin: 2px 0 0;
+
+
+
+}
+.vector-switcher .vector-switcher-content.open {
+    max-width: 320px;
+    max-height: 1000px;
+    padding: 10px;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    opacity: 0.9;
+
+}
+
+
 
 /* button-export-area */
 .custom-button {

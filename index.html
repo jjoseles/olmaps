@@ -7,6 +7,8 @@
     <title></title>
     <link rel="stylesheet" href="thirty-party/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="thirty-party/ol/ol-debug.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+
     <link rel="stylesheet" href="css/site.css"/>
     <link rel="stylesheet" href="thirty-party/font-awesome/css/font-awesome.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -27,8 +29,7 @@
             <button type="button" class="dropdown-toggle " data-toggle="dropdown" data-rel="tooltip"
                     data-placement="left" title="" data-original-title="Mapas base">
             </button>
-            <ul class="user-menu dropdown-menu-right dropdown-menu
-                            dropdown-light-blue dropdown-caret dropdown-close"
+            <ul class="dropdown-menu dropdown-close"
                 id="map-tile-selection">
                 <!-- Generado por javascript en renderTileSwitcher-->
             </ul>
@@ -36,14 +37,14 @@
     </div>
     <div class="ol-unselectable ol-control vector-switcher">
         <div class="btn-group pull-right">
-            <button type="button" class="dropdown-toggle " data-toggle="dropdown" data-rel="tooltip"
+            <button type="button"  data-rel="tooltip"
                     data-placement="left" title="" data-original-title="Capas">
             </button>
-            <ul class="user-menu dropdown-menu-right dropdown-menu
-                            dropdown-light-blue dropdown-caret dropdown-close"
-                id="map-vector-selection">
-                <!-- Generado por javascript en renderVectorSwitcher-->
-            </ul>
+            <div class="vector-switcher-content " >
+
+
+            </div>
+        </div>
         </div>
     </div>
     <div class="ol-unselectable ol-control export-button-area custom-button">
@@ -77,7 +78,8 @@
 <script src="thirty-party/jquery/jquery.min.js"></script>
 <script src="thirty-party/bootstrap/js/bootstrap.min.js"></script>
 <script src="thirty-party/ol/ol-debug.js"></script>
-
+<script src="http://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAZH-whAk0IwQoKzruViuPCxPxBA0etCbI"></script>
 <script src="thirty-party/ol/ol3gm.js"></script>
 <script src="scripts/ui.js"></script>
@@ -90,6 +92,7 @@
 
 <script src="scripts/ui.map.customScripts.js"></script>
 <script src="scripts/ui.messages-and-dialogs.js"></script>
+
 <script type="text/javascript">
     $(function () {
 
@@ -174,8 +177,8 @@
         mapa = UI.Map.init("map", openPopoverGeoJson, createPointCallback);
 
 
-        //UI.MapVector.loadGeoJSONData('http://localhost:63342/olmaps/data/geo.json', 'Paises',openPopoverGeoJson);
-         UI.MapVector.loadGeoJSONData(
+
+      /*   UI.MapVector.loadGeoJSONData(
                  {
                      'url' : 'https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
                      'title' : titleLayer_Lakes,
@@ -184,8 +187,8 @@
 
                      'visibleInSwitcher' : false
                  },
-                 titleLayer_Lakes);
-        UI.MapVector.loadGeoJSONData(
+                 titleLayer_Lakes); */
+      UI.MapVector.loadGeoJSONData(
                 {
                     'url' : 'http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
                     'title' : titleLayer_WorldCities,
@@ -214,8 +217,29 @@
                     'visibleInSwitcher' : true
                 });
 
+        var ukSomeCitiesLayer = UI.MapVector.loadGeoJSONData(
+                {
+                    'url' : 'http://localhost:63342/olmaps/data/UKSomeCities.json',
+                    'title' : 'UK some cities',
+                    'code' : 'UK001',
+                    'type' : 'point',
+                    'style' : new ol.style.Style({
+                        image: new ol.style.Circle({
+                            fill: new ol.style.Fill({
+                                color: 'rgba(255,255,0,0.4)'
+                            }),
+                            radius: 5,
+                            stroke: new ol.style.Stroke({
+                                color: '#ff0',
+                                width: 1
+                            })
+                        })
+                    }),
+                    'visibleInSwitcher' : true
+                });
+        UI.MapVector.fixToExtend(ukSomeCitiesLayer);
         //Añade un punto basado en estilos definidos en #marker
-        UI.Overlay.addOverlayPoint([16.3725, 48.208889], 'location_marker', null);
+      /*  UI.Overlay.addOverlayPoint([16.3725, 48.208889], 'location_marker', null);
         UI.Overlay.addOverlayPoint([15, 46], 'simple_marker', openPopover, {
             "name": "punto número 1",
             "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "
@@ -223,7 +247,7 @@
         UI.Overlay.addOverlayPoint([12, 42], 'simple_marker', openPopover, {
             "name": "punto número 2",
             "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "
-        });
+        });*/
     });
 </script>
 </body>
