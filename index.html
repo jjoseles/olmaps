@@ -20,7 +20,10 @@
 <body>
 
 <!-- Mapa -->
-<div id="map" class="map"></div>
+<div id="map" class="map">
+
+    <div  id="simple-info-tooltip" ></div>
+</div>
 
 <!-- Map content -->
 <div class="map-content">
@@ -73,6 +76,7 @@
 <a class=" fa fa-globe  fa-2x "  data-rel="tooltip" data-placement="left" id="openModal"
    title="" data-original-title="Abrir mapa">
 </a>
+
 
 <!-- /.container -->
 <script src="thirty-party/jquery/jquery.min.js"></script>
@@ -161,7 +165,7 @@
                         html: true,
                         'placement': 'top',
                         content: $(elem).data("description"),
-                        title: $(elem).data("name"),
+                        title: $(elem).data("name")
 
                     }
             );
@@ -207,14 +211,15 @@
                         })
                         , stroke: new ol.style.Stroke({
                             width: 3,
-                            color: 'rgba(0,154,217,0.8)',
+                            color: 'rgba(0,154,217,0.8)'
                         })
                         , fill: new ol.style.Fill({
-                            color: 'rgba(0,154,217,0.5)',
+                            color: 'rgba(0,154,217,0.5)'
                         })
 
                     }),
-                    'visibleInSwitcher' : true
+                    'visibleInSwitcher' : true,
+                    'showSimpleInfoButton' : false
                 });
 
         var ukSomeCitiesLayer = UI.MapVector.loadGeoJSONData(
@@ -235,9 +240,19 @@
                             })
                         })
                     }),
-                    'visibleInSwitcher' : true
+                    'visibleInSwitcher' : true,
+                    'propertiesShowInSimpleInfo': ['CITY_NAME'],
+                    'showSimpleInfoButton' : true
                 });
-        UI.MapVector.fixToExtend(ukSomeCitiesLayer);
+       // UI.MapVector.fixToExtend(ukSomeCitiesLayer);
+
+        var source = UI.MapVector.getVecorLayerSource(ukSomeCitiesLayer);
+
+        console.log(ukSomeCitiesLayer)
+        console.log(source.getFeatures())
+
+
+
         //Añade un punto basado en estilos definidos en #marker
       /*  UI.Overlay.addOverlayPoint([16.3725, 48.208889], 'location_marker', null);
         UI.Overlay.addOverlayPoint([15, 46], 'simple_marker', openPopover, {
@@ -248,6 +263,8 @@
             "name": "punto número 2",
             "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "
         });*/
+
+
     });
 </script>
 </body>

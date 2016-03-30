@@ -296,3 +296,17 @@ width: 400px;
 .popover {
     width: 300px;
 }
+.tooltip-point-info ~ .popover{
+    width: auto;
+    opacity: 0.8;
+    font-size: 12px;
+    background-color: #101010;
+    color: #fff;
+}
+.tooltip-point-info ~ .popover .popover-content{
+  padding: 4px;
+}
+
+.tooltip-point-info ~ .popover.bottom>.arrow:after {
+    border-bottom-color: #101010;
+}

@@ -73,8 +73,6 @@ UI.Map = (function () {
         $('.vector-switcher button').click(function(e){
 
            e.preventDefault();
-
-
             $('.vector-switcher-content').toggleClass('open');
 
         })

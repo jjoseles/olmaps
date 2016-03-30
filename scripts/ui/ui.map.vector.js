@@ -143,7 +143,7 @@ UI.MapVector = (function (mapUtils) {
         var existsOne = false;
 
         var retHtml = "<table        data-ordering=\"true\"     data-order=\"[[1,&quot;asc&quot;]]\" class=' table table-striped table-bordered table-hover' id='table-layer'>";
-        retHtml += "<thead><tr><th   data-searchable=\"false\" data-orderable=\"false\">Opciones</th><th>Capa</th></tr></thead>"
+        retHtml += "<thead><tr><th  width='20%' data-searchable=\"false\" data-orderable=\"false\">Opciones</th><th>Capa</th></tr></thead>"
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
 
             //Solo capas de vectores
@@ -152,16 +152,13 @@ UI.MapVector = (function (mapUtils) {
                     existsOne = true;
                      retHtml += "<tr>";
 
-                    retHtml += "<td><a class=\"btn btn-default\"><i class='ace-icon fa fa-eye";
-                    if(lyr.getVisible())
-                        retHtml += " blue";
-                    else  retHtml +=" red";
-                    retHtml += "'></i></a>";
-                    retHtml += "<a class=\"btn btn-default\"><i class='ace-icon fa fa-refresh'></i></a>"
+                    retHtml += "<td><a class=\"btn btn-default btn-success\" data-rel='tooltip' data-placement='top' data-original-title='Mostrar/ocultar' data-vector-action='view' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-eye'></i></a>";
+                    retHtml += "&nbsp;<a class=\"btn btn-default btn-info\" data-rel='tooltip' data-placement='top' data-original-title='Zoom y centrado sobre puntos' data-vector-action='fixToExtend' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-pin'></i></a>"
+                    retHtml += "&nbsp;<a class=\"btn btn-default btn-info\" data-rel='tooltip' data-placement='top' data-original-title='Info sobre puntos' data-vector-action='showSimpleInfo' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-marker '></i></a>";
                     retHtml += "</td>";
 
-                    retHtml += "<td data-vector-name='" + lyr.get('title') + "'>" +
-                        lyr.get('title') + "</td> </tr>";
+                    retHtml += "<td>" + lyr.get('title') + "</td>";
+                    retHtml += "</tr>";
 
                 }
             }
@@ -171,6 +168,7 @@ UI.MapVector = (function (mapUtils) {
         if(existsOne)
             $(".vector-switcher").show();
 
+        //Datatable
         var otable = $("#table-layer",$(".vector-switcher-content")).dataTable({
 
             "ordering": true,
@@ -182,6 +180,11 @@ UI.MapVector = (function (mapUtils) {
                 { "orderable": false, "targets": 0 }
             ]
         });
+        //Tooltip
+        $('[data-rel=tooltip]',$(".vector-switcher-content")).tooltip({
+            container: 'body'
+        });
+
         prepareEvents();
 
     }
@@ -193,31 +196,67 @@ UI.MapVector = (function (mapUtils) {
      **/
     function prepareEvents() {
         //Selección del base map
-        $('[data-vector-name]').click(function () {
+        $("[data-vector-action='view']").click(function () {
 
-            var targetTile = $(this).attr('data-vector-name');
-            var targetLi = $(this).closest('li');
+            var targetCode = $(this).attr('data-vector-code');
 
-            // $('#map-vector-selection li').not(targetLi).removeClass('active');
 
-            mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-                //Solo los vectores
-                if (lyr.get('type') === 'vector') {
 
-                    if (lyr.get('title') === targetTile) {
+            var layer = getVectorLayerByProperty("code",targetCode);
 
-                        if ($(targetLi).hasClass('active')) {
-                            lyr.setVisible(false);
-                            $(targetLi).removeClass('active');
-                        }
-                        else {
-                            lyr.setVisible(true);
-                            $(targetLi).addClass('active');
-                        }
 
-                    }
-                }
-            });
+            layer.setVisible(!layer.getVisible());
+            if(!layer.getVisible()){
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-danger");
+            }
+            else{
+                $(this).removeClass("btn-danger");
+                $(this).addClass("btn-success");
+            }
+
+            console.log(layer.getSource().getFeatures());
+
+        });
+        $("[data-vector-action='showSimpleInfo']").click(function () {
+
+            var targetCode = $(this).attr('data-vector-code');
+
+
+
+            var layer = getVectorLayerByProperty("code",targetCode);
+
+            //Fix To Extend
+            var map = mapUtils.getMap();
+            var source = getVecorLayerSource(layer);
+
+            extent = source.getExtent();
+            map.getView().fit(extent, map.getSize());
+
+
+            $("." + targetCode + "-tooltip-point-info").popover('show');
+console.log($("." + targetCode + "-tooltip-point-info"))
+
+
+
+        })
+        $("[data-vector-action='fixToExtend']").click(function () {
+
+            var targetCode = $(this).attr('data-vector-code');
+
+
+
+            var layer = getVectorLayerByProperty("code",targetCode);
+
+            //Fix To Extend
+            var map = mapUtils.getMap();
+            var source = getVecorLayerSource(layer);
+
+            extent = source.getExtent();
+            map.getView().fit(extent, map.getSize());
+
+
+
         });
     }
 
@@ -228,21 +267,11 @@ UI.MapVector = (function (mapUtils) {
      * @param {string} propertyValue Valor de la propiedad
      **/
     function removeVectorLayerByProperty(propertyName,propertyValue) {
-        var currentLayer = null;
         var currentMap = mapUtils.getMap();
-        currentMap.getLayers().forEach(function (lyr, idx, a) {
-            //Solo los vectores
-            if (lyr.get('type') === 'vector') {
+        var layer = getVectorLayerByProperty(propertyName,propertyValue);
 
-                if (lyr.get(propertyName) === propertyValue) {
-                    currentMap.removeLayer(lyr);
-                    currentMap.render();
-                    return;
-                }
-
-            }
-        });
-
+        currentMap.removeLayer(layer);
+        currentMap.render();
     }
 
     /**
@@ -314,12 +343,36 @@ UI.MapVector = (function (mapUtils) {
 
             //Elemento base para el overlay sobre las features
             var elem = document.createElement('div');
-            elem.setAttribute('id', name);
+            elem.setAttribute('id', code);
             var overlay = createBaseOverlay(elem);
 
             var source = new ol.source.Vector({
-                url: url,
-                format: new ol.format.GeoJSON()
+               // url: url,
+                //format: new ol.format.GeoJSON()
+                loader : ol.featureloader.loadFeaturesXhr(url, new ol.format.GeoJSON(),function (features) {
+                    var tempFeatures = [];
+                    features.forEach(function (feat, idx, a) {
+                        //Ya podemos pintar cosas sobre la feature
+                        //Podenos crear un info overlay con texto sencillo, incluso un tooltip
+                        //lo pasamos
+                        var simpleInfoHtml = "";
+                            if(options.propertiesShowInSimpleInfo)
+                            {
+                                options.propertiesShowInSimpleInfo.forEach(function (prop, idx, a) {
+                                    simpleInfoHtml += feat.get(prop)
+                                });
+                            }
+                            //Añade un overlay con estilo al funto
+                            UI.Overlay.addOverlayPointTooltip(feat.getGeometry().getCoordinates(),simpleInfoHtml,code)
+
+
+
+                        tempFeatures.push(feat)
+                        feat.setStyle(null);
+
+                    })
+                    this.addFeatures(tempFeatures);
+                })
             });
             var vectorLayer = new ol.layer.Vector({
                 source : source,
@@ -377,6 +430,17 @@ UI.MapVector = (function (mapUtils) {
 
     /**
      * @public
+     * @desc Devuelve el source de una capa
+     * @param {object} vecor
+     **/
+    function getVectorFeaturesCollection(layer){
+        return layer.getSource().getFeatures();
+    }
+
+
+
+    /**
+     * @public
      * @desc Centra el mapa y hace zoom sobre un conjunto de puntos del source de una capa
      * @param {object} layer
      **/
@@ -398,6 +462,7 @@ UI.MapVector = (function (mapUtils) {
         getVectorLayerByProperty: getVectorLayerByProperty,
         removeVectorLayerByProperty: removeVectorLayerByProperty,
         getVecorLayerSource: getVecorLayerSource,
-        fixToExtend:fixToExtend
+        fixToExtend:fixToExtend,
+        getVectorFeaturesCollection:getVectorFeaturesCollection
     }
 })(UI.Map);

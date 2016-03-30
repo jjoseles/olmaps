@@ -40,7 +40,7 @@ UI.Overlay = (function (mapUtils) {
             position: pos,
             positioning: 'center-center',
             element: elem,
-            stopEvent: false,
+            stopEvent: false
         });
 
         mapUtils.getMap().addOverlay(marker);
@@ -50,7 +50,42 @@ UI.Overlay = (function (mapUtils) {
 
     }
 
+    /**
+     * @public
+     * @desc Añade un overlay al mapa para posteriormente sacar info simple
+     * @param {array} center  [lat,lon]
+
+     **/
+    function addOverlayPointTooltip( pointPostition, dataHtml,layerCode) {
+
+        var element = document.createElement('div');
+        $(element).addClass(layerCode + "-tooltip-point-info")
+        $(element).addClass("tooltip-point-info")
+        //  marker
+        var marker = new ol.Overlay({
+            position: pointPostition,
+            positioning: 'top-left',
+            element: element,
+            stopEvent: false
+        });
+
+        mapUtils.getMap().addOverlay(marker);
+
+
+        // the keys are quoted to prevent renaming in ADVANCED mode.
+        $(element).popover({
+            'placement': 'bottom',
+            'animation': false,
+            'html': true,
+            'content': dataHtml
+        });
+
+
+
+    }
+
     return {
-        addOverlayPoint: addOverlayPoint
+        addOverlayPoint: addOverlayPoint,
+        addOverlayPointTooltip:addOverlayPointTooltip
     }
 })(UI.Map);
