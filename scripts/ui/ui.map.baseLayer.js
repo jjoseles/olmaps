@@ -116,7 +116,9 @@ UI.MapBaseLayer = (function (mapUtils) {
                 name: "OSM",
                 type: "base",
                 visible: true,
-                source: new ol.source.OSM()
+                source: new ol.source.OSM({
+
+                })
             }),
             new ol.layer.Tile({
                 title: "BingMaps Aerial WithL abels",
@@ -157,7 +159,7 @@ UI.MapBaseLayer = (function (mapUtils) {
                 visible: true,
                 type: "base",
                 disableDefaultUI: true,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
             }),
 
 

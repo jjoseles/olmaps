@@ -123,13 +123,13 @@
                 switch (layerName) {
                     case titleLayer_WorldCities:
                     {
-                        header = header + data["STATUS"] + "<br/>" + data["ADMIN_NAME"]
+                        header = header + data["STATUS"] + "<br/>" + data["ADMIN_NAME"];
                         content = data["CITY_NAME"] + "<br/>" + data["CNTRY_NAME"];
                         break;
                     }
                     case titleLayer_Lakes:
                     {
-                        header = header +data["featurecla"] + " " + data["name"]
+                        header = header +data["featurecla"] + " " + data["name"];
                         content = data["featurecla"] + "<br/>" + data["name_abb"] + "<br/>" + data["name"] + "<br/>" + data["year"] + "<br/>" + data["scalerank"];
                         break;
                     }
@@ -153,7 +153,7 @@
               });
               $(element).popover("show");
             }
-        }
+        };
 
         //Abre el popover sobre un overlay
         var openPopover = function (e) {
@@ -171,11 +171,11 @@
             );
             $(elem).popover('toggle');
 
-        }
+        };
         var createPointCallback = function(coordinates)
         {
             console.log("creamos un punto en " + coordinates)
-        }
+        };
         //TODO Pasar parámemtros de inicialización al mapa
         var mapa;
         mapa = UI.Map.init("map", openPopoverGeoJson, createPointCallback);
@@ -244,12 +244,9 @@
                     'propertiesShowInSimpleInfo': ['CITY_NAME'],
                     'showSimpleInfoButton' : true
                 });
-       // UI.MapVector.fixToExtend(ukSomeCitiesLayer);
 
-        var source = UI.MapVector.getVecorLayerSource(ukSomeCitiesLayer);
 
-        console.log(ukSomeCitiesLayer)
-        console.log(source.getFeatures())
+
 
 
 

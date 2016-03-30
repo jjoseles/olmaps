@@ -6,7 +6,7 @@ UI.CustomScriptsMap = (function () {
     var mapa;
     //Popover geoJson
     var openPopoverGeoJson = function (data, layerName, element, coordinate) {
-        console.log(data)
+        console.log(data);
         if (data) {
             var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
                 coordinate, 'EPSG:3857', 'EPSG:4326'));
@@ -14,7 +14,7 @@ UI.CustomScriptsMap = (function () {
             var header = '<code>' + hdms + '</code><br/>', content;
 
             header = header;
-            content = "Content"
+            content = "Content";
 
 
 
@@ -39,10 +39,10 @@ UI.CustomScriptsMap = (function () {
                     $(element).popover("destroy");
                 });
 
-            });;
+            });
             $(element).popover("show");
         }
-    }
+    };
 
     //Abre el popover sobre un overlay
     var openPopover = function (e) {
@@ -85,7 +85,7 @@ UI.CustomScriptsMap = (function () {
     var loadMap = function() {
         //TODO Pasar parámemtros de inicialización al mapa
         mapa = UI.Map.init("map", openPopoverGeoJson, createPointCallback);
-    }
+    };
 
     var loadData = function (url, nombre_capa) {
         var iconStyle =  new ol.style.Style({
@@ -121,7 +121,7 @@ UI.CustomScriptsMap = (function () {
         });
 
         UI.MapVector.loadGeoJSONData(url, nombre_capa, iconStyle,iconStyleSelectInteraction);
-    }
+    };
 
     var createPointCallback_null = function (coordinates) {
         // No hace nada

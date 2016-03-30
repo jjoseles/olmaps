@@ -48,8 +48,7 @@ UI.messageAndDialogs = (function () {
             class_name: (type != UI.errorStates.WARNING) ? 'gritter-' + state : 'gritter-' + state + ' gritter-center',
             after_close: (typeof callback == "undefined") ? null : function () { callback(); }
         });
-    };
-
+    }
     /*
      * Función privada
      */

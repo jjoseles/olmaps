@@ -59,8 +59,8 @@ UI.Overlay = (function (mapUtils) {
     function addOverlayPointTooltip( pointPostition, dataHtml,layerCode) {
 
         var element = document.createElement('div');
-        $(element).addClass(layerCode + "-tooltip-point-info")
-        $(element).addClass("tooltip-point-info")
+        $(element).addClass(layerCode + "-tooltip-point-info");
+        $(element).addClass("tooltip-point-info");
         //  marker
         var marker = new ol.Overlay({
             position: pointPostition,

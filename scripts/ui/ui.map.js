@@ -74,6 +74,7 @@ UI.Map = (function () {
 
            e.preventDefault();
             $('.vector-switcher-content').toggleClass('open');
+            _currentMap.renderSync();
 
         })
     }

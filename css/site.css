@@ -76,14 +76,14 @@
     top: 100%;
     right: 0;
     z-index: 1000;
-width: 400px;
+    width: 520px;
     margin: 2px 0 0;
 
 
 
 }
 .vector-switcher .vector-switcher-content.open {
-    max-width: 320px;
+    max-width: 520px;
     max-height: 1000px;
     padding: 10px;
     -webkit-background-clip: padding-box;

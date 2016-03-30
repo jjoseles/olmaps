@@ -143,45 +143,50 @@ UI.MapVector = (function (mapUtils) {
         var existsOne = false;
 
         var retHtml = "<table        data-ordering=\"true\"     data-order=\"[[1,&quot;asc&quot;]]\" class=' table table-striped table-bordered table-hover' id='table-layer'>";
-        retHtml += "<thead><tr><th  width='20%' data-searchable=\"false\" data-orderable=\"false\">Opciones</th><th>Capa</th></tr></thead>"
+        retHtml += "<thead><tr><th  width='20%' data-searchable=\"false\" data-orderable=\"false\">Opciones</th><th>Capa</th><th>Features</th></tr></thead>";
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
 
             //Solo capas de vectores
-            if ((lyr.get('type') === 'vector') ) {
+            if ((lyr.get('type') === 'vector')) {
                 if (lyr.get('visibleInSwitcher') == true) {
                     existsOne = true;
-                     retHtml += "<tr>";
+                    retHtml += "<tr>";
 
                     retHtml += "<td><a class=\"btn btn-default btn-success\" data-rel='tooltip' data-placement='top' data-original-title='Mostrar/ocultar' data-vector-action='view' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-eye'></i></a>";
-                    retHtml += "&nbsp;<a class=\"btn btn-default btn-info\" data-rel='tooltip' data-placement='top' data-original-title='Zoom y centrado sobre puntos' data-vector-action='fixToExtend' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-pin'></i></a>"
-                    retHtml += "&nbsp;<a class=\"btn btn-default btn-info\" data-rel='tooltip' data-placement='top' data-original-title='Info sobre puntos' data-vector-action='showSimpleInfo' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-marker '></i></a>";
+                    retHtml += "&nbsp;<a class=\"btn btn-default btn-info\" data-rel='tooltip' data-placement='top' data-original-title='Zoom y centrado sobre puntos' data-vector-action='fixToExtend' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-pin'></i></a>";
+                    if (lyr.get('showSimpleInfoButton') == true) {
+                        retHtml += "&nbsp;<a class=\"btn btn-default btn-danger\" data-rel='tooltip' data-placement='top' data-original-title='Info sobre puntos' data-vector-action='showSimpleInfo' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-marker '></i></a>";
+
+                    }
                     retHtml += "</td>";
 
                     retHtml += "<td>" + lyr.get('title') + "</td>";
+                    retHtml += "<td>" + getVectorFeaturesCollection(lyr).length  + "</td>";
                     retHtml += "</tr>";
-
+                    console.log(lyr)
                 }
             }
         });
         retHtml += "</tbody></table>";
         $(".vector-switcher-content").append(retHtml);
-        if(existsOne)
+        if (existsOne)
             $(".vector-switcher").show();
 
         //Datatable
-        var otable = $("#table-layer",$(".vector-switcher-content")).dataTable({
+        var otable = $("#table-layer", $(".vector-switcher-content")).dataTable({
 
             "ordering": true,
             "stateSave": false,
             "pageLength": 10,
-            "language": { "sSearch": "" },
+            "language": {"sSearch": ""},
             'sDom': 'ftlp',
             "columnDefs": [
-                { "orderable": false, "targets": 0 }
+                {"orderable": false, "targets": 0}
+
             ]
         });
         //Tooltip
-        $('[data-rel=tooltip]',$(".vector-switcher-content")).tooltip({
+        $('[data-rel=tooltip]', $(".vector-switcher-content")).tooltip({
             container: 'body'
         });
 
@@ -195,67 +200,60 @@ UI.MapVector = (function (mapUtils) {
      * @desc Prepara los eventos sobre los elementos del mapa para vectores
      **/
     function prepareEvents() {
-        //Selección del base map
+        //Visualizar los puntos
         $("[data-vector-action='view']").click(function () {
 
             var targetCode = $(this).attr('data-vector-code');
 
-
-
-            var layer = getVectorLayerByProperty("code",targetCode);
-
+            var layer = getVectorLayerByProperty("code", targetCode);
 
             layer.setVisible(!layer.getVisible());
-            if(!layer.getVisible()){
+
+            if (!layer.getVisible()) {
                 $(this).removeClass("btn-success");
                 $(this).addClass("btn-danger");
+                //Si la capa no está visible quitamos los overlays
+                var $element = $("." + targetCode + "-tooltip-point-info");
+                $element.popover('hide');
             }
-            else{
+            else {
                 $(this).removeClass("btn-danger");
                 $(this).addClass("btn-success");
             }
-
-            console.log(layer.getSource().getFeatures());
-
         });
+
         $("[data-vector-action='showSimpleInfo']").click(function () {
 
+
             var targetCode = $(this).attr('data-vector-code');
-
-
-
-            var layer = getVectorLayerByProperty("code",targetCode);
+            var layer = getVectorLayerByProperty("code", targetCode);
 
             //Fix To Extend
-            var map = mapUtils.getMap();
-            var source = getVecorLayerSource(layer);
+           fitToExtend(layer);
 
-            extent = source.getExtent();
-            map.getView().fit(extent, map.getSize());
+            var $element = $("." + targetCode + "-tooltip-point-info");
 
+            if($(this).hasClass("btn-danger"))
+            {
+                if (layer.getVisible()) {
+                    $element.popover('show');
+                    $(this).removeClass("btn-danger");
+                    $(this).addClass("btn-success");
+                }
+            }
+            else {
+                $element.popover('hide');
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-danger");
+            }
 
-            $("." + targetCode + "-tooltip-point-info").popover('show');
-console.log($("." + targetCode + "-tooltip-point-info"))
-
-
-
-        })
+        });
         $("[data-vector-action='fixToExtend']").click(function () {
 
             var targetCode = $(this).attr('data-vector-code');
-
-
-
-            var layer = getVectorLayerByProperty("code",targetCode);
-
+            var layer = getVectorLayerByProperty("code", targetCode);
             //Fix To Extend
-            var map = mapUtils.getMap();
-            var source = getVecorLayerSource(layer);
-
-            extent = source.getExtent();
-            map.getView().fit(extent, map.getSize());
-
-
+            fitToExtend(layer);
 
         });
     }
@@ -266,9 +264,9 @@ console.log($("." + targetCode + "-tooltip-point-info"))
      * @param {string} propertyName Nombre de la propiedad
      * @param {string} propertyValue Valor de la propiedad
      **/
-    function removeVectorLayerByProperty(propertyName,propertyValue) {
+    function removeVectorLayerByProperty(propertyName, propertyValue) {
         var currentMap = mapUtils.getMap();
-        var layer = getVectorLayerByProperty(propertyName,propertyValue);
+        var layer = getVectorLayerByProperty(propertyName, propertyValue);
 
         currentMap.removeLayer(layer);
         currentMap.render();
@@ -280,7 +278,7 @@ console.log($("." + targetCode + "-tooltip-point-info"))
      * @param {string} propertyName Nombre de la propiedad
      * @param {string} propertyValue Valor de la propiedad
      **/
-    function getVectorLayerByProperty(propertyName,propertyValue) {
+    function getVectorLayerByProperty(propertyName, propertyValue) {
         var currentLayer = null;
 
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
@@ -307,39 +305,44 @@ console.log($("." + targetCode + "-tooltip-point-info"))
      * @param {bool} visibleInSwitcher indica si la capa va visible en el selector de capas
      **/
     function loadGeoJSONData(options) {
-        if(options)
-        {
+        if (options) {
 
-            var style,title,type,code,url,visibleInSwitcher;
+            var style, title, type, code, url, visibleInSwitcher, showSimpleInfoButton;
             if (typeof options.style === 'undefined')
                 style = getDefaultStyle();
             else
                 style = options.style;
 
-            if(typeof options.title === 'undefined' || options.title == '')
-                  console.log("Define 'title' de la capa")
+            if (typeof options.title === 'undefined' || options.title == '')
+                console.log("Define 'title' de la capa");
             else
                 title = options.title;
 
-            if(typeof options.type === 'undefined' || options.type == '')
-                type='vector'
+            if (typeof options.type === 'undefined' || options.type == '')
+                type = 'vector';
             else
                 type = options.type;
 
-            if(typeof options.code === 'undefined' || options.code == '')
-                console.log("Define código de la capa")
+            if (typeof options.code === 'undefined' || options.code == '')
+                console.log("Define código de la capa");
             else
                 code = options.code;
 
-            if(typeof options.url === 'undefined' || options.url == '')
-                console.log("Define url de la capa")
+            if (typeof options.url === 'undefined' || options.url == '')
+                console.log("Define url de la capa");
             else
                 url = options.url;
 
-            if(typeof options.visibleInSwitcher === 'undefined' )
+            if (typeof options.visibleInSwitcher === 'undefined')
                 visibleInSwitcher = true;
-           else
-                 visibleInSwitcher = options.visibleInSwitcher;
+            else
+                visibleInSwitcher = options.visibleInSwitcher;
+
+
+            if (typeof options.showSimpleInfoButton === 'undefined')
+                showSimpleInfoButton = false;
+            else
+                showSimpleInfoButton = options.showSimpleInfoButton;
 
             //Elemento base para el overlay sobre las features
             var elem = document.createElement('div');
@@ -347,42 +350,46 @@ console.log($("." + targetCode + "-tooltip-point-info"))
             var overlay = createBaseOverlay(elem);
 
             var source = new ol.source.Vector({
-               // url: url,
+                // url: url,
                 //format: new ol.format.GeoJSON()
-                loader : ol.featureloader.loadFeaturesXhr(url, new ol.format.GeoJSON(),function (features) {
+                loader: ol.featureloader.loadFeaturesXhr(url, new ol.format.GeoJSON(), function (features) {
                     var tempFeatures = [];
                     features.forEach(function (feat, idx, a) {
                         //Ya podemos pintar cosas sobre la feature
                         //Podenos crear un info overlay con texto sencillo, incluso un tooltip
                         //lo pasamos
-                        var simpleInfoHtml = "";
-                            if(options.propertiesShowInSimpleInfo)
-                            {
+                        if (showSimpleInfoButton) {
+
+
+                            var simpleInfoHtml = "";
+                            if (options.propertiesShowInSimpleInfo) {
                                 options.propertiesShowInSimpleInfo.forEach(function (prop, idx, a) {
                                     simpleInfoHtml += feat.get(prop)
                                 });
                             }
                             //Añade un overlay con estilo al funto
-                            UI.Overlay.addOverlayPointTooltip(feat.getGeometry().getCoordinates(),simpleInfoHtml,code)
+                            UI.Overlay.addOverlayPointTooltip(feat.getGeometry().getCoordinates(), simpleInfoHtml, code)
 
+                        }
 
-
-                        tempFeatures.push(feat)
+                        tempFeatures.push(feat);
                         feat.setStyle(null);
 
-                    })
+                    });
                     this.addFeatures(tempFeatures);
+                    renderVectorSwitcher();
                 })
             });
             var vectorLayer = new ol.layer.Vector({
-                source : source,
+                source: source,
                 'title': title,
                 'type': 'vector',
                 'customType': type,
-                'code' : code,
+                'code': code,
                 'overlay': overlay,
-                 'style': style,
-                'visibleInSwitcher' : visibleInSwitcher
+                'style': style,
+                'visibleInSwitcher': visibleInSwitcher,
+                'showSimpleInfoButton': showSimpleInfoButton
 
             });
 
@@ -391,9 +398,12 @@ console.log($("." + targetCode + "-tooltip-point-info"))
             mapUtils.getMap().addLayer(vectorLayer);
 
 
-           // UI.Interactions.addDefaultSelectInteraction(interactionStyle);
+            // UI.Interactions.addDefaultSelectInteraction(interactionStyle);
             //Renderizamos el botoón de vectores
-            renderVectorSwitcher();
+
+              //  renderVectorSwitcher();
+
+
 
 
             return vectorLayer;
@@ -424,7 +434,7 @@ console.log($("." + targetCode + "-tooltip-point-info"))
      * @desc Devuelve el source de una capa
      * @param {object} vecor
      **/
-    function getVecorLayerSource(layer){
+    function getVecorLayerSource(layer) {
         return layer.getSource();
     }
 
@@ -433,28 +443,37 @@ console.log($("." + targetCode + "-tooltip-point-info"))
      * @desc Devuelve el source de una capa
      * @param {object} vecor
      **/
-    function getVectorFeaturesCollection(layer){
+    function getVectorFeaturesCollection(layer) {
         return layer.getSource().getFeatures();
     }
 
 
-
+    /**
+     * @public
+     * @desc Centra el mapa y hace zoom sobre un conjunto de puntos del source de una capa durante la carga de la capa
+     * @param {object} layer
+     **/
+    function fitToExtendOnLoad(layer) {
+        var map = mapUtils.getMap();
+        var source = getVecorLayerSource(layer);
+        source.on("change", function (evt) {
+            extent = source.getExtent();
+            map.getView().fit(extent, map.getSize());
+        });
+    }
     /**
      * @public
      * @desc Centra el mapa y hace zoom sobre un conjunto de puntos del source de una capa
      * @param {object} layer
      **/
-    function fixToExtend(layer)
-    {
+    function fitToExtend(layer) {
+
+        //Fix To Extend
         var map = mapUtils.getMap();
         var source = getVecorLayerSource(layer);
-        source.on("change", function(evt) {
-            extent = source.getExtent();
-            map.getView().fit(extent, map.getSize());
-        });
 
-
-        //map.getView().fitExtent(extent, map.getSize());
+        extent = source.getExtent();
+        map.getView().fit(extent, map.getSize(),{"maxZoom": 19});
     }
     return {
         loadGeoJSONData: loadGeoJSONData,
@@ -462,7 +481,8 @@ console.log($("." + targetCode + "-tooltip-point-info"))
         getVectorLayerByProperty: getVectorLayerByProperty,
         removeVectorLayerByProperty: removeVectorLayerByProperty,
         getVecorLayerSource: getVecorLayerSource,
-        fixToExtend:fixToExtend,
-        getVectorFeaturesCollection:getVectorFeaturesCollection
+        fitToExtendOnLoad:fitToExtendOnLoad,
+        fitToExtend: fitToExtend,
+        getVectorFeaturesCollection: getVectorFeaturesCollection
     }
 })(UI.Map);
