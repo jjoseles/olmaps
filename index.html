@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="thirty-party/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="thirty-party/ol/ol-debug.css"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
-
+    <link rel="stylesheet" href="thirty-party/animations.css">
     <link rel="stylesheet" href="css/site.css"/>
     <link rel="stylesheet" href="thirty-party/font-awesome/css/font-awesome.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -43,10 +43,14 @@
             <button type="button"  data-rel="tooltip"
                     data-placement="left" title="" data-original-title="Capas">
             </button>
-            <div class="vector-switcher-content " >
+            <div id="vector-switcher-content"> <!-- Generado por javascript en renderVectorSwitcher--></div>
 
 
+            <div id="vector-info-detail-content-UK001" class="vector-info-detail-content">
+                <div data-content="fixed-content">Contenido fijo</div>
+                <div data-content="dynamic-content"><!-- Generado por javascript --></div>
             </div>
+
         </div>
         </div>
     </div>
@@ -82,7 +86,7 @@
 <script src="thirty-party/jquery/jquery.min.js"></script>
 <script src="thirty-party/bootstrap/js/bootstrap.min.js"></script>
 <script src="thirty-party/ol/ol-debug.js"></script>
-<script src="http://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+<script src="http://cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 <script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAZH-whAk0IwQoKzruViuPCxPxBA0etCbI"></script>
 <script src="thirty-party/ol/ol3gm.js"></script>
@@ -97,6 +101,7 @@
 <script src="scripts/ui.map.customScripts.js"></script>
 <script src="scripts/ui.messages-and-dialogs.js"></script>
 
+<script src="scripts/ui.grid-colums-render.js"></script>
 <script type="text/javascript">
     $(function () {
 
@@ -219,7 +224,8 @@
 
                     }),
                     'visibleInSwitcher' : true,
-                    'showSimpleInfoButton' : false
+                    'showSimpleInfoButton' : false,
+                    'showListInfoButton' : true
                 });
 
         var ukSomeCitiesLayer = UI.MapVector.loadGeoJSONData(
@@ -242,7 +248,11 @@
                     }),
                     'visibleInSwitcher' : true,
                     'propertiesShowInSimpleInfo': ['CITY_NAME'],
-                    'showSimpleInfoButton' : true
+                    'showSimpleInfoButton' : true,
+                    'showListInfoButton' : true,
+                    /*'showFeaturesInfoCallback':function(){
+                        console.log('hola')
+                    }*/
                 });
 
 

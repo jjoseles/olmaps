@@ -136,14 +136,85 @@ UI.MapVector = (function (mapUtils) {
 
     /**
      * @private
+     * @desc Visualiza la tabla con los dato de las features de manera genérica
+     **/
+    function showFeatureListInfo(code)
+    {
+
+
+        var $contentArea = $("#vector-info-detail-content-"  +code + ".vector-info-detail-content");
+
+        var retHtml = "<table   data-ordering=\"true\"     data-order=\"[[1,&quot;asc&quot;]]\" class=' table  table-bordered' id='table-layer" + code +"'>";
+        retHtml += "<thead><tr>";
+        var layer = getVectorLayerByProperty('code',code);
+        var features = getVectorFeaturesCollection(layer);
+        var arrkeys = [];
+        //la feature de la primera posición
+        features.forEach(function (feat, idx, a) {
+            {
+                var featureKeys = feat.getKeys();
+                featureKeys.forEach(function (key, idxobj, a) {
+
+                    if(key!="geometry" && key.indexOf('_') !== 0)
+                    {
+
+                        if(arrkeys.indexOf(key)<=-1)
+                        {
+                            retHtml += "<th>" + key + "</th>";
+                            arrkeys.push(key)
+                        }
+
+                    }
+               });
+            }
+        });
+
+
+        retHtml += "</tr></thead>";
+        retHtml += "<tbody>";
+        features.forEach(function (feat, idx, a) {
+
+            if(feat.getGeometry().getType() == 'Point')
+            {
+                retHtml += "<tr>";
+                var featureKeys = feat.getKeys();
+
+                arrkeys.forEach(function (key, idxobj, a) {
+
+                        retHtml += "<td>" + feat.get(key) + "</td>";
+                });
+                retHtml += "</tr>";
+            }
+
+        });
+        retHtml += "</tbody></table>";
+
+        $contentArea.addClass("open");
+
+        $("[data-content='dynamic-content']",$contentArea).append(retHtml);
+
+        //Datatable
+        var otable = $("#table-layer" + code , $contentArea).dataTable({
+
+            "ordering": true,
+            "stateSave": false,
+            "pageLength": 5,
+
+            'sDom': 'ftlp',
+
+        });
+
+    }
+    /**
+     * @private
      * @desc Renderiza el selector de vectores
      **/
     function renderVectorSwitcher() {
-        $(".vector-switcher-content").empty();
+        $("#vector-switcher-content").empty();
         var existsOne = false;
 
-        var retHtml = "<table        data-ordering=\"true\"     data-order=\"[[1,&quot;asc&quot;]]\" class=' table table-striped table-bordered table-hover' id='table-layer'>";
-        retHtml += "<thead><tr><th  width='20%' data-searchable=\"false\" data-orderable=\"false\">Opciones</th><th>Capa</th><th>Features</th></tr></thead>";
+        var retHtml = "<table  data-ordering=\"true\"     data-order=\"[[1,&quot;asc&quot;]]\" class=' table table-striped table-bordered table-hover' id='table-layer'>";
+        retHtml += "<thead><tr><th  width='20%' data-searchable=\"false\" data-orderable=\"false\">Opciones</th><th>Capa</th><th>Features</th></tr></thead><tbody>";
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
 
             //Solo capas de vectores
@@ -152,28 +223,33 @@ UI.MapVector = (function (mapUtils) {
                     existsOne = true;
                     retHtml += "<tr>";
 
-                    retHtml += "<td><a class=\"btn btn-default btn-success\" data-rel='tooltip' data-placement='top' data-original-title='Mostrar/ocultar' data-vector-action='view' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-eye'></i></a>";
-                    retHtml += "&nbsp;<a class=\"btn btn-default btn-info\" data-rel='tooltip' data-placement='top' data-original-title='Zoom y centrado sobre puntos' data-vector-action='fixToExtend' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-pin'></i></a>";
+                    retHtml += "<td>" + UI.gridColumnsRender.optionsHeader(UI.optionsButtonType.DROPDOWN);
+                    retHtml += "<li><a class=\"btn btn-default btn-xs btn-success\" data-vector-action='view' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-eye'></i>Mostrar/ocultar</a></li>";
+                    retHtml += "<li><a class=\"btn btn-default btn-xs btn-info\" data-vector-action='fixToExtend' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-pin'></i>Zoom y centrado sobre puntos</a></li>";
                     if (lyr.get('showSimpleInfoButton') == true) {
-                        retHtml += "&nbsp;<a class=\"btn btn-default btn-danger\" data-rel='tooltip' data-placement='top' data-original-title='Info sobre puntos' data-vector-action='showSimpleInfo' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-marker '></i></a>";
+                        retHtml += "<li><a class=\"btn btn-default btn-xs btn-danger\"  data-vector-action='showSimpleInfo' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-marker '></i>Info sobre puntos</a></li>";
 
                     }
+                    if (lyr.get('showListInfoButton') == true) {
+                        retHtml += "<li><a class=\"btn btn-default btn-xs btn-danger\"  data-vector-action='showListInfo' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-list-alt '></i>Ir al listado de datos</a></li>";
+                    }
+                    retHtml += UI.gridColumnsRender.optionsFooter();
                     retHtml += "</td>";
 
                     retHtml += "<td>" + lyr.get('title') + "</td>";
                     retHtml += "<td>" + getVectorFeaturesCollection(lyr).length  + "</td>";
                     retHtml += "</tr>";
-                    console.log(lyr)
+
                 }
             }
         });
         retHtml += "</tbody></table>";
-        $(".vector-switcher-content").append(retHtml);
+        $("#vector-switcher-content").append(retHtml);
         if (existsOne)
             $(".vector-switcher").show();
 
         //Datatable
-        var otable = $("#table-layer", $(".vector-switcher-content")).dataTable({
+       var otable = $("#table-layer", $("#vector-switcher-content")).dataTable({
 
             "ordering": true,
             "stateSave": false,
@@ -181,12 +257,12 @@ UI.MapVector = (function (mapUtils) {
             "language": {"sSearch": ""},
             'sDom': 'ftlp',
             "columnDefs": [
-                {"orderable": false, "targets": 0}
+                {"orderable": false, "targets": 0, 'class': "text-center"}
 
             ]
         });
         //Tooltip
-        $('[data-rel=tooltip]', $(".vector-switcher-content")).tooltip({
+        $('[data-rel=tooltip]', $("#vector-switcher-content")).tooltip({
             container: 'body'
         });
 
@@ -220,6 +296,18 @@ UI.MapVector = (function (mapUtils) {
                 $(this).removeClass("btn-danger");
                 $(this).addClass("btn-success");
             }
+        });
+
+        $("[data-vector-action='showListInfo']").click(function () {
+            $('#vector-switcher-content').toggleClass('open');
+
+            var targetCode = $(this).attr('data-vector-code');
+
+            var layer = getVectorLayerByProperty('code',targetCode);
+
+            var callback=layer.get('showFeaturesInfoCallback')
+            callback(targetCode)
+
         });
 
         $("[data-vector-action='showSimpleInfo']").click(function () {
@@ -307,7 +395,8 @@ UI.MapVector = (function (mapUtils) {
     function loadGeoJSONData(options) {
         if (options) {
 
-            var style, title, type, code, url, visibleInSwitcher, showSimpleInfoButton;
+
+            var style, title, type, code, url, visibleInSwitcher, showSimpleInfoButton, showListInfoButton,showFeaturesInfoCallback;
             if (typeof options.style === 'undefined')
                 style = getDefaultStyle();
             else
@@ -344,10 +433,35 @@ UI.MapVector = (function (mapUtils) {
             else
                 showSimpleInfoButton = options.showSimpleInfoButton;
 
+            if (typeof options.showListInfoButton === 'undefined')
+                showListInfoButton = false;
+            else
+                showListInfoButton = options.showListInfoButton;
+
+
+            if (typeof options.showFeaturesInfoCallback === 'undefined')
+                showFeaturesInfoCallback = showFeatureListInfo;
+
+
+            else
+                showFeaturesInfoCallback = options.showFeaturesInfoCallback;
+
             //Elemento base para el overlay sobre las features
             var elem = document.createElement('div');
             elem.setAttribute('id', code);
             var overlay = createBaseOverlay(elem);
+
+            //Contendedor de info de capa
+            if($('#vector-info-detail-content-' + code).length == 0)
+            {
+                 var strInfoDetailContentForLayer = "<div id='vector-info-detail-content-" +  code + "' class='vector-info-detail-content'>";
+                strInfoDetailContentForLayer+= "<div data-content='fixed-content'></div>";
+                strInfoDetailContentForLayer += "<div data-content='dynamic-content'><!-- Generado por javascript --></div>";
+                strInfoDetailContentForLayer += "</div>";
+                $('.vector-switcher .btn-group').append(strInfoDetailContentForLayer);
+
+            }
+
 
             var source = new ol.source.Vector({
                 // url: url,
@@ -376,6 +490,7 @@ UI.MapVector = (function (mapUtils) {
                         feat.setStyle(null);
 
                     });
+
                     this.addFeatures(tempFeatures);
                     renderVectorSwitcher();
                 })
@@ -389,7 +504,9 @@ UI.MapVector = (function (mapUtils) {
                 'overlay': overlay,
                 'style': style,
                 'visibleInSwitcher': visibleInSwitcher,
-                'showSimpleInfoButton': showSimpleInfoButton
+                'showSimpleInfoButton': showSimpleInfoButton,
+                'showListInfoButton' : showListInfoButton,
+                'showFeaturesInfoCallback': showFeaturesInfoCallback
 
             });
 

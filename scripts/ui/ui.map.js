@@ -73,7 +73,11 @@ UI.Map = (function () {
         $('.vector-switcher button').click(function(e){
 
            e.preventDefault();
-            $('.vector-switcher-content').toggleClass('open');
+            $('#vector-switcher-content').toggleClass('open');
+            //Vaciamos detalles
+
+            $("[data-content='dynamic-content']").empty();
+            $('.vector-info-detail-content').removeClass('open');
             _currentMap.renderSync();
 
         })
