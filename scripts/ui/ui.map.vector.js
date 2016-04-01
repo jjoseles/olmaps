@@ -33,106 +33,9 @@ UI.MapVector = (function (mapUtils) {
         });
     }
 
-    /**
-     * @private
-     * @desc Crea un overlay para visualizar el popover
-     **/
-    function createBaseOverlay(element) {
-        var popup = new ol.Overlay({
-            element: element,
-            positioning: 'center-center',
-            stopEvent: false
-        });
-        mapUtils.getMap().addOverlay(popup);
-        return popup;
-
-    }
-
-    /**
-     * @private
-     * @desc Función no utilzada de momento hasta que funcionen las funciones en ol3-google-maps
-     * https://github.com/mapgears/ol3-google-maps/blob/master/LIMITATIONS.md
-     **/
-    function renderStyleFunction(feature, resolution) {
-
-        var image = new ol.style.Circle({
-            radius: 5,
-            fill: new ol.style.Fill({color: 'red'}),
-            stroke: new ol.style.Stroke({
-                color: 'white', width: 3
-            })
-        });
-
-        var styles = {
-            'Point': new ol.style.Style({
-                image: image
-            }),
-            'LineString': new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    color: 'green',
-                    width: 1
-                })
-            }),
-            'MultiLineString': new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    color: 'green',
-                    width: 1
-                })
-            }),
-            'MultiPoint': new ol.style.Style({
-                image: image
-            }),
-            'MultiPolygon': new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    color: 'yellow',
-                    width: 1
-                }),
-                fill: new ol.style.Fill({
-                    color: 'rgba(255, 255, 0, 0.1)'
-                })
-            }),
-            'Polygon': new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    color: 'blue',
-                    lineDash: [4],
-                    width: 3
-                }),
-                fill: new ol.style.Fill({
-                    color: 'rgba(0, 0, 255, 0.1)'
-                })
-            }),
-            'GeometryCollection': new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    color: 'magenta',
-                    width: 2
-                }),
-                fill: new ol.style.Fill({
-                    color: 'magenta'
-                }),
-                image: new ol.style.Circle({
-                    radius: 10,
-                    fill: null,
-                    stroke: new ol.style.Stroke({
-                        color: 'magenta'
-                    })
-                })
-            }),
-            'Circle': new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    color: 'red',
-                    width: 2
-                }),
-                fill: new ol.style.Fill({
-                    color: 'rgba(255,0,0,0.2)'
-                })
-            })
-        };
-        if (feature)
-            return styles[feature.getGeometry().getType()];
 
 
-        // else return new ol.style.Style();
-    }
+
 
     /**
      * @private
@@ -153,18 +56,18 @@ UI.MapVector = (function (mapUtils) {
         //la feature de la primera posición
         features.forEach(function (feat, idx, a) {
             {
-                var featureKeys = feat.getKeys();
-                featureKeys.forEach(function (key, idxobj, a) {
+                if(feat.getGeometry().getType() === "Point") {
+                    var featureKeys = feat.getKeys();
+                    featureKeys.forEach(function (key, idxobj, a) {
 
-                    if(key!="geometry" && key.indexOf('_') !== 0)
-                    {
-                        if(arrkeys.indexOf(key)<=-1)
-                        {
-                            retHtml += "<th>" + key + "</th>";
-                            arrkeys.push(key)
+                        if (key != "geometry" && key.indexOf('_') !== 0) {
+                            if (arrkeys.indexOf(key) <= -1) {
+                                retHtml += "<th>" + key + "</th>";
+                                arrkeys.push(key)
+                            }
                         }
-                    }
-               });
+                    });
+                }
             }
         });
 
@@ -337,10 +240,16 @@ UI.MapVector = (function (mapUtils) {
             var targetCode = $(this).attr('data-vector-code');
             var layer = getVectorLayerByProperty("code", targetCode);
 
+
             //Fix To Extend
-           fitToExtend(layer);
+            fitToExtend(layer);
+            //Visualizamos la información
+
+
 
             var $element = $("." + targetCode + "-tooltip-point-info");
+            if($element.length == 0)
+                UI.Feature.displayFeatureTooltipInfo(layer);
 
             if($(this).hasClass("btn-danger"))
             {
@@ -355,6 +264,8 @@ UI.MapVector = (function (mapUtils) {
                 $(this).removeClass("btn-success");
                 $(this).addClass("btn-danger");
             }
+
+
         });
         //Fit to Extend sobre los puntos de la capa
         $("[data-vector-action='fixToExtend']").click(function () {
@@ -420,6 +331,7 @@ UI.MapVector = (function (mapUtils) {
             var style, title, type, code, url, visibleInSwitcher, showSimpleInfoButton, showListInfoButton;
             var showFeaturesInfoCallback,showFeatureOverlayCallback;
 
+
             //Comprobamos parámetros de entrada
             if (typeof options.style === 'undefined')
                 style = getDefaultStyle();
@@ -471,10 +383,7 @@ UI.MapVector = (function (mapUtils) {
 
             showFeatureOverlayCallback = options.showFeatureOverlayCallback;
 
-            //Elemento base para el overlay sobre las features
-            var elem = document.createElement('div');
-            elem.setAttribute('id', code);
-            var overlay = createBaseOverlay(elem);
+
 
             //Contendedor de info de capa Listado
             if($('#vector-info-detail-content-' + code).length == 0)
@@ -497,19 +406,7 @@ UI.MapVector = (function (mapUtils) {
                         //Ya podemos pintar cosas sobre la feature
                         //Podenos crear un info overlay con texto sencillo, incluso un tooltip
                         //lo pasamos
-                        if (showSimpleInfoButton) {
 
-
-                            var simpleInfoHtml = "";
-                            if (options.propertiesShowInSimpleInfo) {
-                                options.propertiesShowInSimpleInfo.forEach(function (prop, idx, a) {
-                                    simpleInfoHtml += feat.get(prop)
-                                });
-                            }
-                            //Añade un overlay con estilo al punto
-                            UI.Overlay.addOverlayPointTooltip(feat.getGeometry().getCoordinates(), simpleInfoHtml, code)
-
-                        }
 
                         tempFeatures.push(feat);
                         feat.setStyle(null);
@@ -520,19 +417,27 @@ UI.MapVector = (function (mapUtils) {
                     renderVectorSwitcher();
                 })
             });
+
+            //Elemento base para el overlay sobre las features
+
+            var overlayFeatureInfo = UI.Overlay.createBaseOverlay(code);
+
+
+
             var vectorLayer = new ol.layer.Vector({
                 source: source,
                 'title': title,
                 'type': 'vector',
                 'customType': type,
                 'code': code,
-                'overlay': overlay,
+                'overlayFeatureInfo': overlayFeatureInfo,
                 'style': style,
                 'visibleInSwitcher': visibleInSwitcher,
                 'showSimpleInfoButton': showSimpleInfoButton,
                 'showListInfoButton' : showListInfoButton,
                 'showFeaturesInfoCallback': showFeaturesInfoCallback,
-                'showFeatureOverlayCallback': showFeatureOverlayCallback
+                'showFeatureOverlayCallback': showFeatureOverlayCallback,
+                'propertiesShowInSimpleInfo' : options.propertiesShowInSimpleInfo
 
             });
 

@@ -36,8 +36,9 @@ UI.Map = (function () {
             var feature = _currentMap.forEachFeatureAtPixel(event.pixel, function (feature) {
                 return feature;
             });
+
             if (feature)
-                    UI.Feature.displayFeatureInfo(feature, _currentMap);
+                    UI.Feature.displayFeatureInfo(feature, _currentMap,event.coordinate);
 
 
 

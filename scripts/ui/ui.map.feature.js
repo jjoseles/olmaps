@@ -72,14 +72,48 @@ UI.Feature = (function (mapUtils) {
         }
     }
 
-    function displayFeatureInfo(feature,  map) {
+    function displayFeatureTooltipInfo(layer) {
+        var source = layer.getSource();
+        var features = source.getFeatures();
+
+
+        features.forEach(function (feat) {
+            var simpleInfoHtml = "";
+            layer.get('propertiesShowInSimpleInfo').forEach(function (prop) {
+                simpleInfoHtml += feat.get(prop)
+            });
+            var overlayTooltip = UI.Overlay.createTooltipOverlay(layer.get('code'));
+            if (overlayTooltip) {
+                var element = overlayTooltip.getElement();
+                if (feat.getGeometry().getType() == "Point")
+
+                    coordinate = feat.getGeometry().getCoordinates();
+                overlayTooltip.setPosition(coordinate);
+
+                // the keys are quoted to prevent renaming in ADVANCED mode.
+                $(element).popover({
+                    'placement': 'bottom',
+                    'animation': false,
+                    'html': true,
+                    'content': simpleInfoHtml
+                }).popover('show');
+            }
+        });
+
+    }
+
+    function displayFeatureInfo(feature,  map, pixelCoordinates) {
 
         var layer = feature.getLayer(map);
+        var coordinate;
         if (layer) {
-            var overlay = layer.get('overlay');
+            var overlay = layer.get('overlayFeatureInfo');
             if (overlay) {
                 var element = overlay.getElement();
-                var coordinate = feature.getGeometry().getCoordinates()
+                 if(feature.getGeometry().getType() == "MultiLineString")
+                     coordinate = pixelCoordinates;
+                 else
+                    coordinate = feature.getGeometry().getCoordinates();
                overlay.setPosition(coordinate);
                 //Sacamos el callback de la capa
                 var callback = layer.get('showFeatureOverlayCallback');
@@ -92,6 +126,7 @@ UI.Feature = (function (mapUtils) {
     return {
 
         displayFeatureInfo: displayFeatureInfo,
-        showHidePointer: showHidePointer
+        showHidePointer: showHidePointer,
+        displayFeatureTooltipInfo: displayFeatureTooltipInfo
     }
 })(UI.Map);

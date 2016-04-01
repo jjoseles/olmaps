@@ -11648,7 +11648,7 @@
         ],
         "type": "MultiLineString"
       },
-      "properties": {},
+      "properties": { "ruta": "ruta felipe 30/03/2016"},
       "type": "Feature"
     }
   ],

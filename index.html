@@ -116,7 +116,41 @@
 
 
         });
-        var titleLayer_WorldCities = "Ciudades del mundo";
+        //Popover geoJson
+        var openPopoverGeoJsonFelipe = function (featureProperties, layerProperties, element,coordinate) {
+            if(featureProperties) {
+
+
+                var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
+                        coordinate, 'EPSG:3857', 'EPSG:4326'));
+
+                var header = '<code>' + hdms + '</code><br/>', content;
+
+                if(featureProperties.geometry.getType() == "MultiLineString")
+                    header += featureProperties["ruta"]
+                else {
+                    header = header + layerProperties["title"] + " " + layerProperties["code"] + " " + layerProperties["customType"];
+                    content = featureProperties["fecha"] + "<br/>" + featureProperties["velocidad"] + featureProperties["localizacion"];
+                }
+                var genericCloseBtnHtml = "<button type=\"button\" class=\"close\" aria-hidden=\"true\">&times;</button>";
+                $(element).popover('destroy');
+                // the keys are quoted to prevent renaming in ADVANCED mode.
+                $(element).popover({
+                    'placement': 'top',
+                    'animation': false,
+                    'html': true,
+                    'content': content,
+                    'title': genericCloseBtnHtml + header
+                }).on("shown.bs.popover", function (e) {
+                    var $pop = $(element).data("bs.popover").$tip;
+                    $pop.find(".close").click(function () {
+                        $(element).popover("destroy");
+                    });
+
+                });
+                $(element).popover("show");
+            }
+        };
 
         //Popover geoJson
         var openPopoverGeoJsonCiudades = function (featureProperties, layerProperties, element,coordinate) {
@@ -180,7 +214,7 @@
       UI.MapVector.loadGeoJSONData(
                 {
                     'url' : 'http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
-                    'title' : titleLayer_WorldCities,
+                    'title' : 'Ciudades del mundo',
                     'code' : 'WC001',
                     'type' : 'point',
                     'style' :  new ol.style.Style({
@@ -239,10 +273,43 @@
 
                 });
 
+        var felipeLayer = UI.MapVector.loadGeoJSONData(
+                {
+                    'url' : 'http://localhost:63342/olmaps/data/rutaFelipe.json',
+                    'title' : 'Ruta felipe',
+                    'code' : 'Felipe',
+                    'type' : 'route',
+                    'style' : new ol.style.Style({
+                        stroke: new ol.style.Stroke({
+                            color: 'green',
+                            width: 2
+                        }),
+                        fill: new ol.style.Fill({
+                            color: 'magenta'
+                        }),
+                        image: new ol.style.Circle({
+                            radius: 10,
+                            fill: new ol.style.Fill({
+                                color: 'blue'
+                            }),
+                            stroke: new ol.style.Stroke({
+                                color: 'white'
+                            })
+                        })
+                    }),
+                    'visibleInSwitcher' : true,
+                    'propertiesShowInSimpleInfo': ['localizacion'],
+                    'showSimpleInfoButton' : true,
+                    'showListInfoButton' : true,
+                    /*'showFeaturesInfoCallback':function(){
+                     console.log('hola')
+                     }*/
+                    'showFeatureOverlayCallback': openPopoverGeoJsonFelipe
+
+                });
 
 
-
-
+        UI.MapVector.fitToExtendOnLoad(felipeLayer);
 
         //Añade un punto basado en estilos definidos en #marker
       /*  UI.Overlay.addOverlayPoint([16.3725, 48.208889], 'location_marker', null);

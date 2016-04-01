@@ -9,6 +9,45 @@ UI = window.UI || {};
 UI.Overlay = (function (mapUtils) {
 
     /**
+     * @private
+     * @desc Crea un overlay para visualizar el popover
+     **/
+    function createTooltipOverlay(code) {
+        var element = document.createElement('div');
+        $(element).addClass(code + "-tooltip-point-info");
+        $(element).addClass("tooltip-point-info");
+        //  marker
+        var marker = new ol.Overlay({
+
+            positioning: 'top-left',
+            element: element,
+            stopEvent: false
+        });
+
+        mapUtils.getMap().addOverlay(marker);
+
+      return marker;
+    }
+    /**
+     * @private
+     * @desc Crea un overlay para visualizar el popover
+     **/
+    function createBaseOverlay(code) {
+        var elem = document.createElement('div');
+        elem.setAttribute('id', code);
+        var popup = new ol.Overlay({
+            element: elem,
+            positioning: 'center-center',
+            stopEvent: false,
+            id:"overlayFeatureInfo"
+
+        });
+        mapUtils.getMap().addOverlay(popup);
+        return popup;
+
+
+    }
+    /**
      * @public
      * @desc Añade un punto al mapa y centra el mapa en ese punto. Puntos basados en estilos
      * @param {array} center  [lat,lon]
@@ -50,42 +89,12 @@ UI.Overlay = (function (mapUtils) {
 
     }
 
-    /**
-     * @public
-     * @desc Añade un overlay al mapa para posteriormente sacar info simple
-     * @param {array} center  [lat,lon]
 
-     **/
-    function addOverlayPointTooltip( pointPostition, dataHtml,layerCode) {
-
-        var element = document.createElement('div');
-        $(element).addClass(layerCode + "-tooltip-point-info");
-        $(element).addClass("tooltip-point-info");
-        //  marker
-        var marker = new ol.Overlay({
-            position: pointPostition,
-            positioning: 'top-left',
-            element: element,
-            stopEvent: false
-        });
-
-        mapUtils.getMap().addOverlay(marker);
-
-
-        // the keys are quoted to prevent renaming in ADVANCED mode.
-        $(element).popover({
-            'placement': 'bottom',
-            'animation': false,
-            'html': true,
-            'content': dataHtml
-        });
-
-
-
-    }
 
     return {
         addOverlayPoint: addOverlayPoint,
-        addOverlayPointTooltip:addOverlayPointTooltip
+
+        createBaseOverlay:createBaseOverlay,
+        createTooltipOverlay:createTooltipOverlay
     }
 })(UI.Map);
