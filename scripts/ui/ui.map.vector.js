@@ -149,6 +149,7 @@ UI.MapVector = (function (mapUtils) {
         var layer = getVectorLayerByProperty('code',code);
         var features = getVectorFeaturesCollection(layer);
         var arrkeys = [];
+        retHtml += "<th></th>";
         //la feature de la primera posición
         features.forEach(function (feat, idx, a) {
             {
@@ -157,13 +158,11 @@ UI.MapVector = (function (mapUtils) {
 
                     if(key!="geometry" && key.indexOf('_') !== 0)
                     {
-
                         if(arrkeys.indexOf(key)<=-1)
                         {
                             retHtml += "<th>" + key + "</th>";
                             arrkeys.push(key)
                         }
-
                     }
                });
             }
@@ -176,9 +175,11 @@ UI.MapVector = (function (mapUtils) {
 
             if(feat.getGeometry().getType() == 'Point')
             {
-                retHtml += "<tr>";
-                var featureKeys = feat.getKeys();
 
+                retHtml += "<tr>";
+                var featureKeys = feat.getKeys()
+                console.log(feat)
+                retHtml += "<td><a class=\"btn btn-default btn-xs btn-info\" data-point-action='fixToExtendAndShowInfo' data-feat-coordinates='" + feat.getGeometry().getCoordinates() + "'><i class='ace-icon fa fa-map-pin'></i></a></td>";
                 arrkeys.forEach(function (key, idxobj, a) {
 
                         retHtml += "<td>" + feat.get(key) + "</td>";
@@ -199,10 +200,35 @@ UI.MapVector = (function (mapUtils) {
             "ordering": true,
             "stateSave": false,
             "pageLength": 5,
+            'sDom': 'ftp',
+            'rowCallback': function(nRow) {
 
-            'sDom': 'ftlp',
+                $(nRow).find("[data-point-action='fixToExtendAndShowInfo']").on("click", function(e) {
+                    var coordinate = $(this).data("feat-coordinates");
+                    var pos =  ol.proj.fromLonLat(coordinate);
+
+                    var feats = layer.getSource().getFeatures().filter(function(f) {
+                        var coord =    f.getGeometry().getCoordinates();
+                        return (coord == pos);
+                    });
+
+                    if(feats.length > 0)
+                    {
+                        var map = mapUtils.getMap();
+
+
+                        map.getView().fit(feats[0].getGeometry().getExtent(), map.getSize(),{"maxZoom": 9});
+                        map.renderSync();
+                        UI.Feature.displayFeatureInfo(feats[0], mapUtils.getMap());
+                    }
+
+
+
+                });
+            }
 
         });
+
 
     }
     /**
@@ -261,10 +287,6 @@ UI.MapVector = (function (mapUtils) {
 
             ]
         });
-        //Tooltip
-        $('[data-rel=tooltip]', $("#vector-switcher-content")).tooltip({
-            container: 'body'
-        });
 
         prepareEvents();
 
@@ -298,6 +320,7 @@ UI.MapVector = (function (mapUtils) {
             }
         });
 
+        //Evento click sobre visualización de listado de datos
         $("[data-vector-action='showListInfo']").click(function () {
             $('#vector-switcher-content').toggleClass('open');
 
@@ -307,12 +330,10 @@ UI.MapVector = (function (mapUtils) {
 
             var callback=layer.get('showFeaturesInfoCallback')
             callback(targetCode)
-
         });
 
+        //Imformación sencilla sobre los puntos de una capa
         $("[data-vector-action='showSimpleInfo']").click(function () {
-
-
             var targetCode = $(this).attr('data-vector-code');
             var layer = getVectorLayerByProperty("code", targetCode);
 
@@ -334,8 +355,8 @@ UI.MapVector = (function (mapUtils) {
                 $(this).removeClass("btn-success");
                 $(this).addClass("btn-danger");
             }
-
         });
+        //Fit to Extend sobre los puntos de la capa
         $("[data-vector-action='fixToExtend']").click(function () {
 
             var targetCode = $(this).attr('data-vector-code');
@@ -396,7 +417,10 @@ UI.MapVector = (function (mapUtils) {
         if (options) {
 
 
-            var style, title, type, code, url, visibleInSwitcher, showSimpleInfoButton, showListInfoButton,showFeaturesInfoCallback;
+            var style, title, type, code, url, visibleInSwitcher, showSimpleInfoButton, showListInfoButton;
+            var showFeaturesInfoCallback,showFeatureOverlayCallback;
+
+            //Comprobamos parámetros de entrada
             if (typeof options.style === 'undefined')
                 style = getDefaultStyle();
             else
@@ -441,17 +465,18 @@ UI.MapVector = (function (mapUtils) {
 
             if (typeof options.showFeaturesInfoCallback === 'undefined')
                 showFeaturesInfoCallback = showFeatureListInfo;
-
-
             else
                 showFeaturesInfoCallback = options.showFeaturesInfoCallback;
+
+
+            showFeatureOverlayCallback = options.showFeatureOverlayCallback;
 
             //Elemento base para el overlay sobre las features
             var elem = document.createElement('div');
             elem.setAttribute('id', code);
             var overlay = createBaseOverlay(elem);
 
-            //Contendedor de info de capa
+            //Contendedor de info de capa Listado
             if($('#vector-info-detail-content-' + code).length == 0)
             {
                  var strInfoDetailContentForLayer = "<div id='vector-info-detail-content-" +  code + "' class='vector-info-detail-content'>";
@@ -481,7 +506,7 @@ UI.MapVector = (function (mapUtils) {
                                     simpleInfoHtml += feat.get(prop)
                                 });
                             }
-                            //Añade un overlay con estilo al funto
+                            //Añade un overlay con estilo al punto
                             UI.Overlay.addOverlayPointTooltip(feat.getGeometry().getCoordinates(), simpleInfoHtml, code)
 
                         }
@@ -506,7 +531,8 @@ UI.MapVector = (function (mapUtils) {
                 'visibleInSwitcher': visibleInSwitcher,
                 'showSimpleInfoButton': showSimpleInfoButton,
                 'showListInfoButton' : showListInfoButton,
-                'showFeaturesInfoCallback': showFeaturesInfoCallback
+                'showFeaturesInfoCallback': showFeaturesInfoCallback,
+                'showFeatureOverlayCallback': showFeatureOverlayCallback
 
             });
 

@@ -10,13 +10,14 @@ UI.Map = (function () {
 
 
     var _currentMap;
-    var _featureClickCallback;
+
 
     /**
      * @private
      * @desc Eventos sobre elementos del mapa
      **/
     function mapGlobalEvents() {
+        //información de coordenadas
         _currentMap.on('pointermove', function (event) {
             if (event.dragging) {
                 return;
@@ -35,14 +36,10 @@ UI.Map = (function () {
             var feature = _currentMap.forEachFeatureAtPixel(event.pixel, function (feature) {
                 return feature;
             });
-            if (feature) {
-                if (_featureClickCallback) {
-                    UI.Feature.displayFeatureInfo(feature, _featureClickCallback, _currentMap, event.coordinate);
-                }
-            }
-            else {
-                // No feature
-            }
+            if (feature)
+                    UI.Feature.displayFeatureInfo(feature, _currentMap);
+
+
 
         });
     }
@@ -58,6 +55,7 @@ UI.Map = (function () {
         $('.map-info-panel-button').click(function () {
             $('.map-info-panel-content').toggle();
         });
+        //Exportación
         $(".export-button").click(function () {
             _currentMap.once('postcompose', function (event) {
                 var canvas = event.context.canvas;
@@ -65,11 +63,11 @@ UI.Map = (function () {
             });
             _currentMap.renderSync();
         });
-
+        //Crear punto sbre el mapa
         $(".poi-button").click(function () {
             UI.Interactions.addSelectPointInteraction(createPointCallback);
         });
-
+        //Vector switcher
         $('.vector-switcher button').click(function(e){
 
            e.preventDefault();
@@ -113,7 +111,7 @@ UI.Map = (function () {
      * @public
      * @desc Inicializa el mapa con los tiles por defecto
      **/
-    function init(mapId, featureClickCallback, createPointCallback) {
+    function init(mapId, createPointCallback) {
 
 
         var map = new ol.Map({
@@ -126,12 +124,11 @@ UI.Map = (function () {
                 zoom: 6
             }),
 
-            target: mapId
+            target: mapId,
+
         });
 
-        //Callback por defecto sobre las features del mapa
-        //Tiene que ser única para todas las capas. HAbrá que distinguir por capa
-        _featureClickCallback = featureClickCallback;
+
 
         //Controles por defecto del map
 

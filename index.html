@@ -117,28 +117,17 @@
 
         });
         var titleLayer_WorldCities = "Ciudades del mundo";
-        var titleLayer_Lakes = "Lakes";
+
         //Popover geoJson
-        var openPopoverGeoJson = function (data, layerName, element,coordinate) {
-            if(data) {
+        var openPopoverGeoJsonCiudades = function (featureProperties, layerProperties, element,coordinate) {
+            if(featureProperties) {
                var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
                         coordinate, 'EPSG:3857', 'EPSG:4326'));
 
                 var header = '<code>' + hdms + '</code><br/>', content;
-                switch (layerName) {
-                    case titleLayer_WorldCities:
-                    {
-                        header = header + data["STATUS"] + "<br/>" + data["ADMIN_NAME"];
-                        content = data["CITY_NAME"] + "<br/>" + data["CNTRY_NAME"];
-                        break;
-                    }
-                    case titleLayer_Lakes:
-                    {
-                        header = header +data["featurecla"] + " " + data["name"];
-                        content = data["featurecla"] + "<br/>" + data["name_abb"] + "<br/>" + data["name"] + "<br/>" + data["year"] + "<br/>" + data["scalerank"];
-                        break;
-                    }
-                }
+
+                header = header + layerProperties["title"] + " " + layerProperties["code"] +  " "  + layerProperties["customType"];
+                content = featureProperties["STATUS"] + "<br/>" + featureProperties["ADMIN_NAME"] + featureProperties["CITY_NAME"] + "<br/>" + featureProperties["CNTRY_NAME"];
 
                 var genericCloseBtnHtml = "<button type=\"button\" class=\"close\" aria-hidden=\"true\">&times;</button>";
                 $(element).popover('destroy');
@@ -183,20 +172,11 @@
         };
         //TODO Pasar parámemtros de inicialización al mapa
         var mapa;
-        mapa = UI.Map.init("map", openPopoverGeoJson, createPointCallback);
+        mapa = UI.Map.init("map", createPointCallback);
 
 
 
-      /*   UI.MapVector.loadGeoJSONData(
-                 {
-                     'url' : 'https://raw.githubusercontent.com/jsongeo/10m-lakes/master/10m-lakes.json',
-                     'title' : titleLayer_Lakes,
-                     'code' : 'L001',
-                     'type' : 'polygon',
 
-                     'visibleInSwitcher' : false
-                 },
-                 titleLayer_Lakes); */
       UI.MapVector.loadGeoJSONData(
                 {
                     'url' : 'http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
@@ -225,7 +205,9 @@
                     }),
                     'visibleInSwitcher' : true,
                     'showSimpleInfoButton' : false,
-                    'showListInfoButton' : true
+                    'propertiesShowInSimpleInfo': ['CITY_NAME'],
+                    'showListInfoButton' : true,
+                    'showFeatureOverlayCallback': openPopoverGeoJsonCiudades
                 });
 
         var ukSomeCitiesLayer = UI.MapVector.loadGeoJSONData(
@@ -253,6 +235,8 @@
                     /*'showFeaturesInfoCallback':function(){
                         console.log('hola')
                     }*/
+                    'showFeatureOverlayCallback': openPopoverGeoJsonCiudades
+
                 });
 
 

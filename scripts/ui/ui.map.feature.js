@@ -72,15 +72,19 @@ UI.Feature = (function (mapUtils) {
         }
     }
 
-    function displayFeatureInfo(feature, callback, map, coordinate) {
+    function displayFeatureInfo(feature,  map) {
 
         var layer = feature.getLayer(map);
         if (layer) {
             var overlay = layer.get('overlay');
             if (overlay) {
                 var element = overlay.getElement();
-                overlay.setPosition(coordinate);
-                callback(feature.getProperties(), layer.get('title'), element, coordinate)
+                var coordinate = feature.getGeometry().getCoordinates()
+               overlay.setPosition(coordinate);
+                //Sacamos el callback de la capa
+                var callback = layer.get('showFeatureOverlayCallback');
+                if (typeof callback !== 'undefined')
+                    callback(feature.getProperties(), layer.getProperties(), element, coordinate)
             }
         }
     }
