@@ -15,15 +15,18 @@ UI.MapVector = (function (mapUtils) {
     function getDefaultStyle() {
         return new ol.style.Style({
             image: new ol.style.Circle({
-                radius: 5,
-                fill: new ol.style.Fill({color: 'red'}),
+                radius: 3,
+                fill: new ol.style.Fill({color: 'blue'}),
                 stroke: new ol.style.Stroke({
-                    color: 'white', width: 3
+                    color: 'white', width: 1
                 })
             }),
+            text: new ol.style.Text(
+
+            ),
             stroke: new ol.style.Stroke({
                 width: 3,
-                color: 'blue'
+                color: "#4B87C8"
             }),
             fill: new ol.style.Fill({
                 color: [0, 0, 255, 0.1]
@@ -33,30 +36,189 @@ UI.MapVector = (function (mapUtils) {
         });
     }
 
+    /**
+     * @public
+     * @desc estilo por defecto para la interacción
+     **/
+    function getDefaultSelectInteractionStyle() {
+        return new ol.style.Style({
+            //Color de los puntos
+            image: new ol.style.Circle({
+                radius: 10,
+                //snapToPixel: false,
+                'fill': new ol.style.Fill({color: 'red'}),
+                stroke: new ol.style.Stroke({
+                    color: 'white', width: 4
+                })
+            }),
+            //Color de las líneas
+            stroke: new ol.style.Stroke({
+                width: 3,
+                color: 'black'
+            }),
+            //Color de relleno
+            fill: new ol.style.Fill({
+                color: [0, 0, 255, 0.3]
+            })
+        });
+    }
+    function showPointsInChangeResolution(currentResolution,viewExtent)
+    {
+
+        mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
+            if ((lyr.get('type') === 'vector')) {
+                if(lyr.get('minResolutionToShowPoints') != 0)
+                {
+
+                        lyr.getSource().forEachFeatureInExtent(viewExtent, function (feature) {
+                            if(feature.getGeometry().getType() == "Point")
+                            {
+
+                                if(currentResolution <= lyr.get('minResolutionToShowPoints')) {
+                                    var style = feature.getStyle();
+                                    if(style.getImage() != null)
+                                       style.getImage().setOpacity(1)
+
+                                    feature.setStyle(style)
+                                }
+                                else
+                                {
+                                    var style = feature.getStyle();
+                                    if(style.getImage() != null)
+                                       style.getImage().setOpacity(0)
+                                    feature.setStyle(style)
+                                }
+
+                            }
+
+                        });
+                    }
 
 
 
+            }
+        });
+    }
+
+    /**
+     * @public
+     * @desc Private, añade estilos por defecto a las features
+     **/
+    function addDefaultStyles(features, layerName,currentResolution) {
+
+        var layer = getVectorLayerByProperty("code", layerName);
+        features.forEach(function (feat, idx, a) {
+            var style = feat.getStyle();
+            if (style == null) {
+                var layerStyle = layer.get('defaultStyle')
+                feat.set("defaultStyle", layerStyle);
+                feat.set("interactionStyle", layer.get('styleSelectInteraction'));
+                layerStyle.getImage().setOpacity(currentResolution <= layer.get('minResolutionToShowPoints') ? 1: 0)
+                feat.setStyle(layerStyle)
+            }
+
+
+        });
+        return features;
+    }
+    /**
+     * @public
+     * @desc Private, añade estilos por defecto a las features de una capa de ruta
+     **/
+    function addArrowsToLineString(features, layerName) {
+
+        var layer = getVectorLayerByProperty("code", layerName);
+
+
+
+        var lineStringFeatures = features.filter(function (f) {
+            return f.getGeometry().getType() == "LineString";
+        });
+        var tempFeatures = lineStringFeatures;
+        if (lineStringFeatures.length > 0) {
+            var pointFeatures = features.filter(function (f) {
+                return f.getGeometry().getType() == "Point";
+            });
+
+
+            lineStringFeatures.forEach(function (lineStringFeature, idx, a) {
+                //Cada uno de los segmentos de
+                lineStringFeature.getGeometry().forEachSegment(function (start, end) {
+                    var dx = end[0] - start[0];
+                    var dy = end[1] - start[1];
+                    var rotation = Math.atan2(dy, dx);
+
+                    var feats = pointFeatures.filter(function (f) {
+                        var coord = f.getGeometry().getCoordinates();
+                        return (coord[0] === end[0] && coord[1] === end[1]);
+                    });
+                    if (feats.length > 0) {
+                        var featStyle = new ol.style.Style(
+                            {
+                                // geometry: new ol.geom.Point(end),
+                                image: new ol.style.Icon({
+                                    src: 'img/arrow-right-circle-blue-16.png',
+                                    anchor: [0.75, 0.5],
+                                    rotateWithView: false,
+                                    rotation: -rotation,
+                                    opacity: layer.get('minResolutionToShowPoints') == 0 ? 1: 0
+                                }),
+                            });
+                        var featInteracionStyle =
+                            new ol.style.Style(
+                                {
+                                    // geometry: new ol.geom.Point(end),
+                                    image: new ol.style.Icon({
+                                        src: 'img/arrow-right-circle-green-16.png',
+                                        anchor: [0.75, 0.5],
+                                        rotateWithView: false,
+                                        rotation: -rotation,
+
+                                    }),
+
+                                });
+
+                        feats[0].set("defaultStyle", featStyle);
+                        feats[0].set("interactionStyle", featInteracionStyle);
+                        feats[0].setStyle(featStyle)
+                        tempFeatures.push(feats[0])
+
+                    }
+
+                    //layer.setStyle(null)
+
+
+                })
+            })
+
+        }
+        else {
+            tempFeatures = features
+        }
+
+        return tempFeatures;
+
+    }
 
     /**
      * @private
      * @desc Visualiza la tabla con los dato de las features de manera genérica
      **/
-    function showFeatureListInfo(code)
-    {
+    function showFeatureListInfo(code) {
 
 
-        var $contentArea = $("#vector-info-detail-content-"  +code + ".vector-info-detail-content");
+        var $contentArea = $("#vector-info-detail-content-" + code + ".vector-info-detail-content");
 
-        var retHtml = "<table   data-ordering=\"true\"     data-order=\"[[1,&quot;asc&quot;]]\" class=' table  table-bordered' id='table-layer" + code +"'>";
+        var retHtml = "<table   data-ordering=\"true\"     data-order=\"[[1,&quot;asc&quot;]]\" class=' table  table-bordered' id='table-layer" + code + "'>";
         retHtml += "<thead><tr>";
-        var layer = getVectorLayerByProperty('code',code);
+        var layer = getVectorLayerByProperty('code', code);
         var features = getVectorFeaturesCollection(layer);
         var arrkeys = [];
         retHtml += "<th></th>";
         //la feature de la primera posición
         features.forEach(function (feat, idx, a) {
             {
-                if(feat.getGeometry().getType() === "Point") {
+                if (feat.getGeometry().getType() === "Point") {
                     var featureKeys = feat.getKeys();
                     featureKeys.forEach(function (key, idxobj, a) {
 
@@ -76,8 +238,7 @@ UI.MapVector = (function (mapUtils) {
         retHtml += "<tbody>";
         features.forEach(function (feat, idx, a) {
 
-            if(feat.getGeometry().getType() == 'Point')
-            {
+            if (feat.getGeometry().getType() == 'Point') {
 
                 retHtml += "<tr>";
                 var featureKeys = feat.getKeys()
@@ -85,7 +246,7 @@ UI.MapVector = (function (mapUtils) {
                 retHtml += "<td><a class=\"btn btn-default btn-xs btn-info\" data-point-action='fixToExtendAndShowInfo' data-feat-coordinates='" + feat.getGeometry().getCoordinates() + "'><i class='ace-icon fa fa-map-pin'></i></a></td>";
                 arrkeys.forEach(function (key, idxobj, a) {
 
-                        retHtml += "<td>" + feat.get(key) + "</td>";
+                    retHtml += "<td>" + feat.get(key) + "</td>";
                 });
                 retHtml += "</tr>";
             }
@@ -95,36 +256,34 @@ UI.MapVector = (function (mapUtils) {
 
         $contentArea.addClass("open");
 
-        $("[data-content='dynamic-content']",$contentArea).append(retHtml);
+        $("[data-content='dynamic-content']", $contentArea).append(retHtml);
 
         //Datatable
-        var otable = $("#table-layer" + code , $contentArea).dataTable({
+        var otable = $("#table-layer" + code, $contentArea).dataTable({
 
             "ordering": true,
             "stateSave": false,
             "pageLength": 5,
             'sDom': 'ftp',
-            'rowCallback': function(nRow) {
+            'rowCallback': function (nRow) {
 
-                $(nRow).find("[data-point-action='fixToExtendAndShowInfo']").on("click", function(e) {
+                $(nRow).find("[data-point-action='fixToExtendAndShowInfo']").on("click", function (e) {
                     var coordinate = $(this).data("feat-coordinates");
-                    var pos =  ol.proj.fromLonLat(coordinate);
+                    var pos = ol.proj.fromLonLat(coordinate);
 
-                    var feats = layer.getSource().getFeatures().filter(function(f) {
-                        var coord =    f.getGeometry().getCoordinates();
+                    var feats = layer.getSource().getFeatures().filter(function (f) {
+                        var coord = f.getGeometry().getCoordinates();
                         return (coord == pos);
                     });
 
-                    if(feats.length > 0)
-                    {
+                    if (feats.length > 0) {
                         var map = mapUtils.getMap();
 
 
-                        map.getView().fit(feats[0].getGeometry().getExtent(), map.getSize(),{"maxZoom": 9});
+                        map.getView().fit(feats[0].getGeometry().getExtent(), map.getSize(), {"maxZoom": 9});
                         map.renderSync();
                         UI.Feature.displayFeatureInfo(feats[0], mapUtils.getMap());
                     }
-
 
 
                 });
@@ -134,6 +293,8 @@ UI.MapVector = (function (mapUtils) {
 
 
     }
+
+
     /**
      * @private
      * @desc Renderiza el selector de vectores
@@ -166,7 +327,7 @@ UI.MapVector = (function (mapUtils) {
                     retHtml += "</td>";
 
                     retHtml += "<td>" + lyr.get('title') + "</td>";
-                    retHtml += "<td>" + getVectorFeaturesCollection(lyr).length  + "</td>";
+                    retHtml += "<td>" + getVectorFeaturesCollection(lyr).length + "</td>";
                     retHtml += "</tr>";
 
                 }
@@ -178,7 +339,7 @@ UI.MapVector = (function (mapUtils) {
             $(".vector-switcher").show();
 
         //Datatable
-       var otable = $("#table-layer", $("#vector-switcher-content")).dataTable({
+        var otable = $("#table-layer", $("#vector-switcher-content")).dataTable({
 
             "ordering": true,
             "stateSave": false,
@@ -229,9 +390,9 @@ UI.MapVector = (function (mapUtils) {
 
             var targetCode = $(this).attr('data-vector-code');
 
-            var layer = getVectorLayerByProperty('code',targetCode);
+            var layer = getVectorLayerByProperty('code', targetCode);
 
-            var callback=layer.get('showFeaturesInfoCallback')
+            var callback = layer.get('showFeaturesInfoCallback')
             callback(targetCode)
         });
 
@@ -246,13 +407,11 @@ UI.MapVector = (function (mapUtils) {
             //Visualizamos la información
 
 
-
             var $element = $("." + targetCode + "-tooltip-point-info");
-            if($element.length == 0)
+            if ($element.length == 0)
                 UI.Feature.displayFeatureTooltipInfo(layer);
 
-            if($(this).hasClass("btn-danger"))
-            {
+            if ($(this).hasClass("btn-danger")) {
                 if (layer.getVisible()) {
                     $element.popover('show');
                     $(this).removeClass("btn-danger");
@@ -328,8 +487,8 @@ UI.MapVector = (function (mapUtils) {
         if (options) {
 
 
-            var style, title, type, code, url, visibleInSwitcher, showSimpleInfoButton, showListInfoButton;
-            var showFeaturesInfoCallback,showFeatureOverlayCallback;
+            var style, styleSelectInteraction, title, type, code, url, visibleInSwitcher, showSimpleInfoButton, showListInfoButton;
+            var showFeaturesInfoCallback, showFeatureOverlayCallback;
 
 
             //Comprobamos parámetros de entrada
@@ -337,6 +496,13 @@ UI.MapVector = (function (mapUtils) {
                 style = getDefaultStyle();
             else
                 style = options.style;
+
+
+            if (typeof options.styleSelectInteraction === 'undefined')
+                styleSelectInteraction = getDefaultSelectInteractionStyle();
+            else
+                styleSelectInteraction = options.styleSelectInteraction;
+
 
             if (typeof options.title === 'undefined' || options.title == '')
                 console.log("Define 'title' de la capa");
@@ -380,16 +546,19 @@ UI.MapVector = (function (mapUtils) {
             else
                 showFeaturesInfoCallback = options.showFeaturesInfoCallback;
 
+            if (typeof options.minResolutionToShowPoints === 'undefined')
+                minResolutionToShowPoints = 0;
+            else
+                minResolutionToShowPoints = options.minResolutionToShowPoints;
+
 
             showFeatureOverlayCallback = options.showFeatureOverlayCallback;
 
 
-
             //Contendedor de info de capa Listado
-            if($('#vector-info-detail-content-' + code).length == 0)
-            {
-                 var strInfoDetailContentForLayer = "<div id='vector-info-detail-content-" +  code + "' class='vector-info-detail-content'>";
-                strInfoDetailContentForLayer+= "<div data-content='fixed-content'></div>";
+            if ($('#vector-info-detail-content-' + code).length == 0) {
+                var strInfoDetailContentForLayer = "<div id='vector-info-detail-content-" + code + "' class='vector-info-detail-content'>";
+                strInfoDetailContentForLayer += "<div data-content='fixed-content'></div>";
                 strInfoDetailContentForLayer += "<div data-content='dynamic-content'><!-- Generado por javascript --></div>";
                 strInfoDetailContentForLayer += "</div>";
                 $('.vector-switcher .btn-group').append(strInfoDetailContentForLayer);
@@ -407,21 +576,24 @@ UI.MapVector = (function (mapUtils) {
                         //Podenos crear un info overlay con texto sencillo, incluso un tooltip
                         //lo pasamos
 
-
+                        feat.setId(Math.random() + 1)
                         tempFeatures.push(feat);
-                        feat.setStyle(null);
+
 
                     });
+                    tempFeatures = addArrowsToLineString(tempFeatures, code);
+                    tempFeatures = addDefaultStyles(tempFeatures, code,mapUtils.getMap().getView().getResolution());
 
                     this.addFeatures(tempFeatures);
                     renderVectorSwitcher();
+
+
                 })
             });
 
             //Elemento base para el overlay sobre las features
 
             var overlayFeatureInfo = UI.Overlay.createBaseOverlay(code);
-
 
 
             var vectorLayer = new ol.layer.Vector({
@@ -431,14 +603,16 @@ UI.MapVector = (function (mapUtils) {
                 'customType': type,
                 'code': code,
                 'overlayFeatureInfo': overlayFeatureInfo,
-                'style': style,
+                 'style': style,
+                'defaultStyle': style,
+                'styleSelectInteraction': styleSelectInteraction,
                 'visibleInSwitcher': visibleInSwitcher,
                 'showSimpleInfoButton': showSimpleInfoButton,
-                'showListInfoButton' : showListInfoButton,
+                'showListInfoButton': showListInfoButton,
                 'showFeaturesInfoCallback': showFeaturesInfoCallback,
                 'showFeatureOverlayCallback': showFeatureOverlayCallback,
-                'propertiesShowInSimpleInfo' : options.propertiesShowInSimpleInfo
-
+                'propertiesShowInSimpleInfo': options.propertiesShowInSimpleInfo,
+                'minResolutionToShowPoints': minResolutionToShowPoints
             });
 
 
@@ -449,9 +623,7 @@ UI.MapVector = (function (mapUtils) {
             // UI.Interactions.addDefaultSelectInteraction(interactionStyle);
             //Renderizamos el botoón de vectores
 
-              //  renderVectorSwitcher();
-
-
+            //  renderVectorSwitcher();
 
 
             return vectorLayer;
@@ -502,13 +674,14 @@ UI.MapVector = (function (mapUtils) {
      * @param {object} layer
      **/
     function fitToExtendOnLoad(layer) {
-        var map = mapUtils.getMap();
-        var source = getVecorLayerSource(layer);
-        source.on("change", function (evt) {
-            extent = source.getExtent();
-            map.getView().fit(extent, map.getSize());
-        });
+        /* var map = mapUtils.getMap();
+         var source = getVecorLayerSource(layer);
+         source.on("change", function (evt) {
+         extent = source.getExtent();
+         map.getView().fit(extent, map.getSize());
+         });*/
     }
+
     /**
      * @public
      * @desc Centra el mapa y hace zoom sobre un conjunto de puntos del source de una capa
@@ -521,16 +694,18 @@ UI.MapVector = (function (mapUtils) {
         var source = getVecorLayerSource(layer);
 
         extent = source.getExtent();
-        map.getView().fit(extent, map.getSize(),{"maxZoom": 19});
+        map.getView().fit(extent, map.getSize(), {"maxZoom": 19});
     }
+
     return {
         loadGeoJSONData: loadGeoJSONData,
         addVector: addVector,
         getVectorLayerByProperty: getVectorLayerByProperty,
         removeVectorLayerByProperty: removeVectorLayerByProperty,
         getVecorLayerSource: getVecorLayerSource,
-        fitToExtendOnLoad:fitToExtendOnLoad,
+        fitToExtendOnLoad: fitToExtendOnLoad,
         fitToExtend: fitToExtend,
-        getVectorFeaturesCollection: getVectorFeaturesCollection
+        getVectorFeaturesCollection: getVectorFeaturesCollection,
+        showPointsInChangeResolution: showPointsInChangeResolution
     }
 })(UI.Map);

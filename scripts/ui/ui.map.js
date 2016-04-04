@@ -43,6 +43,20 @@ UI.Map = (function () {
 
 
         });
+
+        _currentMap.getView().on('propertychange', function(e) {
+            console.log(e.key)
+            switch (e.key) {
+                case 'center','resolution':
+                        //Calculamos el extend de la vista
+                    var view = e.target;
+
+                    UI.MapVector.showPointsInChangeResolution(view.getResolution(),view.calculateExtent(_currentMap.getSize()))
+                        //mostrar puntos
+
+                    break;
+            }
+        });
     }
 
     /**

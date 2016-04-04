@@ -104,13 +104,18 @@ UI.Feature = (function (mapUtils) {
 
     function displayFeatureInfo(feature,  map, pixelCoordinates) {
 
+
         var layer = feature.getLayer(map);
+        var features = UI.MapVector.getVectorFeaturesCollection(layer);
+       features.forEach(function (feat, idx, a) {
+            feat.setStyle(feat.get('defaultStyle'));
+        });
         var coordinate;
         if (layer) {
             var overlay = layer.get('overlayFeatureInfo');
             if (overlay) {
                 var element = overlay.getElement();
-                 if(feature.getGeometry().getType() == "MultiLineString")
+                 if(feature.getGeometry().getType() == "LineString")
                      coordinate = pixelCoordinates;
                  else
                     coordinate = feature.getGeometry().getCoordinates();
@@ -121,6 +126,11 @@ UI.Feature = (function (mapUtils) {
                     callback(feature.getProperties(), layer.getProperties(), element, coordinate)
             }
         }
+        // Sacamos la interacción select por defecto de la capa
+       feature.setStyle(feature.get("interactionStyle"));
+
+      extent = feature.getGeometry().getExtent();
+     map.getView().fit(extent, map.getSize(),{"maxZoom": map.getView().getZoom()});
     }
 
     return {

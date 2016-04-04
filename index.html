@@ -126,7 +126,7 @@
 
                 var header = '<code>' + hdms + '</code><br/>', content;
 
-                if(featureProperties.geometry.getType() == "MultiLineString")
+                if(featureProperties.geometry.getType() == "LineString")
                     header += featureProperties["ruta"]
                 else {
                     header = header + layerProperties["title"] + " " + layerProperties["code"] + " " + layerProperties["customType"];
@@ -229,7 +229,7 @@
                             })
                         })
                         , stroke: new ol.style.Stroke({
-                            width: 3,
+                            width: 5,
                             color: 'rgba(0,154,217,0.8)'
                         })
                         , fill: new ol.style.Fill({
@@ -241,7 +241,8 @@
                     'showSimpleInfoButton' : false,
                     'propertiesShowInSimpleInfo': ['CITY_NAME'],
                     'showListInfoButton' : true,
-                    'showFeatureOverlayCallback': openPopoverGeoJsonCiudades
+                    'showFeatureOverlayCallback': openPopoverGeoJsonCiudades,
+                    'minResolutionToShowPoints':20000
                 });
 
         var ukSomeCitiesLayer = UI.MapVector.loadGeoJSONData(
@@ -279,7 +280,7 @@
                     'title' : 'Ruta felipe',
                     'code' : 'Felipe',
                     'type' : 'route',
-                    'style' : new ol.style.Style({
+                 /*  'style' : new ol.style.Style({
                         stroke: new ol.style.Stroke({
                             color: 'green',
                             width: 2
@@ -296,7 +297,7 @@
                                 color: 'white'
                             })
                         })
-                    }),
+                    }),*/
                     'visibleInSwitcher' : true,
                     'propertiesShowInSimpleInfo': ['localizacion'],
                     'showSimpleInfoButton' : true,
@@ -304,7 +305,8 @@
                     /*'showFeaturesInfoCallback':function(){
                      console.log('hola')
                      }*/
-                    'showFeatureOverlayCallback': openPopoverGeoJsonFelipe
+                    'showFeatureOverlayCallback': openPopoverGeoJsonFelipe,
+                    'minResolutionToShowPoints':9
 
                 });
 

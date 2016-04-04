@@ -9703,7 +9703,7 @@
     {
       "geometry": {
         "coordinates": [
-          [
+
             [
               -3.88950789,
               40.53185329
@@ -11645,8 +11645,8 @@
               40.54478744
             ]
           ]
-        ],
-        "type": "MultiLineString"
+        ,
+        "type": "LineString"
       },
       "properties": { "ruta": "ruta felipe 30/03/2016"},
       "type": "Feature"
