@@ -111,8 +111,8 @@ UI.MapVector = (function (mapUtils) {
             var style = feat.getStyle();
             if (style == null) {
                 var layerStyle = layer.get('defaultStyle')
-                feat.set("defaultStyle", layerStyle);
-                feat.set("interactionStyle", layer.get('styleSelectInteraction'));
+                feat.set("_defaultStyle", layerStyle);
+                feat.set("_interactionStyle", layer.get('styleSelectInteraction'));
                 layerStyle.getImage().setOpacity(currentResolution <= layer.get('minResolutionToShowPoints') ? 1: 0)
                 feat.setStyle(layerStyle)
             }
@@ -178,8 +178,8 @@ UI.MapVector = (function (mapUtils) {
 
                                 });
 
-                        feats[0].set("defaultStyle", featStyle);
-                        feats[0].set("interactionStyle", featInteracionStyle);
+                        feats[0].set("_defaultStyle", featStyle);
+                        feats[0].set("_interactionStyle", featInteracionStyle);
                         feats[0].setStyle(featStyle)
                         tempFeatures.push(feats[0])
 
@@ -488,7 +488,7 @@ UI.MapVector = (function (mapUtils) {
 
 
             var style, styleSelectInteraction, title, type, code, url, visibleInSwitcher, showSimpleInfoButton, showListInfoButton;
-            var showFeaturesInfoCallback, showFeatureOverlayCallback;
+            var showFeaturesInfoCallback, showFeatureOverlayCallback,pointOverlayZoom,minResolutionToShowPoints,fitExtenxAfterLoad;
 
 
             //Comprobamos parámetros de entrada
@@ -551,6 +551,15 @@ UI.MapVector = (function (mapUtils) {
             else
                 minResolutionToShowPoints = options.minResolutionToShowPoints;
 
+            if (typeof options.pointOverlayZoom === 'undefined')
+                pointOverlayZoom = 6;
+            else
+                pointOverlayZoom = options.pointOverlayZoom;
+
+            if (typeof options.fitExtenxAfterLoad === 'undefined')
+                fitExtenxAfterLoad = false;
+            else
+                fitExtenxAfterLoad = options.fitExtenxAfterLoad;
 
             showFeatureOverlayCallback = options.showFeatureOverlayCallback;
 
@@ -586,7 +595,9 @@ UI.MapVector = (function (mapUtils) {
 
                     this.addFeatures(tempFeatures);
                     renderVectorSwitcher();
-
+                    //FitExtendOnLoad
+                    if(fitExtenxAfterLoad)
+                          mapUtils.getMap().getView().fit(this.getExtent(), mapUtils.getMap().getSize(), {"maxZoom": 19});
 
                 })
             });
@@ -612,8 +623,11 @@ UI.MapVector = (function (mapUtils) {
                 'showFeaturesInfoCallback': showFeaturesInfoCallback,
                 'showFeatureOverlayCallback': showFeatureOverlayCallback,
                 'propertiesShowInSimpleInfo': options.propertiesShowInSimpleInfo,
-                'minResolutionToShowPoints': minResolutionToShowPoints
+                'minResolutionToShowPoints': minResolutionToShowPoints,
+                'pointOverlayZoom': pointOverlayZoom
             });
+
+
 
 
             //Asignamos el vector al mapa
@@ -624,7 +638,6 @@ UI.MapVector = (function (mapUtils) {
             //Renderizamos el botoón de vectores
 
             //  renderVectorSwitcher();
-
 
             return vectorLayer;
         }
@@ -668,19 +681,7 @@ UI.MapVector = (function (mapUtils) {
     }
 
 
-    /**
-     * @public
-     * @desc Centra el mapa y hace zoom sobre un conjunto de puntos del source de una capa durante la carga de la capa
-     * @param {object} layer
-     **/
-    function fitToExtendOnLoad(layer) {
-        /* var map = mapUtils.getMap();
-         var source = getVecorLayerSource(layer);
-         source.on("change", function (evt) {
-         extent = source.getExtent();
-         map.getView().fit(extent, map.getSize());
-         });*/
-    }
+
 
     /**
      * @public
@@ -694,6 +695,7 @@ UI.MapVector = (function (mapUtils) {
         var source = getVecorLayerSource(layer);
 
         extent = source.getExtent();
+
         map.getView().fit(extent, map.getSize(), {"maxZoom": 19});
     }
 
@@ -703,7 +705,7 @@ UI.MapVector = (function (mapUtils) {
         getVectorLayerByProperty: getVectorLayerByProperty,
         removeVectorLayerByProperty: removeVectorLayerByProperty,
         getVecorLayerSource: getVecorLayerSource,
-        fitToExtendOnLoad: fitToExtendOnLoad,
+
         fitToExtend: fitToExtend,
         getVectorFeaturesCollection: getVectorFeaturesCollection,
         showPointsInChangeResolution: showPointsInChangeResolution

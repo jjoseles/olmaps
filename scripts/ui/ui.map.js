@@ -44,8 +44,10 @@ UI.Map = (function () {
 
         });
 
+
+
         _currentMap.getView().on('propertychange', function(e) {
-            console.log(e.key)
+
             switch (e.key) {
                 case 'center','resolution':
                         //Calculamos el extend de la vista
@@ -73,6 +75,7 @@ UI.Map = (function () {
         //Exportación
         $(".export-button").click(function () {
             _currentMap.once('postcompose', function (event) {
+
                 var canvas = event.context.canvas;
                 $(".export-button").attr("href", canvas.toDataURL('image/png'));
             });

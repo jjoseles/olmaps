@@ -219,9 +219,29 @@
                     'type' : 'point',
                     'style' :  new ol.style.Style({
                         image: new ol.style.Circle({
-                            radius: 5,
+                            radius: 6,
                             fill: new ol.style.Fill({
                                 color: 'rgba(154,0,217,0.8)'
+                            }),
+                            stroke: new ol.style.Stroke({
+                                color: 'rgba(217,217,217,1)',
+                                width: 3
+                            })
+                        })
+                        , stroke: new ol.style.Stroke({
+                            width: 5,
+                            color: 'rgba(0,154,217,0.6)'
+                        })
+                        , fill: new ol.style.Fill({
+                            color: 'rgba(0,154,217,0.5)'
+                        })
+
+                    }),
+                    'styleSelectInteraction' :new ol.style.Style({
+                        image: new ol.style.Circle({
+                            radius: 9,
+                            fill: new ol.style.Fill({
+                                color: 'rgba(118, 0, 151, 1)'
                             }),
                             stroke: new ol.style.Stroke({
                                 color: 'rgba(217,217,217,1)',
@@ -251,18 +271,7 @@
                     'title' : 'UK some cities',
                     'code' : 'UK001',
                     'type' : 'point',
-                    'style' : new ol.style.Style({
-                        image: new ol.style.Circle({
-                            fill: new ol.style.Fill({
-                                color: 'rgba(255,255,0,0.4)'
-                            }),
-                            radius: 5,
-                            stroke: new ol.style.Stroke({
-                                color: '#ff0',
-                                width: 1
-                            })
-                        })
-                    }),
+
                     'visibleInSwitcher' : true,
                     'propertiesShowInSimpleInfo': ['CITY_NAME'],
                     'showSimpleInfoButton' : true,
@@ -270,8 +279,8 @@
                     /*'showFeaturesInfoCallback':function(){
                         console.log('hola')
                     }*/
-                    'showFeatureOverlayCallback': openPopoverGeoJsonCiudades
-
+                    'showFeatureOverlayCallback': openPopoverGeoJsonCiudades,
+                    'minResolutionToShowPoints':20000
                 });
 
         var felipeLayer = UI.MapVector.loadGeoJSONData(
@@ -306,12 +315,14 @@
                      console.log('hola')
                      }*/
                     'showFeatureOverlayCallback': openPopoverGeoJsonFelipe,
-                    'minResolutionToShowPoints':9
+                    'minResolutionToShowPoints':9,
+                    'pointOverlayZoom': 19,
+                    'fitExtenxAfterLoad': true
 
                 });
 
 
-        UI.MapVector.fitToExtendOnLoad(felipeLayer);
+       // UI.MapVector.fitToExtendOnLoad(felipeLayer);
 
         //Añade un punto basado en estilos definidos en #marker
       /*  UI.Overlay.addOverlayPoint([16.3725, 48.208889], 'location_marker', null);

@@ -106,9 +106,11 @@ UI.Feature = (function (mapUtils) {
 
 
         var layer = feature.getLayer(map);
+        var pointOverlayZoom =  map.getView().getZoom();
+
         var features = UI.MapVector.getVectorFeaturesCollection(layer);
        features.forEach(function (feat, idx, a) {
-            feat.setStyle(feat.get('defaultStyle'));
+            feat.setStyle(feat.get('_defaultStyle'));
         });
         var coordinate;
         if (layer) {
@@ -124,13 +126,16 @@ UI.Feature = (function (mapUtils) {
                 var callback = layer.get('showFeatureOverlayCallback');
                 if (typeof callback !== 'undefined')
                     callback(feature.getProperties(), layer.getProperties(), element, coordinate)
+
+                if(layer.get('pointOverlayZoom') > pointOverlayZoom)
+                    pointOverlayZoom = layer.get('pointOverlayZoom');
             }
         }
         // Sacamos la interacción select por defecto de la capa
-       feature.setStyle(feature.get("interactionStyle"));
+       feature.setStyle(feature.get("_interactionStyle"));
 
       extent = feature.getGeometry().getExtent();
-     map.getView().fit(extent, map.getSize(),{"maxZoom": map.getView().getZoom()});
+     map.getView().fit(extent, map.getSize(),{"maxZoom": pointOverlayZoom});
     }
 
     return {
