@@ -40,20 +40,19 @@ UI.Map = (function () {
             if (feature)
                     UI.Feature.displayFeatureInfo(feature, _currentMap,event.coordinate);
 
-
-
         });
 
 
 
         _currentMap.getView().on('propertychange', function(e) {
-
+            console.log(e.key)
             switch (e.key) {
-                case 'center','resolution':
+                case 'center':
+                case 'resolution':
                         //Calculamos el extend de la vista
                     var view = e.target;
 
-                    UI.MapVector.showPointsInChangeResolution(view.getResolution(),view.calculateExtent(_currentMap.getSize()))
+                    UI.MapVector.showPointsInChangeResolution(view.getZoom(),view.calculateExtent(_currentMap.getSize()))
                         //mostrar puntos
 
                     break;

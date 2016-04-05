@@ -262,7 +262,7 @@
                     'propertiesShowInSimpleInfo': ['CITY_NAME'],
                     'showListInfoButton' : true,
                     'showFeatureOverlayCallback': openPopoverGeoJsonCiudades,
-                    'minResolutionToShowPoints':20000
+                    'zoomToShowPoints':5
                 });
 
         var ukSomeCitiesLayer = UI.MapVector.loadGeoJSONData(
@@ -280,7 +280,7 @@
                         console.log('hola')
                     }*/
                     'showFeatureOverlayCallback': openPopoverGeoJsonCiudades,
-                    'minResolutionToShowPoints':20000
+                    'zoomToShowPoints':0 //Máximo
                 });
 
         var felipeLayer = UI.MapVector.loadGeoJSONData(
@@ -315,7 +315,8 @@
                      console.log('hola')
                      }*/
                     'showFeatureOverlayCallback': openPopoverGeoJsonFelipe,
-                    'minResolutionToShowPoints':9,
+                    'zoomToShowPoints':15,
+                    'zoomToShowLabels':19,
                     'pointOverlayZoom': 19,
                     'fitExtenxAfterLoad': true
 

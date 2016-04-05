@@ -7,6 +7,25 @@ UI = window.UI || {};
  * @desc Herramientas de mapas openlayers
  **/
 UI.MapVector = (function (mapUtils) {
+    function stringDivider(str, width, spaceReplacer) {
+        if (str.length > width) {
+            var p = width;
+            while (p > 0 && (str[p] != ' ' && str[p] != '-')) {
+                p--;
+            }
+            if (p > 0) {
+                var left;
+                if (str.substring(p, p + 1) == '-') {
+                    left = str.substring(0, p + 1);
+                } else {
+                    left = str.substring(0, p);
+                }
+                var right = str.substring(p + 1);
+                return left + spaceReplacer + stringDivider(right, width, spaceReplacer);
+            }
+        }
+        return str;
+    }
 
     /**
      * @private
@@ -21,9 +40,15 @@ UI.MapVector = (function (mapUtils) {
                     color: 'white', width: 1
                 })
             }),
-            text: new ol.style.Text(
-
-            ),
+            text: new ol.style.Text({
+                fill: new ol.style.Fill({color: '#123963'}),
+                stroke: new ol.style.Stroke({color: "#fff", width: 1}),
+                font: "12px Arial",
+                textAlign: 'center',
+                textBaseline: 'bottom',
+                offsetX: 40,
+                offsetY: 10
+            }),
             stroke: new ol.style.Stroke({
                 width: 3,
                 color: "#4B87C8"
@@ -51,6 +76,15 @@ UI.MapVector = (function (mapUtils) {
                     color: 'white', width: 4
                 })
             }),
+            text: new ol.style.Text({
+                fill: new ol.style.Fill({color: '#123963'}),
+                stroke: new ol.style.Stroke({color: "#fff", width: 1}),
+                font: "12px Arial",
+                textAlign: 'center',
+                textBaseline: 'bottom',
+                offsetX: 40,
+                offsetY: 10
+            }),
             //Color de las líneas
             stroke: new ol.style.Stroke({
                 width: 3,
@@ -62,41 +96,50 @@ UI.MapVector = (function (mapUtils) {
             })
         });
     }
-    function showPointsInChangeResolution(currentResolution,viewExtent)
-    {
+
+    function showPointsInChangeResolution(currentZoom, viewExtent) {
 
         mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
             if ((lyr.get('type') === 'vector')) {
-                if(lyr.get('minResolutionToShowPoints') != 0)
-                {
+                var zoomToShowPoints = lyr.get('zoomToShowPoints');
+                var zoomToShowLabels = lyr.get('zoomToShowLabels');
+                console.log(currentZoom, zoomToShowPoints)
 
-                        lyr.getSource().forEachFeatureInExtent(viewExtent, function (feature) {
-                            if(feature.getGeometry().getType() == "Point")
-                            {
+                lyr.getSource().forEachFeatureInExtent(viewExtent, function (feature) {
+                    if (feature.getGeometry().getType() == "Point") {
+                        var style = feature.getStyle();
+                        if (currentZoom >= zoomToShowPoints) {
+                            var style = feature.getStyle();     if (style.getImage() != null)
+                                style.getImage().setOpacity(1)
+                         }
+                        else {
 
-                                if(currentResolution <= lyr.get('minResolutionToShowPoints')) {
-                                    var style = feature.getStyle();
-                                    if(style.getImage() != null)
-                                       style.getImage().setOpacity(1)
+                            if (style.getImage() != null)
+                                style.getImage().setOpacity(0)
+                        }
+                        if (currentZoom >= zoomToShowLabels) {
 
-                                    feature.setStyle(style)
-                                }
-                                else
-                                {
-                                    var style = feature.getStyle();
-                                    if(style.getImage() != null)
-                                       style.getImage().setOpacity(0)
-                                    feature.setStyle(style)
-                                }
-
+                            if (style.getText() != null) {
+                                var simpleInfoHtml = "";
+                                lyr.get('propertiesShowInSimpleInfo').forEach(function (prop) {
+                                    simpleInfoHtml += feature.get(prop)
+                                });
+                                style.getText().setText(stringDivider(simpleInfoHtml, 16, '\n'))
                             }
 
-                        });
+                        }
+                        else {
+                            var style = feature.getStyle();
+                            if (style.getText() != null)
+                                style.getText().setText("")
+                         }
+                        feature.setStyle(style)
                     }
 
-
-
+                });
             }
+
+
         });
     }
 
@@ -104,7 +147,7 @@ UI.MapVector = (function (mapUtils) {
      * @public
      * @desc Private, añade estilos por defecto a las features
      **/
-    function addDefaultStyles(features, layerName,currentResolution) {
+    function addDefaultStyles(features, layerName, currentZoom) {
 
         var layer = getVectorLayerByProperty("code", layerName);
         features.forEach(function (feat, idx, a) {
@@ -113,7 +156,8 @@ UI.MapVector = (function (mapUtils) {
                 var layerStyle = layer.get('defaultStyle')
                 feat.set("_defaultStyle", layerStyle);
                 feat.set("_interactionStyle", layer.get('styleSelectInteraction'));
-                layerStyle.getImage().setOpacity(currentResolution <= layer.get('minResolutionToShowPoints') ? 1: 0)
+                layerStyle.getImage().setOpacity(currentZoom < layer.get('zoomToShowPoints') ? 1 : 0)
+
                 feat.setStyle(layerStyle)
             }
 
@@ -121,6 +165,7 @@ UI.MapVector = (function (mapUtils) {
         });
         return features;
     }
+
     /**
      * @public
      * @desc Private, añade estilos por defecto a las features de una capa de ruta
@@ -128,7 +173,6 @@ UI.MapVector = (function (mapUtils) {
     function addArrowsToLineString(features, layerName) {
 
         var layer = getVectorLayerByProperty("code", layerName);
-
 
 
         var lineStringFeatures = features.filter(function (f) {
@@ -153,6 +197,8 @@ UI.MapVector = (function (mapUtils) {
                         return (coord[0] === end[0] && coord[1] === end[1]);
                     });
                     if (feats.length > 0) {
+                        var simpleInfoHtml = "";
+
                         var featStyle = new ol.style.Style(
                             {
                                 // geometry: new ol.geom.Point(end),
@@ -161,7 +207,16 @@ UI.MapVector = (function (mapUtils) {
                                     anchor: [0.75, 0.5],
                                     rotateWithView: false,
                                     rotation: -rotation,
-                                    opacity: layer.get('minResolutionToShowPoints') == 0 ? 1: 0
+                                    opacity: layer.get('zoomToShowPoints') == 0 ? 1 : 0
+                                }),
+                                text: new ol.style.Text({
+                                    fill: new ol.style.Fill({color: '#123963'}),
+                                    stroke: new ol.style.Stroke({color: "#fff", width: 1}),
+                                    font: "12px Arial",
+                                    textAlign: 'center',
+                                    textBaseline: 'bottom',
+                                    offsetX: 40,
+                                    offsetY: 10
                                 }),
                             });
                         var featInteracionStyle =
@@ -174,6 +229,15 @@ UI.MapVector = (function (mapUtils) {
                                         rotateWithView: false,
                                         rotation: -rotation,
 
+                                    }),
+                                    text: new ol.style.Text({
+                                        fill: new ol.style.Fill({color: '#123963'}),
+                                        stroke: new ol.style.Stroke({color: "#fff", width: 1}),
+                                        font: "12px Arial",
+                                        textAlign: 'center',
+                                        textBaseline: 'bottom',
+                                        offsetX: 40,
+                                        offsetY: 10
                                     }),
 
                                 });
@@ -316,10 +380,10 @@ UI.MapVector = (function (mapUtils) {
                     retHtml += "<td>" + UI.gridColumnsRender.optionsHeader(UI.optionsButtonType.DROPDOWN);
                     retHtml += "<li><a class=\"btn btn-default btn-xs btn-success\" data-vector-action='view' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-eye'></i>Mostrar/ocultar</a></li>";
                     retHtml += "<li><a class=\"btn btn-default btn-xs btn-info\" data-vector-action='fixToExtend' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-pin'></i>Zoom y centrado sobre puntos</a></li>";
-                    if (lyr.get('showSimpleInfoButton') == true) {
-                        retHtml += "<li><a class=\"btn btn-default btn-xs btn-danger\"  data-vector-action='showSimpleInfo' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-marker '></i>Info sobre puntos</a></li>";
+                    /*  if (lyr.get('showSimpleInfoButton') == true) {
+                     retHtml += "<li><a class=\"btn btn-default btn-xs btn-danger\"  data-vector-action='showSimpleInfo' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-map-marker '></i>Info sobre puntos</a></li>";
 
-                    }
+                     }*/
                     if (lyr.get('showListInfoButton') == true) {
                         retHtml += "<li><a class=\"btn btn-default btn-xs btn-danger\"  data-vector-action='showListInfo' data-vector-code='" + lyr.get('code') + "'><i class='ace-icon fa fa-list-alt '></i>Ir al listado de datos</a></li>";
                     }
@@ -349,10 +413,13 @@ UI.MapVector = (function (mapUtils) {
             "columnDefs": [
                 {"orderable": false, "targets": 0, 'class': "text-center"}
 
-            ]
+            ],
+            'rowCallback': function (nRow) {
+                prepareEvents(nRow);
+            }
         });
 
-        prepareEvents();
+
 
     }
 
@@ -361,9 +428,10 @@ UI.MapVector = (function (mapUtils) {
      * @private
      * @desc Prepara los eventos sobre los elementos del mapa para vectores
      **/
-    function prepareEvents() {
+    function prepareEvents(nRow) {
+
         //Visualizar los puntos
-        $("[data-vector-action='view']").click(function () {
+        $(nRow).find("[data-vector-action='view']").click(function () {
 
             var targetCode = $(this).attr('data-vector-code');
 
@@ -385,7 +453,7 @@ UI.MapVector = (function (mapUtils) {
         });
 
         //Evento click sobre visualización de listado de datos
-        $("[data-vector-action='showListInfo']").click(function () {
+        $(nRow).find("[data-vector-action='showListInfo']").click(function () {
             $('#vector-switcher-content').toggleClass('open');
 
             var targetCode = $(this).attr('data-vector-code');
@@ -396,38 +464,9 @@ UI.MapVector = (function (mapUtils) {
             callback(targetCode)
         });
 
-        //Imformación sencilla sobre los puntos de una capa
-        $("[data-vector-action='showSimpleInfo']").click(function () {
-            var targetCode = $(this).attr('data-vector-code');
-            var layer = getVectorLayerByProperty("code", targetCode);
 
-
-            //Fix To Extend
-            fitToExtend(layer);
-            //Visualizamos la información
-
-
-            var $element = $("." + targetCode + "-tooltip-point-info");
-            if ($element.length == 0)
-                UI.Feature.displayFeatureTooltipInfo(layer);
-
-            if ($(this).hasClass("btn-danger")) {
-                if (layer.getVisible()) {
-                    $element.popover('show');
-                    $(this).removeClass("btn-danger");
-                    $(this).addClass("btn-success");
-                }
-            }
-            else {
-                $element.popover('hide');
-                $(this).removeClass("btn-success");
-                $(this).addClass("btn-danger");
-            }
-
-
-        });
         //Fit to Extend sobre los puntos de la capa
-        $("[data-vector-action='fixToExtend']").click(function () {
+        $(nRow).find("[data-vector-action='fixToExtend']").click(function () {
 
             var targetCode = $(this).attr('data-vector-code');
             var layer = getVectorLayerByProperty("code", targetCode);
@@ -488,7 +527,7 @@ UI.MapVector = (function (mapUtils) {
 
 
             var style, styleSelectInteraction, title, type, code, url, visibleInSwitcher, showSimpleInfoButton, showListInfoButton;
-            var showFeaturesInfoCallback, showFeatureOverlayCallback,pointOverlayZoom,minResolutionToShowPoints,fitExtenxAfterLoad;
+            var showFeaturesInfoCallback, showFeatureOverlayCallback, pointOverlayZoom, zoomToShowPoints, zoomToShowLabels, fitExtenxAfterLoad;
 
 
             //Comprobamos parámetros de entrada
@@ -546,10 +585,15 @@ UI.MapVector = (function (mapUtils) {
             else
                 showFeaturesInfoCallback = options.showFeaturesInfoCallback;
 
-            if (typeof options.minResolutionToShowPoints === 'undefined')
-                minResolutionToShowPoints = 0;
+            if (typeof options.zoomToShowPoints === 'undefined')
+                zoomToShowPoints = 0;
             else
-                minResolutionToShowPoints = options.minResolutionToShowPoints;
+                zoomToShowPoints = options.zoomToShowPoints;
+
+            if (typeof options.zoomToShowLabels === 'undefined')
+                zoomToShowLabels = 4;
+            else
+                zoomToShowLabels = options.zoomToShowLabels;
 
             if (typeof options.pointOverlayZoom === 'undefined')
                 pointOverlayZoom = 6;
@@ -591,13 +635,13 @@ UI.MapVector = (function (mapUtils) {
 
                     });
                     tempFeatures = addArrowsToLineString(tempFeatures, code);
-                    tempFeatures = addDefaultStyles(tempFeatures, code,mapUtils.getMap().getView().getResolution());
+                    tempFeatures = addDefaultStyles(tempFeatures, code, mapUtils.getMap().getView().getZoom());
 
                     this.addFeatures(tempFeatures);
                     renderVectorSwitcher();
                     //FitExtendOnLoad
-                    if(fitExtenxAfterLoad)
-                          mapUtils.getMap().getView().fit(this.getExtent(), mapUtils.getMap().getSize(), {"maxZoom": 19});
+                    if (fitExtenxAfterLoad)
+                        mapUtils.getMap().getView().fit(this.getExtent(), mapUtils.getMap().getSize(), {"maxZoom": 19});
 
                 })
             });
@@ -614,7 +658,7 @@ UI.MapVector = (function (mapUtils) {
                 'customType': type,
                 'code': code,
                 'overlayFeatureInfo': overlayFeatureInfo,
-                 'style': style,
+                'style': style,
                 'defaultStyle': style,
                 'styleSelectInteraction': styleSelectInteraction,
                 'visibleInSwitcher': visibleInSwitcher,
@@ -623,11 +667,10 @@ UI.MapVector = (function (mapUtils) {
                 'showFeaturesInfoCallback': showFeaturesInfoCallback,
                 'showFeatureOverlayCallback': showFeatureOverlayCallback,
                 'propertiesShowInSimpleInfo': options.propertiesShowInSimpleInfo,
-                'minResolutionToShowPoints': minResolutionToShowPoints,
+                'zoomToShowPoints': zoomToShowPoints,
+                'zoomToShowLabels': zoomToShowLabels,
                 'pointOverlayZoom': pointOverlayZoom
             });
-
-
 
 
             //Asignamos el vector al mapa
@@ -679,8 +722,6 @@ UI.MapVector = (function (mapUtils) {
     function getVectorFeaturesCollection(layer) {
         return layer.getSource().getFeatures();
     }
-
-
 
 
     /**
