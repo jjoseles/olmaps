@@ -147,6 +147,7 @@ UI.Map = (function (config) {
         var map = new ol.Map({
             // use OL3-Google-Maps recommended default interactions
             interactions: ol.interaction.defaults({mouseWheelZoom: true}),
+            loadTilesWhileAnimating: true,
             layers: UI.MapBaseLayer.defaultBaseMaps(),
             //Vista por defecto, centrada en la península
             view: new ol.View({

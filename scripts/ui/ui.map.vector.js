@@ -579,7 +579,7 @@ UI.MapVector = (function (mapUtils, config) {
                     retHtml += "<a role=\"button\" data-position=\"auto\" data-type='" + config.routeLayerTypes.COMPACTA + "'data-vector-action='viewHideRoutePart' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar ruta original\"  class=\"btn btn-xs btn-success\">" +
                         "<i class=\"ace-icon icon-only bigger-110 fa fa-eye\"></i>" +
                         "</a>";
-                    retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='play' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar ruta original\"  class=\"btn btn-xs btn-success\">" +
+                    retHtml += "<a role=\"button\" data-position=\"auto\" data-type='play' data-vector-action='animate' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Animar\"  class=\"btn btn-xs btn-success\">" +
                         "<i class=\"ace-icon icon-only bigger-110 fa fa fa-play\"></i>" +
                         "</a>";
                 }
@@ -643,22 +643,37 @@ UI.MapVector = (function (mapUtils, config) {
         $(nRow).find("[data-rel=\"tooltip\"]").tooltip({'container': "body"});
 
 
-        $(nRow).find("[data-vector-action='play']").click(function () {
+        $(nRow).find("[data-vector-action='animate']").click(function () {
 
             var targetCode = $(this).attr('data-vector-code');
-            var map = mapUtils.getMap();
+            var type =  $(this).attr('data-type');
+            console.log(type)
+            if(type == "play") {
 
-            var layer = getVectorLayerByProperty("code", targetCode);
-            var originalFeatures = getVectorFeaturesCollection(layer).filter(function (f) {
-                if (f.getGeometry().getType() == "Point") return f;
-            }).forEach(function (feat, idx, a) {
-                setInterval(function () {
+                $(this).attr('data-type', "stop");
+                $(this).find("i").removeClass("fa-play")
+                $(this).find("i").addClass("fa-stop")
+                //  UI.MapVectorAnimation.stopAnimation(false);
 
-                    UI.Feature.displayFeatureInfo(feat, map);
+                var map = mapUtils.getMap();
+
+                var layer = getVectorLayerByProperty("code", targetCode);
+                var lineString = getVectorFeaturesCollection(layer).filter(function (f) {
+                    if (f.getGeometry().getType() == "LineString" && f.get("_type") == config.routeLayerTypes.COMPACTA) return f;
                 });
-            }, 30000);
+                var coordinates = lineString[0].getGeometry().getCoordinates();
+                UI.MapVectorAnimation.startAnimation(coordinates, layer);
+            }
+            else if(type=="stop")
+            {
 
+                $(this).attr('data-type', "play");
+                $(this).find("i").removeClass("fa-stop")
+                $(this).find("i").addClass("fa-play")
+                 UI.MapVectorAnimation.stopAnimation(false);
+            }
         });
+
 
         $(nRow).find("[data-vector-action='viewHideRoutePart']").click(function () {
 
@@ -936,6 +951,7 @@ UI.MapVector = (function (mapUtils, config) {
                 updateWhileInteracting: true,
                 maxResolution: options.type == config.layerType.POINT ? mapUtils.getResolutionByZoom(options.zoomToShowPoints) : undefined,
                 source: source,
+                'customSource' : source,
                 'title': options.title,
                 'type': config.internalLayerType.VECTOR,
                 'customType': options.type,
@@ -956,9 +972,12 @@ UI.MapVector = (function (mapUtils, config) {
                 'pointOverlayZoom': options.pointOverlayZoom
             });
 
+
+
             //Asignamos el vector al mapa
             mapUtils.getMap().addLayer(vectorLayer);
 
+            //renderVectorSwitcher();
             return vectorLayer;
 
         }
@@ -998,7 +1017,9 @@ UI.MapVector = (function (mapUtils, config) {
      * @param {object} vecor
      **/
     function getVectorFeaturesCollection(layer) {
-        return layer.getSource().getFeatures();
+        if(layer.getSource())
+              return layer.getSource().getFeatures();
+        return [];
     }
 
 

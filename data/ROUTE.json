@@ -19,7 +19,17 @@
         "poi": "DELEGACIÓN-POLLENSA",
         "_lineString": [
           "ORIGINAL"
-        ]
+        ],
+        "_style": {
+          "image": {
+            "src": "img/start-16.png",
+            "anchor": [
+              0.75,
+              0.5
+            ],
+            "opacity": 5
+          }
+        }
 
       },
       "type": "Feature"
@@ -11112,7 +11122,17 @@
         "poi": "",
         "_lineString": [
           "ORIGINAL"
-        ]
+        ],
+        "_style": {
+          "image": {
+            "src": "img/end-16.png",
+            "anchor": [
+              0.75,
+              0.5
+            ],
+            "opacity": 5
+          }
+        }
 
       },
       "type": "Feature"
