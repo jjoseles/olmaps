@@ -44,8 +44,10 @@ UI.Interactions = (function (mapUtils) {
     }
 
     var addSelectPointInteraction = function (createPointCallback) {
+
         var currentMap = mapUtils.getMap();
         if (addPointInteraction) {
+
             currentMap.removeInteraction(addPointInteraction);
             addPointInteraction = null;
             currentMap.renderSync();
@@ -53,6 +55,7 @@ UI.Interactions = (function (mapUtils) {
         else {
             currentMap.removeInteraction(defaultInteraction);
             var features = addFeatureOverlay(currentMap);
+
             var draw = new ol.interaction.Draw({
                 'name': 'drawpoint',
                 features: features,

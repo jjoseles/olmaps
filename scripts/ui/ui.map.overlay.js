@@ -41,6 +41,7 @@ UI.Overlay = (function (mapUtils) {
             stopEvent: false,
             id:"overlayFeatureInfo"
 
+
         });
         mapUtils.getMap().addOverlay(popup);
         return popup;
@@ -55,7 +56,7 @@ UI.Overlay = (function (mapUtils) {
      * @param {function} callback function. Función de callback en el click
      * @param {object} data . Objeto key-value. Se asignarán data atributes para key
      **/
-    function addOverlayPoint(center, styleId, callback, data) {
+    function addOverlayPoint(center, styleId, callback) {
         var pos = ol.proj.fromLonLat(center);
 
         //Creamos elemento al vuelo y asignamos click
@@ -68,11 +69,11 @@ UI.Overlay = (function (mapUtils) {
         }
 
         //Asignamos atributos al elemento
-        if (data) {
+        /*/if (data) {
             for (var k in data) {
                 elem.setAttribute('data-' + k, data[k]);
             }
-        }
+         }*/
 
         //  marker
         var marker = new ol.Overlay({
@@ -84,8 +85,6 @@ UI.Overlay = (function (mapUtils) {
 
         mapUtils.getMap().addOverlay(marker);
 
-        //Centra el mapa
-        mapUtils.getMap().getView().setCenter(pos);
 
     }
 

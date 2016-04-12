@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="thirty-party/animations.css">
     <link rel="stylesheet" href="css/site.css"/>
     <link rel="stylesheet" href="thirty-party/font-awesome/css/font-awesome.min.css">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="scripts/custom/ui.map.custom.css"/>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -65,6 +69,7 @@
            title="" data-original-title="Marcar punto">
         </a>
     </div>
+
     <!-- Botón de información (coordenadas) -->
     <div class="ol-unselectable ol-control ol-collapsed map-info-panel">
         <button type="button" title="Coordenadas" class="map-info-panel-button" data-rel="tooltip"
@@ -91,250 +96,54 @@
 <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAZH-whAk0IwQoKzruViuPCxPxBA0etCbI"></script>
 <script src="thirty-party/ol/ol3gm.js"></script>
 <script src="scripts/ui.js"></script>
+<script src="scripts/ui/ui.map.config.js"></script>
 <script src="scripts/ui/ui.map.js"></script>
 <script src="scripts/ui/ui.map.baseLayer.js"></script>
 <script src="scripts/ui/ui.map.vector.js"></script>
 <script src="scripts/ui/ui.map.feature.js"></script>
 <script src="scripts/ui/ui.map.overlay.js"></script>
 <script src="scripts/ui/ui.map.interactions.js"></script>
+<script src="scripts/ui/ui.map.utils.js"></script>
+<!-- Custom -->
+<script src="scripts/custom/ui.map.customOverlays.js"></script>
+<script src="scripts/custom/ui.map.customLayerConfig.js"></script>
+<script src="scripts/custom/ui.map.customScripts.js"></script>
 
-<script src="scripts/ui.map.customScripts.js"></script>
+<!-- messages -->
 <script src="scripts/ui.messages-and-dialogs.js"></script>
 
-<script src="scripts/ui.grid-colums-render.js"></script>
+
 <script type="text/javascript">
     $(function () {
 
-      $("#openModal").on('click', function () {
-
-            UI.messageAndDialogs.showGenericModalRemoteContent("dialogId", 'mapModal.html', {
-                onShowDialog: function () {
-                    UI.CustomScriptsMap.loadMap();
-                    UI.CustomScriptsMap.loadData('http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json', 'lagos');
-                }, width: '80%', title: "Lagos", backgroundColor: "#fff", textColor: "#4D6883"
-            });
 
 
-        });
-        //Popover geoJson
-        var openPopoverGeoJsonFelipe = function (featureProperties, layerProperties, element,coordinate) {
-            if(featureProperties) {
 
-
-                var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
-                        coordinate, 'EPSG:3857', 'EPSG:4326'));
-
-                var header = '<code>' + hdms + '</code><br/>', content;
-
-                if(featureProperties.geometry.getType() == "LineString")
-                    header += featureProperties["ruta"]
-                else {
-                    header = header + layerProperties["title"] + " " + layerProperties["code"] + " " + layerProperties["customType"];
-                    content = featureProperties["fecha"] + "<br/>" + featureProperties["velocidad"] + featureProperties["localizacion"];
-                }
-                var genericCloseBtnHtml = "<button type=\"button\" class=\"close\" aria-hidden=\"true\">&times;</button>";
-                $(element).popover('destroy');
-                // the keys are quoted to prevent renaming in ADVANCED mode.
-                $(element).popover({
-                    'placement': 'top',
-                    'animation': false,
-                    'html': true,
-                    'content': content,
-                    'title': genericCloseBtnHtml + header
-                }).on("shown.bs.popover", function (e) {
-                    var $pop = $(element).data("bs.popover").$tip;
-                    $pop.find(".close").click(function () {
-                        $(element).popover("destroy");
-                    });
-
-                });
-                $(element).popover("show");
-            }
-        };
-
-        //Popover geoJson
-        var openPopoverGeoJsonCiudades = function (featureProperties, layerProperties, element,coordinate) {
-            if(featureProperties) {
-               var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
-                        coordinate, 'EPSG:3857', 'EPSG:4326'));
-
-                var header = '<code>' + hdms + '</code><br/>', content;
-
-                header = header + layerProperties["title"] + " " + layerProperties["code"] +  " "  + layerProperties["customType"];
-                content = featureProperties["STATUS"] + "<br/>" + featureProperties["ADMIN_NAME"] + featureProperties["CITY_NAME"] + "<br/>" + featureProperties["CNTRY_NAME"];
-
-                var genericCloseBtnHtml = "<button type=\"button\" class=\"close\" aria-hidden=\"true\">&times;</button>";
-                $(element).popover('destroy');
-                // the keys are quoted to prevent renaming in ADVANCED mode.
-                $(element).popover({
-                    'placement': 'top',
-                    'animation': false,
-                    'html': true,
-                    'content': content,
-                    'title': genericCloseBtnHtml + header
-                }).on("shown.bs.popover", function (e) {
-                    var $pop = $(element).data("bs.popover").$tip;
-                    $pop.find(".close").click(function () {
-                        $(element).popover("destroy");
-                    });
-
-              });
-              $(element).popover("show");
-            }
-        };
-
-        //Abre el popover sobre un overlay
-        var openPopover = function (e) {
-            e.preventDefault();
-            var elem = e.currentTarget;
-            $(elem).popover(
-                    {
-                        'animation': false,
-                        html: true,
-                        'placement': 'top',
-                        content: $(elem).data("description"),
-                        title: $(elem).data("name")
-
-                    }
-            );
-            $(elem).popover('toggle');
-
-        };
-        var createPointCallback = function(coordinates)
-        {
-            console.log("creamos un punto en " + coordinates)
-        };
-        //TODO Pasar parámemtros de inicialización al mapa
         var mapa;
-        mapa = UI.Map.init("map", createPointCallback);
+        mapa = UI.Map.init("map", UI.CustomScriptsMap.createPointCallback);
+
+        /*  UI.CustomScriptsMap.loadData(
+         'http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
+         'Ciudades del mundo',
+         'POSICION_CIUDADES',
+         'CITIES'
+         ); */
 
 
+        UI.CustomScriptsMap.loadData(
+                'http://localhost:63342/olmaps/data/UKSomeCities.json',
+                'Ciudades de Reino Unido',
+                'POSICION_CIUDADES_UK',
+                'UKCITIES'
+        );
 
 
-      UI.MapVector.loadGeoJSONData(
-                {
-                    'url' : 'http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
-                    'title' : 'Ciudades del mundo',
-                    'code' : 'WC001',
-                    'type' : 'point',
-                    'style' :  new ol.style.Style({
-                        image: new ol.style.Circle({
-                            radius: 6,
-                            fill: new ol.style.Fill({
-                                color: 'rgba(154,0,217,0.8)'
-                            }),
-                            stroke: new ol.style.Stroke({
-                                color: 'rgba(217,217,217,1)',
-                                width: 3
-                            })
-                        })
-                        , stroke: new ol.style.Stroke({
-                            width: 5,
-                            color: 'rgba(0,154,217,0.6)'
-                        })
-                        , fill: new ol.style.Fill({
-                            color: 'rgba(0,154,217,0.5)'
-                        })
-
-                    }),
-                    'styleSelectInteraction' :new ol.style.Style({
-                        image: new ol.style.Circle({
-                            radius: 9,
-                            fill: new ol.style.Fill({
-                                color: 'rgba(118, 0, 151, 1)'
-                            }),
-                            stroke: new ol.style.Stroke({
-                                color: 'rgba(217,217,217,1)',
-                                width: 3
-                            })
-                        })
-                        , stroke: new ol.style.Stroke({
-                            width: 5,
-                            color: 'rgba(0,154,217,0.8)'
-                        })
-                        , fill: new ol.style.Fill({
-                            color: 'rgba(0,154,217,0.5)'
-                        })
-
-                    }),
-                    'visibleInSwitcher' : true,
-                    'showSimpleInfoButton' : false,
-                    'propertiesShowInSimpleInfo': ['CITY_NAME'],
-                    'showListInfoButton' : true,
-                    'showFeatureOverlayCallback': openPopoverGeoJsonCiudades,
-                    'zoomToShowPoints':5
-                });
-
-        var ukSomeCitiesLayer = UI.MapVector.loadGeoJSONData(
-                {
-                    'url' : 'http://localhost:63342/olmaps/data/UKSomeCities.json',
-                    'title' : 'UK some cities',
-                    'code' : 'UK001',
-                    'type' : 'point',
-
-                    'visibleInSwitcher' : true,
-                    'propertiesShowInSimpleInfo': ['CITY_NAME'],
-                    'showSimpleInfoButton' : true,
-                    'showListInfoButton' : true,
-                    /*'showFeaturesInfoCallback':function(){
-                        console.log('hola')
-                    }*/
-                    'showFeatureOverlayCallback': openPopoverGeoJsonCiudades,
-                    'zoomToShowPoints':0 //Máximo
-                });
-
-        var felipeLayer = UI.MapVector.loadGeoJSONData(
-                {
-                    'url' : 'http://localhost:63342/olmaps/data/rutaFelipe.json',
-                    'title' : 'Ruta felipe',
-                    'code' : 'Felipe',
-                    'type' : 'route',
-                 /*  'style' : new ol.style.Style({
-                        stroke: new ol.style.Stroke({
-                            color: 'green',
-                            width: 2
-                        }),
-                        fill: new ol.style.Fill({
-                            color: 'magenta'
-                        }),
-                        image: new ol.style.Circle({
-                            radius: 10,
-                            fill: new ol.style.Fill({
-                                color: 'blue'
-                            }),
-                            stroke: new ol.style.Stroke({
-                                color: 'white'
-                            })
-                        })
-                    }),*/
-                    'visibleInSwitcher' : true,
-                    'propertiesShowInSimpleInfo': ['localizacion'],
-                    'showSimpleInfoButton' : true,
-                    'showListInfoButton' : true,
-                    /*'showFeaturesInfoCallback':function(){
-                     console.log('hola')
-                     }*/
-                    'showFeatureOverlayCallback': openPopoverGeoJsonFelipe,
-                    'zoomToShowPoints':15,
-                    'zoomToShowLabels':19,
-                    'pointOverlayZoom': 19,
-                    'fitExtenxAfterLoad': true
-
-                });
-
-
-       // UI.MapVector.fitToExtendOnLoad(felipeLayer);
-
-        //Añade un punto basado en estilos definidos en #marker
-      /*  UI.Overlay.addOverlayPoint([16.3725, 48.208889], 'location_marker', null);
-        UI.Overlay.addOverlayPoint([15, 46], 'simple_marker', openPopover, {
-            "name": "punto número 1",
-            "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "
-        });
-        UI.Overlay.addOverlayPoint([12, 42], 'simple_marker', openPopover, {
-            "name": "punto número 2",
-            "description": "Lorem fistrum dolor de la pradera a peicha gramenawer pecador dolore eiusmod nostrud commodo duis. Te voy a borrar el cerito diodeno apetecan de la pradera veniam hasta luego Lucas pupita benemeritaar. Officia nostrud duis enim no puedor no puedor occaecat te voy a borrar el cerito. Dolore duis ad aute laboris incididunt torpedo commodo no te digo trigo por no llamarte Rodrigor. Veniam voluptate reprehenderit benemeritaar. "
-        });*/
+        UI.CustomScriptsMap.loadData(
+                'http://localhost:63342/olmaps/data/ROUTE.json',
+                'Una ruta',
+                'SITUACION',
+                'UNARUTA'
+        );
 
 
     });

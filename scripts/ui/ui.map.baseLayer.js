@@ -6,7 +6,17 @@ UI = window.UI || {};
 /**
  * @desc Herramientas de mapas openlayers
  **/
-UI.MapBaseLayer = (function (mapUtils) {
+UI.MapBaseLayer = (function (mapUtils, config) {
+
+    function getBaseMapLayers() {
+
+        return mapUtils.getMap().getLayers().getArray().filter(function (f) {
+
+            return f.get('type') == config.internalLayerType.BASE;
+        });
+    }
+
+
 
     /**
      * @private
@@ -26,13 +36,10 @@ UI.MapBaseLayer = (function (mapUtils) {
      * @desc devuelve  la capa visible
      **/
     function getVisibleLayer() {
-        mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-            //Solo los mapas base
-            if (lyr.get('type') === 'base') {
+        getBaseMapLayers().forEach(function (lyr, idx, a) {
                 if (lyr.getVisible()) {
                     return lyr;
                 }
-            }
         })
     }
 
@@ -42,7 +49,8 @@ UI.MapBaseLayer = (function (mapUtils) {
      **/
     function getLayerByName(layerName) {
         var currentLayer = null;
-        mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
+
+        getBaseMapLayers().forEach(function (lyr, idx, a) {
             if (lyr.get('name') === layerName)
                 currentLayer = lyr;
         });
@@ -55,16 +63,15 @@ UI.MapBaseLayer = (function (mapUtils) {
      **/
     function renderTileSwitcher() {
         setGoogleLayersVisibility(false);
-        mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-            //Solo los mapas base
-            if (lyr.get('type') === 'base') {
+        getBaseMapLayers().forEach(function (lyr, idx, a) {
+
                 var li = "<li";
                 li += lyr.getVisible() ? " class='active'" : '';
                 li += "><a href='javascript:' data-map-name='" + lyr.get('name') + "'>" +
                     lyr.get('title') + "</a></li>";
                 $("#map-tile-selection").append(li);
 
-            }
+
         });
         prepareEvents();
 
@@ -85,9 +92,8 @@ UI.MapBaseLayer = (function (mapUtils) {
             $('#map-tile-selection li').not(targetLi).removeClass('active');
 
             $(targetLi).addClass('active');
-            mapUtils.getMap().getLayers().forEach(function (lyr, idx, a) {
-                //Solo los mapas base
-                if (lyr.get('type') === 'base') {
+            getBaseMapLayers().forEach(function (lyr, idx, a) {
+
                     if (lyr.get('name') === targetTile) {
                         lyr.setVisible(true);
                         if (lyr.get('name').indexOf("GOOGLE") > -1)
@@ -97,7 +103,7 @@ UI.MapBaseLayer = (function (mapUtils) {
                     } else {
                         lyr.setVisible(false);
                     }
-                }
+
             });
 
         });
@@ -114,7 +120,7 @@ UI.MapBaseLayer = (function (mapUtils) {
             new ol.layer.Tile({
                 title: "Open Street Map",
                 name: "OSM",
-                type: "base",
+                type: config.internalLayerType.BASE,
                 visible: true,
                 source: new ol.source.OSM({
 
@@ -122,7 +128,7 @@ UI.MapBaseLayer = (function (mapUtils) {
             }),
             new ol.layer.Tile({
                 title: "BingMaps Aerial WithL abels",
-                type: "base",
+                type: config.internalLayerType.BASE,
                 name: "BING_AEREAL",
                 visible: false,
                 source: new ol.source.BingMaps({
@@ -134,7 +140,7 @@ UI.MapBaseLayer = (function (mapUtils) {
             }),
             new ol.layer.Tile({
                 title: "BingMaps road",
-                type: "base",
+                type: config.internalLayerType.BASE,
                 name: "BING_ROAD",
                 visible: false,
                 source: new ol.source.BingMaps({
@@ -146,7 +152,7 @@ UI.MapBaseLayer = (function (mapUtils) {
 
             new ol.layer.Tile({
                 title: "MapQuest OSM",
-                type: "base",
+                type: config.internalLayerType.BASE,
                 name: "MAPQUEST_OSM",
                 visible: false,
                 source: new ol.source.MapQuest({
@@ -157,7 +163,7 @@ UI.MapBaseLayer = (function (mapUtils) {
                 title: "Google Road",
                 name: "GOOGLE_ROAD",
                 visible: true,
-                type: "base",
+                type: config.internalLayerType.BASE,
                 disableDefaultUI: true,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             }),
@@ -166,7 +172,7 @@ UI.MapBaseLayer = (function (mapUtils) {
             new olgm.layer.Google({
                 title: "Google Satellite - (Hybrid)",
                 name: "GOOGLE_HYBRID",
-                type: "base",
+                type: config.internalLayerType.BASE,
                 visible: true,
 
                 mapTypeId: google.maps.MapTypeId.HYBRID
@@ -182,4 +188,4 @@ UI.MapBaseLayer = (function (mapUtils) {
         getVisibleLayer: getVisibleLayer,
         setGoogleLayersVisibility: setGoogleLayersVisibility
     };
-})(UI.Map);
+})(UI.Map, UI.MapConfig);

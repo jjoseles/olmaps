@@ -6,11 +6,19 @@ UI = window.UI || {};
 /**
  * @desc Herramientas de mapas openlayers
  **/
-UI.Map = (function () {
+UI.Map = (function (config) {
 
 
     var _currentMap;
 
+
+    /**
+     * @public
+     * @desc obtiene la resolución a patir del zoom
+     **/
+    function getResolutionByZoom(zoom) {
+        return config.resolutionInZeroZoom / Math.pow(2, zoom);
+    }
 
     /**
      * @private
@@ -40,21 +48,25 @@ UI.Map = (function () {
             if (feature)
                     UI.Feature.displayFeatureInfo(feature, _currentMap,event.coordinate);
 
+
         });
 
 
 
         _currentMap.getView().on('propertychange', function(e) {
-            console.log(e.key)
+            var view = e.target;
+
+
             switch (e.key) {
+
                 case 'center':
                 case 'resolution':
                         //Calculamos el extend de la vista
-                    var view = e.target;
 
-                    UI.MapVector.showPointsInChangeResolution(view.getZoom(),view.calculateExtent(_currentMap.getSize()))
-                        //mostrar puntos
 
+                    UI.MapVector.showPointsInChangeResolution(view.getZoom(), view.calculateExtent(_currentMap.getSize()));
+                    //mostrar puntos
+                    _currentMap.render();
                     break;
             }
         });
@@ -73,6 +85,7 @@ UI.Map = (function () {
         });
         //Exportación
         $(".export-button").click(function () {
+
             _currentMap.once('postcompose', function (event) {
 
                 var canvas = event.context.canvas;
@@ -133,12 +146,13 @@ UI.Map = (function () {
 
         var map = new ol.Map({
             // use OL3-Google-Maps recommended default interactions
-            interactions: ol.interaction.defaults({mouseWheelZoom: false}),
+            interactions: ol.interaction.defaults({mouseWheelZoom: true}),
             layers: UI.MapBaseLayer.defaultBaseMaps(),
             //Vista por defecto, centrada en la península
             view: new ol.View({
                 center: ol.proj.fromLonLat([-3.7058977, 40.4169601]),
-                zoom: 6
+                zoom: 6,
+                minZoom: 5
             }),
 
             target: mapId,
@@ -186,7 +200,8 @@ UI.Map = (function () {
     return {
         init: init,
         getMap: getMap,
-        setCenter:setCenter
+        setCenter: setCenter,
+        getResolutionByZoom: getResolutionByZoom
 
     }
-})();
+})(UI.MapConfig);
