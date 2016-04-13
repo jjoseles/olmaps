@@ -105,8 +105,8 @@ UI.Feature = (function (mapUtils) {
     function displayFeatureInfo(feature,  map, pixelCoordinates) {
 
 
-        var layer = feature.getLayer(map);
-
+      //  var layer = feature.getLayer(map);
+        var layer = UI.MapVector.getVectorLayerByProperty("code",feature.get("_layerCode"))
         if (layer) {
             var pointOverlayZoom = map.getView().getZoom();
 

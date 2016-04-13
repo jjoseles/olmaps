@@ -214,7 +214,8 @@ UI.MapVector = (function (mapUtils, config) {
                 return feature.get("_defaultStyle");
 
             }
-            var layer = feature.getLayer(UI.Map.getMap());
+            //var layer = feature.getLayer(UI.Map.getMap());
+            var layer = getVectorLayerByProperty("code",feature.get("_layerCode"))
             feature.set("_defaultStyle", layer.get('defaultStyle'));
             feature.set("_interactionStyle", layer.get('styleSelectInteraction'));
             return layer.get('defaultStyle')
@@ -256,7 +257,7 @@ UI.MapVector = (function (mapUtils, config) {
     var layerStyleFunctionForPointsLayers = function (feature) {
 
         if (feature) {
-            var layer = feature.getLayer(UI.Map.getMap());
+            var layer = getVectorLayerByProperty("code",feature.get("_layerCode"))
 
             if (feature.get("_style")) {
                 if (feature.getGeometry().getType() == "Point") {
