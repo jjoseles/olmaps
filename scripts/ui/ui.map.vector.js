@@ -659,6 +659,8 @@ UI.MapVector = (function (mapUtils, config) {
 
         //Carga el source de la capa a petición del usuario
         $(nRow).find("[data-vector-action='reload']").click(function () {
+
+            $(this).tooltip('destroy');
             var targetCode = $(this).attr('data-vector-code');
             var layer = getVectorLayerByProperty("code", targetCode);
             layer.setSource(layer.get("customSource"))
