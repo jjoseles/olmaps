@@ -251,7 +251,8 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
                 'pointOverlayZoom': 8,
                 'showPoints': true,
                 'showLabels': true,
-                'fitExtenxAfterLoad': false
+                'fitExtenxAfterLoad': true,
+                'loadInInit' : false
 
             }
         }

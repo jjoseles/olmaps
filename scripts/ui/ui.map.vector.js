@@ -228,8 +228,8 @@ UI.MapVector = (function (mapUtils, config) {
     var GetStyleHiddenVisibleForFeature = function (feature) {
         if (feature) {
 
-            if (feature.get("isVisible")) {
-                feature.set("isVisible", false);
+            if (feature.get("_isVisible")) {
+                feature.set("_isVisible", false);
                 if (feature.getGeometry().getType() == "LineString") {
                     return config.hideLinesStyle;
                 }
@@ -240,7 +240,7 @@ UI.MapVector = (function (mapUtils, config) {
 
             }
             else {
-                feature.set("isVisible", true);
+                feature.set("_isVisible", true);
                 return LayerStyleFunctionForRouteLayers(feature)
             }
 
@@ -335,9 +335,9 @@ UI.MapVector = (function (mapUtils, config) {
         var temFeatures = [];
         features.forEach(function (feat, idx, a) {
 
-            feat.set("layerCode", layerName);
+            feat.set("_layerCode", layerName);
             feat.setId(Math.random() + 1);
-            feat.set("isVisible", true);
+            feat.set("_isVisible", true);
             temFeatures.push(feat)
         });
 
@@ -577,32 +577,33 @@ UI.MapVector = (function (mapUtils, config) {
                 retHtml += "<tr>";
 
                 retHtml += "<td> <div class=\"action-buttons input-group-btn \">";
+                if (lyr.get('loadInInit') == true) {
+                    if (lyr.get("customType") == config.layerType.ROUTE) {
+                        retHtml += "<a role=\"button\" data-position=\"auto\" data-type='" + config.routeLayerTypes.ORIGINAL + "' data-vector-action='viewHideRoutePart' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar ruta compactada\"  class=\"btn btn-xs btn-success\">" +
+                            "<i class=\"ace-icon icon-only bigger-110 fa fa-eye\"></i>" +
+                            "</a>";
+                        retHtml += "<a role=\"button\" data-position=\"auto\" data-type='" + config.routeLayerTypes.COMPACTA + "'data-vector-action='viewHideRoutePart' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar ruta original\"  class=\"btn btn-xs btn-success\">" +
+                            "<i class=\"ace-icon icon-only bigger-110 fa fa-eye\"></i>" +
+                            "</a>";
+                        retHtml += "<a role=\"button\" data-position=\"auto\" data-type='play' data-vector-action='animate' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Animar\"  class=\"btn btn-xs btn-success\">" +
+                            "<i class=\"ace-icon icon-only bigger-110 fa fa fa-play\"></i>" +
+                            "</a>";
+                    }
+                    else {
+                        retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='view' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar\"  class=\"btn btn-xs btn-success\">" +
+                            "<i class=\"ace-icon icon-only bigger-110 fa fa-eye\"></i>" +
+                            "</a>";
+                    }
 
-                if (lyr.get("customType") == config.layerType.ROUTE) {
-                    retHtml += "<a role=\"button\" data-position=\"auto\" data-type='" + config.routeLayerTypes.ORIGINAL + "' data-vector-action='viewHideRoutePart' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar ruta compactada\"  class=\"btn btn-xs btn-success\">" +
-                        "<i class=\"ace-icon icon-only bigger-110 fa fa-eye\"></i>" +
+                    retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='fixToExtend' data-vector-code='" + lyr.get('code') + "'data-rel=\"tooltip\"  data-original-title=\"Zoom y centrado sobre puntos\"  class=\"btn btn-xs btn-success\">" +
+                        "<i class=\"ace-icon icon-only bigger-110 fa fa-map-pin\"></i>" +
                         "</a>";
-                    retHtml += "<a role=\"button\" data-position=\"auto\" data-type='" + config.routeLayerTypes.COMPACTA + "'data-vector-action='viewHideRoutePart' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar ruta original\"  class=\"btn btn-xs btn-success\">" +
-                        "<i class=\"ace-icon icon-only bigger-110 fa fa-eye\"></i>" +
-                        "</a>";
-                    retHtml += "<a role=\"button\" data-position=\"auto\" data-type='play' data-vector-action='animate' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Animar\"  class=\"btn btn-xs btn-success\">" +
-                        "<i class=\"ace-icon icon-only bigger-110 fa fa fa-play\"></i>" +
-                        "</a>";
-                }
-                else {
-                    retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='view' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar\"  class=\"btn btn-xs btn-success\">" +
-                        "<i class=\"ace-icon icon-only bigger-110 fa fa-eye\"></i>" +
-                        "</a>";
-                }
+                    if (lyr.get('showListInfoButton') == true) {
+                        retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='showListInfo' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Ir al listado de datos\"  class=\"btn btn-xs btn-info\">" +
+                            "<i class=\"ace-icon icon-only bigger-110 fa fa-list-alt\"></i>" +
+                            "</a>";
 
-                retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='fixToExtend' data-vector-code='" + lyr.get('code') + "'data-rel=\"tooltip\"  data-original-title=\"Zoom y centrado sobre puntos\"  class=\"btn btn-xs btn-success\">" +
-                    "<i class=\"ace-icon icon-only bigger-110 fa fa-map-pin\"></i>" +
-                    "</a>";
-                if (lyr.get('showListInfoButton') == true) {
-                    retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='showListInfo' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Ir al listado de datos\"  class=\"btn btn-xs btn-info\">" +
-                        "<i class=\"ace-icon icon-only bigger-110 fa fa-list-alt\"></i>" +
-                        "</a>";
-
+                    }
                 }
                 if (lyr.get('loadInInit') == false) {
                     retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='reload' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"cargar datos \"  class=\"btn btn-xs btn-info\">" +
@@ -655,23 +656,22 @@ UI.MapVector = (function (mapUtils, config) {
 
         $(nRow).find("[data-rel=\"tooltip\"]").tooltip({'container': "body"});
 
+        //Carga el source de la capa a petición del usuario
         $(nRow).find("[data-vector-action='reload']").click(function () {
             var targetCode = $(this).attr('data-vector-code');
             var layer = getVectorLayerByProperty("code", targetCode);
             layer.setSource(layer.get("customSource"))
+            layer.set("loadInInit",true);
 
         });
 
+        //Animación de la ruta
         $(nRow).find("[data-vector-action='animate']").click(function () {
 
             var targetCode = $(this).attr('data-vector-code');
             var type =  $(this).attr('data-type');
 
             if(type == "play") {
-
-                //  UI.MapVectorAnimation.stopAnimation(false);
-
-                var map = mapUtils.getMap();
 
                 var layer = getVectorLayerByProperty("code", targetCode);
                 var lineString = getVectorFeaturesCollection(layer).filter(function (f) {
@@ -698,7 +698,7 @@ UI.MapVector = (function (mapUtils, config) {
             }
         });
 
-
+        //Visualiza ruta compactada o ruta original
         $(nRow).find("[data-vector-action='viewHideRoutePart']").click(function () {
 
             var targetCode = $(this).attr('data-vector-code');
@@ -715,7 +715,7 @@ UI.MapVector = (function (mapUtils, config) {
                 feat.setStyle(GetStyleHiddenVisibleForFeature(feat))
             });
 
-            //layer.setVisible(!layer.getVisible());
+
 
             if ($(this).hasClass("btn-success")) {
                 $(this).removeClass("btn-success");

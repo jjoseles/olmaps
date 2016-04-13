@@ -13090,7 +13090,7 @@
             "width": 3
           }
         },
-        "_type": "COMPACTA"
+        "_type": "COMPACTADA"
       },
       "type": "Feature"
     },
@@ -13117,7 +13117,7 @@
         "_localizacion": "Calle Monte Inés, 4, 28250 Galapagar (Madrid)",
         "_poi": "",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ],
         "_style": {
           "image": {
@@ -13152,7 +13152,7 @@
         "_localizacion": "Calle Monte Ana, 28250 Galapagar (Madrid)",
         "_poi": "",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ]
       },
       "type": "Feature"
@@ -13177,7 +13177,7 @@
         "_localizacion": "Avenida Comunidad de Madrid, 28250 Torrelodones (Madrid)",
         "_poi": "",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ]
       },
       "type": "Feature"
@@ -13202,7 +13202,7 @@
         "_localizacion": "Calle Camino de Valladolid, 28250 Torrelodones (Madrid)",
         "_poi": "",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ]
       },
       "type": "Feature"
@@ -13227,7 +13227,7 @@
         "_localizacion": "Calle Herrén de Madrid, 28250 Torrelodones (Madrid)",
         "_poi": "",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ]
       },
       "type": "Feature"
@@ -13252,7 +13252,7 @@
         "_localizacion": "Calle Vía Servicio Ctra de la Coruña, 28290 Las Rozas de Madrid (Madrid)",
         "_poi": "",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ]
       },
       "type": "Feature"
@@ -13277,7 +13277,7 @@
         "_localizacion": "Calle Vía Servicio Ctra de la Coruña, 28290 Las Rozas de Madrid (Madrid)",
         "_poi": "",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ]
       },
       "type": "Feature"
@@ -13305,7 +13305,7 @@
         "_localizacion": "Cerca de Autovía del Noroeste, 28290 Las Rozas de Madrid (Madrid)",
         "_poi": "",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ]
       },
       "type": "Feature"
@@ -13330,7 +13330,7 @@
         "_localizacion": "Calle Formentera, 8, 28290 Las Rozas de Madrid (Madrid)",
         "_poi": "DELEGACIÓN-POLLENSA",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ]
       },
       "type": "Feature"
@@ -13355,7 +13355,7 @@
         "_localizacion": "Calle Formentera, 28290 Las Rozas de Madrid (Madrid)",
         "_poi": "",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ]
       },
       "type": "Feature"
@@ -13383,7 +13383,7 @@
         "_localizacion": "Calle Formentera, 28290 Las Rozas de Madrid (Madrid)",
         "_poi": "DELEGACIÓN-POLLENSA",
         "_lineString": [
-          "COMPACTA"
+          "COMPACTADA"
         ], "_style": {
           "image": {
             "src": "img/end-16.png",
