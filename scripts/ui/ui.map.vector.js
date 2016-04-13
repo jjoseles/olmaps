@@ -580,10 +580,10 @@ UI.MapVector = (function (mapUtils, config) {
                 retHtml += "<td> <div class=\"action-buttons input-group-btn \">";
                 if (lyr.get('loadInInit') == true) {
                     if (lyr.get("customType") == config.layerType.ROUTE) {
-                        retHtml += "<a role=\"button\" data-position=\"auto\" data-type='" + config.routeLayerTypes.ORIGINAL + "' data-vector-action='viewHideRoutePart' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar ruta compactada\"  class=\"btn btn-xs btn-success\">" +
+                        retHtml += "<a role=\"button\" data-position=\"auto\" data-type='" + config.routeLayerTypes.ORIGINAL + "' data-vector-action='viewHideRoutePart' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar ruta original\"  class=\"btn btn-xs btn-success\">" +
                             "<i class=\"ace-icon icon-only bigger-110 fa fa-eye\"></i>" +
                             "</a>";
-                        retHtml += "<a role=\"button\" data-position=\"auto\" data-type='" + config.routeLayerTypes.COMPACTA + "'data-vector-action='viewHideRoutePart' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar ruta original\"  class=\"btn btn-xs btn-success\">" +
+                        retHtml += "<a role=\"button\" data-position=\"auto\" data-type='" + config.routeLayerTypes.COMPACTA + "'data-vector-action='viewHideRoutePart' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar/ocultar ruta compactada\"  class=\"btn btn-xs btn-success\">" +
                             "<i class=\"ace-icon icon-only bigger-110 fa fa-eye\"></i>" +
                             "</a>";
                         retHtml += "<a role=\"button\" data-position=\"auto\" data-type='play' data-vector-action='animate' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Animar\"  class=\"btn btn-xs btn-success\">" +
@@ -643,6 +643,7 @@ UI.MapVector = (function (mapUtils, config) {
             'rowCallback': function (nRow) {
                 prepareEvents(nRow);
             }
+
         });
 
 
@@ -706,15 +707,23 @@ UI.MapVector = (function (mapUtils, config) {
 
             var targetCode = $(this).attr('data-vector-code');
             var dataType = $(this).attr('data-type');
+          //  console.log(dataType)
             var firstExtend = false;
             var layer = getVectorLayerByProperty("code", targetCode);
 
             var originalFeatures = getVectorFeaturesCollection(layer).filter(function (f) {
                 if (f.getGeometry().getType() == "LineString" && f.get("_type") == dataType)
                     return f;
-                if (f.getGeometry().getType() == "Point" && typeof f.get('_lineString') != 'undefined')
-                    if ($.inArray(dataType, f.get('_lineString'))) return f;
-            }).forEach(function (feat, idx, a) {
+                if (f.getGeometry().getType() == "Point" && typeof f.get('_lineString') != 'undefined' )
+                        if($.inArray(dataType, f.get('_lineString')) != -1){
+                            return f;
+                        }
+
+
+            });
+
+            originalFeatures.forEach(function (feat, idx, a) {
+
                 feat.setStyle(GetStyleHiddenVisibleForFeature(feat))
             });
 
@@ -959,6 +968,8 @@ UI.MapVector = (function (mapUtils, config) {
 
                     this.addFeatures(tempFeatures);
                     renderVectorSwitcher();
+                    //Dejamos rutas compactadas ocultas, en la carga
+                    $("[data-vector-action='viewHideRoutePart'][data-type='" + config.routeLayerTypes.COMPACTA + "']").trigger('click');
                     //FitExtendOnLoad
                     if (options.fitExtenxAfterLoad)
                         if (tempFeatures.length > 0) {
