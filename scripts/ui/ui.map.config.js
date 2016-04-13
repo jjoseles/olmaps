@@ -51,6 +51,8 @@ UI.MapConfig = (function () {
         ORIGINAL: 'ORIGINAL',
         COMPACTA: 'COMPACTADA'
     };
+
+    var _rutaIconos = 'img/';
     var _resolutionInZeroZoom = '156543.03392804097';
     return {
         layerType: _layerType,
@@ -59,7 +61,8 @@ UI.MapConfig = (function () {
         routeLayerTypes: _routeLayerTypes,
         hideLinesStyle: _hideLinesStyle,
         hidePointsStyle: _hidePointsStyle,
-        hideImageStyle: _hideImageStyle
+        hideImageStyle: _hideImageStyle,
+        rutaIconos : _rutaIconos
 
     }
 })();

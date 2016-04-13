@@ -385,7 +385,7 @@ UI.MapVector = (function (mapUtils, config) {
                                 {
                                     // geometry: new ol.geom.Point(end),
                                     image: new ol.style.Icon({
-                                        src: 'img/arrow-right-circle-blue-16.png',
+                                        src: config.rutaIconos + 'arrow-right-circle-blue-16.png',
                                         anchor: [0.75, 0.5],
                                         rotateWithView: false,
                                         rotation: -rotation,
@@ -406,7 +406,7 @@ UI.MapVector = (function (mapUtils, config) {
                                     {
                                         // geometry: new ol.geom.Point(end),
                                         image: new ol.style.Icon({
-                                            src: 'img/arrow-right-circle-green-16.png',
+                                            src:  config.rutaIconos + 'arrow-right-circle-green-16.png',
                                             anchor: [0.75, 0.5],
                                             rotateWithView: false,
                                             rotation: -rotation,
