@@ -78,10 +78,11 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
 
                 'zoomToShowPoints': 15,
                 'zoomToShowLabels': 19,
-                'pointOverlayZoom': 15,
+                'pointOverlayZoom': 19,
                 'showPoints': true,
                 'showLabels': true,
-                'fitExtenxAfterLoad': true
+                'fitExtenxAfterLoad': true,
+                'loadInInit' : true
 
             }
         },
@@ -165,7 +166,8 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
                 'pointOverlayZoom': 8,
                 'showPoints': true,
                 'showLabels': false,
-                'fitExtenxAfterLoad': false
+                'fitExtenxAfterLoad': false,
+                'loadInInit' : false
 
             }
         },

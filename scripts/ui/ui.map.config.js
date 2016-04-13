@@ -49,7 +49,7 @@ UI.MapConfig = (function () {
     var _routeLayerTypes =
     {
         ORIGINAL: 'ORIGINAL',
-        COMPACTA: 'COMPACTA'
+        COMPACTA: 'COMPACTADA'
     };
     var _resolutionInZeroZoom = '156543.03392804097';
     return {

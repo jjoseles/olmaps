@@ -5,16 +5,16 @@
       "type": "Feature",
       "properties": {
         "_style": {
-          "circle": {
-            "radius": 5,
-            "fill": {
-              "color": "rgba(17,212,88,0.8)"
-            },
-            "stroke": {
-              "color": "rgba(0,0,255,0.8)",
-              "width": 1
+            "circle": {
+                "radius": 5,
+                "fill": {
+                  "color": "rgba(17,212,88,0.8)"
+                },
+                "stroke": {
+                  "color": "rgba(0,0,255,0.8)",
+                  "width": 1
+                }
             }
-          }
         },
         "GMI_ADMIN": "GBR-SCT",
         "_FIPS_CNTRY": "UK",

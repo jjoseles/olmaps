@@ -123,7 +123,7 @@
         var mapa;
         mapa = UI.Map.init("map", UI.CustomScriptsMap.createPointCallback);
 
-        /*  UI.CustomScriptsMap.loadData(
+     /*  UI.CustomScriptsMap.loadData(
          'http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
          'Ciudades del mundo',
          'POSICION_CIUDADES',
@@ -141,13 +141,20 @@
 */
 
 
-        UI.CustomScriptsMap.loadData(
+       /* UI.CustomScriptsMap.loadData(
                 'http://localhost:63342/olmaps/data/ROUTE.json',
                 'Una ruta',
                 'SITUACION',
                 'UNARUTA'
-        );
+        );*/
 
+
+        UI.CustomScriptsMap.loadData(
+                'http://localhost:63342/olmaps/data/RutaFelipe.json',
+                'Ruta Felipe',
+                'SITUACION',
+                'UNARUTAFELIPE'
+        );
 
     });
 </script>
