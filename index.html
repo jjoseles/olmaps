@@ -115,6 +115,7 @@
 
 
 <script type="text/javascript">
+
     $(function () {
 
 
@@ -140,29 +141,47 @@
         );*/
 
 
-        UI.CustomScriptsMap.loadData(
+      UI.CustomScriptsMap.loadData(
          'http://localhost:63342/olmaps/data/PoisGenericos.json',
          'Pois genéricos',
          'POSICION_CIUDADES',
          'POIS'
          );
+        UI.CustomScriptsMap.loadData(
+                'http://localhost:63342/olmaps/data/Pois.json',
+                'Pois empresa',
+                'POSICION_CIUDADES_UK',
+                'POIS EMPRESA'
+        );
 
+/*
         UI.CustomScriptsMap.loadData(
                 'http://localhost:63342/olmaps/data/ROUTE.json',
                 'Una ruta',
                 'SITUACION',
                 'UNARUTA'
+        ); */
+
+
+        var layer = UI.CustomScriptsMap.loadData(
+                'http://localhost:63342/olmaps/data/SEVILLA.json',
+                'Ruta Sevilla',
+                'SITUACION',
+                'Ruta Sevilla'
+        );
+        var layer = UI.CustomScriptsMap.loadData(
+                'http://localhost:63342/olmaps/data/BARCELONA.json',
+                'Ruta Barcelona',
+                'SITUACION',
+                'Ruta Barcelona'
         );
 
 
-        /*UI.CustomScriptsMap.loadData(
-                'http://localhost:63342/olmaps/data/RutaFelipe.json',
-                'Ruta Felipe',
-                'SITUACION',
-                'UNARUTAFELIPE'
-        );*/
-
     });
+
+
+
 </script>
+
 </body>
 </html>

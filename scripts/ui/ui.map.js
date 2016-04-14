@@ -46,7 +46,12 @@ UI.Map = (function (config) {
             });
 
             if (feature)
-                    UI.Feature.displayFeatureInfo(feature, _currentMap,event.coordinate);
+            {
+                //Sólo puntos
+                if(feature.getGeometry().getType() == 'Point')
+                     UI.Feature.displayFeatureInfo(feature, _currentMap,event.coordinate);
+            }
+
 
 
         });
@@ -93,7 +98,7 @@ UI.Map = (function (config) {
             });
             _currentMap.renderSync();
         });
-        //Crear punto sbre el mapa
+        //Crear punto sobre el mapa
         $(".poi-button").click(function () {
             UI.Interactions.addSelectPointInteraction(createPointCallback);
         });

@@ -82,7 +82,7 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
                 'showPoints': true,
                 'showLabels': true,
                 'fitExtenxAfterLoad': true,
-                'loadInInit' : false
+                'loadInInit' : true
 
             }
         },
@@ -167,7 +167,7 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
                 'showPoints': true,
                 'showLabels': false,
                 'fitExtenxAfterLoad': false,
-                'loadInInit' : false
+                'loadInInit' : true
 
             }
         },

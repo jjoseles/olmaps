@@ -207,6 +207,34 @@ UI.MapVector = (function (mapUtils, config) {
                             return style;
                         }
                     }
+                    else {
+                      if(feature.getGeometry().getType() == "Polygon")
+                      {
+                          var jsonStyle = feature.get("_style");
+                          var style = new ol.style.Style({
+                              stroke: new ol.style.Stroke({
+                                  width: jsonStyle.line.width,
+                                  color: jsonStyle.line.color,
+                              }),
+                              fill: new ol.style.Fill({
+
+                                  color: jsonStyle.line.color,
+                              }),
+                          });
+                          var styleSelect = new ol.style.Style({
+                              stroke: new ol.style.Stroke({
+                                  width: jsonStyle.line.width + 3,
+                                  color: jsonStyle.line.color,
+                              })
+                          });
+                          fill: new ol.style.Fill({
+                              color: jsonStyle.line.color,
+                          });
+                          feature.set("_defaultStyle", style);
+                          feature.set("_interactionStyle", styleSelect);
+                          return style;
+                      }
+                  }
                 }
             }
 
@@ -226,11 +254,11 @@ UI.MapVector = (function (mapUtils, config) {
      * @private
      * @desc devuelve el estilo invisible/invisible de una determinada feature en función a su tipo
      **/
-    var GetStyleHiddenVisibleForFeature = function (feature) {
+    var GetStyleHiddenVisibleForFeature = function (feature,visible) {
         if (feature) {
 
-            if (feature.get("_isVisible")) {
-                feature.set("_isVisible", false);
+            if (!visible) {
+
                 if (feature.getGeometry().getType() == "LineString") {
                     return config.hideLinesStyle;
                 }
@@ -238,10 +266,15 @@ UI.MapVector = (function (mapUtils, config) {
 
                     return config.hidePointsStyle;
                 }
+                if (feature.getGeometry().getType() == "Polygon") {
+
+                    return config.hideLinesStyle;
+                }
+
 
             }
             else {
-                feature.set("_isVisible", true);
+
                 return LayerStyleFunctionForRouteLayers(feature)
             }
 
@@ -376,7 +409,7 @@ UI.MapVector = (function (mapUtils, config) {
 
                     var feats = pointFeatures.filter(function (f) {
                         var coord = f.getGeometry().getCoordinates();
-                        return (coord[0] === end[0] && coord[1] === end[1]);
+                        return (coord[0] === start[0] && coord[1] === start[1]);
                     });
                     if (feats.length > 0) {
 
@@ -446,6 +479,8 @@ UI.MapVector = (function (mapUtils, config) {
 
 
                 })
+
+
             })
 
         }
@@ -605,9 +640,12 @@ UI.MapVector = (function (mapUtils, config) {
                             "</a>";
 
                     }
+                    retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='refresh' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Recargar\"  class=\"btn btn-xs btn-info\">" +
+                        "<i class=\"ace-icon icon-only bigger-110 fa fa-refresh\"></i>" +
+                        "</a>";
                 }
                 if (lyr.get('loadInInit') == false) {
-                    retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='reload' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"cargar datos \"  class=\"btn btn-xs btn-info\">" +
+                    retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='load' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Cargar datos \"  class=\"btn btn-xs btn-info\">" +
                         "<i class=\"ace-icon icon-only bigger-110 fa fa-cloud-download\"></i>" +
                         "</a>";
 
@@ -659,13 +697,26 @@ UI.MapVector = (function (mapUtils, config) {
         $(nRow).find("[data-rel=\"tooltip\"]").tooltip({'container': "body"});
 
         //Carga el source de la capa a petición del usuario
-        $(nRow).find("[data-vector-action='reload']").click(function () {
+        $(nRow).find("[data-vector-action='load']").click(function () {
 
-            $(this).tooltip('destroy');
+            $(this).tooltip('hide');
             var targetCode = $(this).attr('data-vector-code');
             var layer = getVectorLayerByProperty("code", targetCode);
             layer.setSource(layer.get("customSource"))
             layer.set("loadInInit",true);
+
+        });
+
+        //Carga el source de la capa a petición del usuario
+        $(nRow).find("[data-vector-action='refresh']").click(function () {
+
+            $(this).tooltip('hide');
+            var targetCode = $(this).attr('data-vector-code');
+
+            var layer = getVectorLayerByProperty("code", targetCode);
+
+            reloadLayerSource(targetCode,layer.getSource().get('customUrl'))
+
 
         });
 
@@ -679,7 +730,7 @@ UI.MapVector = (function (mapUtils, config) {
 
                 var layer = getVectorLayerByProperty("code", targetCode);
                 var lineString = getVectorFeaturesCollection(layer).filter(function (f) {
-                    if (f.getGeometry().getType() == "LineString" && f.get("_type") == config.routeLayerTypes.COMPACTA) return f;
+                    if (f.getGeometry().getType() == "LineString" && f.get("_type") == config.routeLayerTypes.ORIGINAL) return f;
                 });
                 if(lineString.length > 0 )
                 {
@@ -707,26 +758,9 @@ UI.MapVector = (function (mapUtils, config) {
 
             var targetCode = $(this).attr('data-vector-code');
             var dataType = $(this).attr('data-type');
-          //  console.log(dataType)
+
             var firstExtend = false;
             var layer = getVectorLayerByProperty("code", targetCode);
-
-            var originalFeatures = getVectorFeaturesCollection(layer).filter(function (f) {
-                if (f.getGeometry().getType() == "LineString" && f.get("_type") == dataType)
-                    return f;
-                if (f.getGeometry().getType() == "Point" && typeof f.get('_lineString') != 'undefined' )
-                        if($.inArray(dataType, f.get('_lineString')) != -1){
-                            return f;
-                        }
-
-
-            });
-
-            originalFeatures.forEach(function (feat, idx, a) {
-
-                feat.setStyle(GetStyleHiddenVisibleForFeature(feat))
-            });
-
 
 
             if ($(this).hasClass("btn-success")) {
@@ -737,6 +771,68 @@ UI.MapVector = (function (mapUtils, config) {
                 $(this).removeClass("btn-danger");
                 $(this).addClass("btn-success");
             }
+
+            var compactaVisible =$("[data-vector-action='viewHideRoutePart'][data-type='" + config.routeLayerTypes.COMPACTA + "'][data-vector-code='" + targetCode + "']").hasClass("btn-success")
+            var originalVisible =$("[data-vector-action='viewHideRoutePart'][data-type='" + config.routeLayerTypes.ORIGINAL + "'][data-vector-code='" + targetCode + "']").hasClass("btn-success")
+
+            var visible = $(this).hasClass("btn-success");
+            //Mostrar/ocultar.
+            var originalFeatures = getVectorFeaturesCollection(layer).filter(function (f) {
+                if (f.getGeometry().getType() == "LineString" && f.get("_type") == dataType)
+                    return f;
+                if (f.getGeometry().getType() == "Polygon" && dataType == config.routeLayerTypes.COMPACTA)
+                {
+
+                    return f;
+                }
+
+                if (f.getGeometry().getType() == "Point" && typeof f.get('_lineString') != 'undefined' ) {
+
+                        //
+                        //Estoy ocultando
+                        if (!visible) {
+
+                            if ($.inArray(dataType, f.get('_lineString')) != -1)
+                              //Puntos sólo de ese lineString
+                                if(f.get('_lineString').length == 1) {
+
+                                    return f;
+                                } else if(!compactaVisible && !originalVisible)
+                                {
+
+                                    return f;
+                                }
+
+                        }
+                        else  //Estoy mostrando
+                        {
+                            if ($.inArray(dataType, f.get('_lineString')) != -1) {
+                                //Puntos sólo de ese lineString
+                                if(f.get('_lineString').length == 1) {
+
+                                    return f;
+                                }
+                                else if(compactaVisible || originalVisible)
+                                {
+
+                                    return f;
+                                }
+
+                            }
+                        }
+
+                    }
+
+
+            });
+
+            originalFeatures.forEach(function (feat, idx, a) {
+                //console.log(feat)
+                feat.setStyle(GetStyleHiddenVisibleForFeature(feat,visible))
+            });
+
+
+
         });
 
         //Visualizar los puntos
@@ -932,6 +1028,46 @@ UI.MapVector = (function (mapUtils, config) {
         return returnLayerOptions;
     }
 
+    function getSource(url,code,type,pointOverlayZoom,fitExtenxAfterLoad)
+    {
+
+        var source = new ol.source.Vector({
+
+
+            //format: new ol.format.GeoJSON()
+            loader: ol.featureloader.loadFeaturesXhr(url, new ol.format.GeoJSON(), function (features) {
+                var tempFeatures = features;
+
+
+                //Añade id y nombre de la capa a las features
+                tempFeatures = AddSomeFeatureProperties(tempFeatures, code);
+
+                //Sólo capas de ruta
+
+                if (type === config.layerType.ROUTE) {
+
+                    tempFeatures = addArrowsToLineString(tempFeatures, code);
+                }
+
+
+                this.addFeatures(tempFeatures);
+                renderVectorSwitcher();
+                //Dejamos rutas compactadas ocultas, en la carga
+                $("[data-vector-action='viewHideRoutePart'][data-type='" + config.routeLayerTypes.COMPACTA + "']").trigger('click');
+                //FitExtendOnLoad
+                if (fitExtenxAfterLoad)
+                    if (tempFeatures.length > 0) {
+                        mapUtils.getMap().getView().fit(this.getExtent(), mapUtils.getMap().getSize(), {"maxZoom": pointOverlayZoom});
+
+                    }
+
+
+            })
+        });
+        source.set('customUrl',url);
+        return source;
+    }
+
     /**
      * @public
      * @desc Inicializa el vector trayéndose el GeoJson
@@ -948,39 +1084,7 @@ UI.MapVector = (function (mapUtils, config) {
             CreateInfoDetailContainer(paramOptions.code);
 
 
-            var source = new ol.source.Vector({
-                // url: url,
-                //format: new ol.format.GeoJSON()
-                loader: ol.featureloader.loadFeaturesXhr(options.url, new ol.format.GeoJSON(), function (features) {
-                    var tempFeatures = features;
-
-
-                    //Añade id y nombre de la capa a las features
-                    tempFeatures = AddSomeFeatureProperties(tempFeatures, options.code);
-
-                    //Sólo capas de ruta
-
-                    if (options.type === config.layerType.ROUTE) {
-
-                        tempFeatures = addArrowsToLineString(tempFeatures, options.code);
-                    }
-
-
-                    this.addFeatures(tempFeatures);
-                    renderVectorSwitcher();
-                    //Dejamos rutas compactadas ocultas, en la carga
-                    $("[data-vector-action='viewHideRoutePart'][data-type='" + config.routeLayerTypes.COMPACTA + "']").trigger('click');
-                    //FitExtendOnLoad
-                    if (options.fitExtenxAfterLoad)
-                        if (tempFeatures.length > 0) {
-                            mapUtils.getMap().getView().fit(this.getExtent(), mapUtils.getMap().getSize(), {"maxZoom": options.pointOverlayZoom});
-
-                        }
-
-
-                })
-            });
-
+            var source = getSource(options.url,options.code,options.type,options.pointOverlayZoom,options.fitExtenxAfterLoad);
             //Elemento base para el overlay sobre las features
 
             var overlayFeatureInfo = UI.Overlay.createBaseOverlay(options.code);
@@ -1024,7 +1128,28 @@ UI.MapVector = (function (mapUtils, config) {
         }
 
     }
+    /**
+     * @public
+     * @desc Modifica la url del source de la capa y la recarga con los nuevos datos
+     * @param {string} layerCode código de la capa
+     *  @param {string} url de carga del geoJson
+     **/
+    function reloadLayerSource(layerCode,url){
+        var layer = getVectorLayerByProperty("code",layerCode);
 
+        if(layer)
+        {
+            var source = layer.getSource();
+            if(source)
+            {
+                //Fuerza el refresco
+                var modifiedSource = getSource(url,layerCode,layer.get('customType'),layer.get('pointOverlayZoom'),layer.get('fitExtenxAfterLoad'));
+                layer.setSource(modifiedSource)
+                layer.set("loadInInit",true)
+            }
+
+        }
+    }
     /**
      * @public
      * @desc Crea un vector con source vacío para incluir features en cliente
@@ -1093,6 +1218,7 @@ UI.MapVector = (function (mapUtils, config) {
         fitToExtend: fitToExtend,
         getVectorFeaturesCollection: getVectorFeaturesCollection,
         showPointsInChangeResolution: showPointsInChangeResolution,
-        getVectorLayers: getVectorLayers
+        getVectorLayers: getVectorLayers,
+        reloadLayerSource: reloadLayerSource
     }
 })(UI.Map, UI.MapConfig);

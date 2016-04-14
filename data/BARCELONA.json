@@ -1,0 +1,4619 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          2.27907735,
+          42.0026584
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 13:15:07",
+        "_hasta": "13/04/2016 13:53:22",
+        "_numeroelementos": "4",
+        "_porcentaje": "75",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Avinguda Roma, 180, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              2.2790995993876138,
+              42.0026584
+            ],
+            [
+              2.2790991718718696,
+              42.0026627406402
+            ],
+            [
+              2.2790979057538276,
+              42.002666914472023
+            ],
+            [
+              2.2790958496896931,
+              42.002670761097463
+            ],
+            [
+              2.2790930826928593,
+              42.00267413269286
+            ],
+            [
+              2.2790897110974613,
+              42.002676899689696
+            ],
+            [
+              2.27908586447202,
+              42.002678955753829
+            ],
+            [
+              2.2790816906401945,
+              42.00268022187187
+            ],
+            [
+              2.27907735,
+              42.002680649387614
+            ],
+            [
+              2.2790730093598057,
+              42.00268022187187
+            ],
+            [
+              2.2790688355279802,
+              42.002678955753829
+            ],
+            [
+              2.2790649889025389,
+              42.002676899689696
+            ],
+            [
+              2.279061617307141,
+              42.00267413269286
+            ],
+            [
+              2.2790588503103071,
+              42.002670761097463
+            ],
+            [
+              2.2790567942461726,
+              42.002666914472023
+            ],
+            [
+              2.2790555281281306,
+              42.0026627406402
+            ],
+            [
+              2.2790551006123865,
+              42.0026584
+            ],
+            [
+              2.2790555281281306,
+              42.002654059359806
+            ],
+            [
+              2.2790567942461726,
+              42.00264988552798
+            ],
+            [
+              2.2790588503103071,
+              42.00264603890254
+            ],
+            [
+              2.279061617307141,
+              42.002642667307143
+            ],
+            [
+              2.2790649889025389,
+              42.002639900310307
+            ],
+            [
+              2.2790688355279802,
+              42.002637844246173
+            ],
+            [
+              2.2790730093598057,
+              42.002636578128133
+            ],
+            [
+              2.27907735,
+              42.002636150612389
+            ],
+            [
+              2.2790816906401945,
+              42.002636578128133
+            ],
+            [
+              2.27908586447202,
+              42.002637844246173
+            ],
+            [
+              2.2790897110974613,
+              42.002639900310307
+            ],
+            [
+              2.2790930826928593,
+              42.002642667307143
+            ],
+            [
+              2.2790958496896931,
+              42.00264603890254
+            ],
+            [
+              2.2790979057538276,
+              42.00264988552798
+            ],
+            [
+              2.2790991718718696,
+              42.002654059359806
+            ],
+            [
+              2.2790995993876138,
+              42.0026584
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "tipo": "circle",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        },
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2790572,
+          42.0026528
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 13:15:07",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Avinguda Roma, 180, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2790754,
+          42.0026688
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 13:20:01",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Avinguda Roma, 180, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2790742,
+          42.0026464
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 13:50:02",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Avinguda Roma, 180, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2791026,
+          42.0026656
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 13:53:22",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Avinguda Roma, 180, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.278853,
+          42.0026816
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 13:53:43",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "23",
+        "_localizacion": "Avinguda Roma, 180, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.294602,
+          42.0007904
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 13:58:38",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "27",
+        "_localizacion": "Carrer Collsacabra, 31, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.294602,
+          42.0007904
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 13:58:39",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "27",
+        "_localizacion": "Carrer Collsacabra, 31, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.29571965,
+          42.00086
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:02:39",
+        "_hasta": "13/04/2016 14:29:29",
+        "_numeroelementos": "4",
+        "_porcentaje": "75",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Masies de Roda, 29, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              2.2957365701061536,
+              42.00086
+            ],
+            [
+              2.2957362449910583,
+              42.000863300948964
+            ],
+            [
+              2.2957352821397632,
+              42.000866475044305
+            ],
+            [
+              2.2957337185541036,
+              42.000869400307323
+            ],
+            [
+              2.2957316143217996,
+              42.0008719643218
+            ],
+            [
+              2.2957290503073184,
+              42.000874068554104
+            ],
+            [
+              2.2957261250442991,
+              42.000875632139767
+            ],
+            [
+              2.2957229509489583,
+              42.000876594991063
+            ],
+            [
+              2.29571965,
+              42.000876920106158
+            ],
+            [
+              2.2957163490510419,
+              42.000876594991063
+            ],
+            [
+              2.2957131749557012,
+              42.000875632139767
+            ],
+            [
+              2.2957102496926818,
+              42.000874068554104
+            ],
+            [
+              2.2957076856782006,
+              42.0008719643218
+            ],
+            [
+              2.2957055814458966,
+              42.000869400307323
+            ],
+            [
+              2.295704017860237,
+              42.000866475044305
+            ],
+            [
+              2.2957030550089419,
+              42.000863300948964
+            ],
+            [
+              2.2957027298938466,
+              42.00086
+            ],
+            [
+              2.2957030550089419,
+              42.000856699051042
+            ],
+            [
+              2.295704017860237,
+              42.0008535249557
+            ],
+            [
+              2.2957055814458966,
+              42.000850599692683
+            ],
+            [
+              2.2957076856782006,
+              42.0008480356782
+            ],
+            [
+              2.2957102496926818,
+              42.0008459314459
+            ],
+            [
+              2.2957131749557012,
+              42.000844367860239
+            ],
+            [
+              2.2957163490510419,
+              42.000843405008943
+            ],
+            [
+              2.29571965,
+              42.000843079893848
+            ],
+            [
+              2.2957229509489583,
+              42.000843405008943
+            ],
+            [
+              2.2957261250442991,
+              42.000844367860239
+            ],
+            [
+              2.2957290503073184,
+              42.0008459314459
+            ],
+            [
+              2.2957316143217996,
+              42.0008480356782
+            ],
+            [
+              2.2957337185541036,
+              42.000850599692683
+            ],
+            [
+              2.2957352821397632,
+              42.0008535249557
+            ],
+            [
+              2.2957362449910583,
+              42.000856699051042
+            ],
+            [
+              2.2957365701061536,
+              42.00086
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "tipo": "circle",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        },
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2957174,
+          42.0008896
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:02:39",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Masies de Roda, 29, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2957156,
+          42.000848
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:03:35",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Masies de Roda, 29, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2957228,
+          42.0008512
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:29:28",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Masies de Roda, 29, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2957228,
+          42.0008512
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:29:29",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Masies de Roda, 29, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2953315333333335,
+          42.0107808
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:33:15",
+        "_hasta": "13/04/2016 14:42:05",
+        "_numeroelementos": "3",
+        "_porcentaje": "75",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Canigó, 32, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              2.2953526027113562,
+              42.0107808
+            ],
+            [
+              2.2953521978691653,
+              42.010784910431745
+            ],
+            [
+              2.2953509989004517,
+              42.0107888629019
+            ],
+            [
+              2.2953490518809097,
+              42.010792505519255
+            ],
+            [
+              2.2953464316334089,
+              42.010795698300072
+            ],
+            [
+              2.2953432388525914,
+              42.010798318547572
+            ],
+            [
+              2.295339596235233,
+              42.01080026556712
+            ],
+            [
+              2.2953356437650765,
+              42.010801464535831
+            ],
+            [
+              2.2953315333333335,
+              42.010801869378021
+            ],
+            [
+              2.2953274229015905,
+              42.010801464535831
+            ],
+            [
+              2.295323470431434,
+              42.01080026556712
+            ],
+            [
+              2.2953198278140756,
+              42.010798318547572
+            ],
+            [
+              2.2953166350332581,
+              42.010795698300072
+            ],
+            [
+              2.2953140147857574,
+              42.010792505519255
+            ],
+            [
+              2.2953120677662153,
+              42.0107888629019
+            ],
+            [
+              2.2953108687975017,
+              42.010784910431745
+            ],
+            [
+              2.2953104639553108,
+              42.0107808
+            ],
+            [
+              2.2953108687975017,
+              42.010776689568253
+            ],
+            [
+              2.2953120677662153,
+              42.0107727370981
+            ],
+            [
+              2.2953140147857574,
+              42.010769094480743
+            ],
+            [
+              2.2953166350332581,
+              42.010765901699926
+            ],
+            [
+              2.2953198278140756,
+              42.010763281452427
+            ],
+            [
+              2.295323470431434,
+              42.010761334432878
+            ],
+            [
+              2.2953274229015905,
+              42.010760135464167
+            ],
+            [
+              2.2953315333333335,
+              42.010759730621977
+            ],
+            [
+              2.2953356437650765,
+              42.010760135464167
+            ],
+            [
+              2.295339596235233,
+              42.010761334432878
+            ],
+            [
+              2.2953432388525914,
+              42.010763281452427
+            ],
+            [
+              2.2953464316334089,
+              42.010765901699926
+            ],
+            [
+              2.2953490518809097,
+              42.010769094480743
+            ],
+            [
+              2.2953509989004517,
+              42.0107727370981
+            ],
+            [
+              2.2953521978691653,
+              42.010776689568253
+            ],
+            [
+              2.2953526027113562,
+              42.0107808
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "tipo": "circle",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        },
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2953286,
+          42.0108064
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:33:15",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Canigó, 32, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.295335,
+          42.0107648
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:37:05",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Canigó, 32, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.295331,
+          42.0107712
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:42:05",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Canigó, 32, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2786138,
+          42.009488
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:47:05",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "43",
+        "_localizacion": "BV-5224, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.246675,
+          42.0008768
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:52:05",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "54",
+        "_localizacion": "BV-4608, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.237838104,
+          42.014107519999996
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:56:46",
+        "_hasta": "13/04/2016 16:38:47",
+        "_numeroelementos": "25",
+        "_porcentaje": "75",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              2.2379172586411489,
+              42.014107519999996
+            ],
+            [
+              2.2379157377069143,
+              42.014122962304427
+            ],
+            [
+              2.2379112333528606,
+              42.014137811169761
+            ],
+            [
+              2.2379039186787879,
+              42.014151495962423
+            ],
+            [
+              2.2378940747835188,
+              42.014163490783517
+            ],
+            [
+              2.2378820799624277,
+              42.01417333467878
+            ],
+            [
+              2.2378683951697624,
+              42.014180649352859
+            ],
+            [
+              2.2378535463044309,
+              42.014185153706912
+            ],
+            [
+              2.237838104,
+              42.014186674641145
+            ],
+            [
+              2.2378226616955694,
+              42.014185153706912
+            ],
+            [
+              2.2378078128302379,
+              42.014180649352859
+            ],
+            [
+              2.2377941280375726,
+              42.01417333467878
+            ],
+            [
+              2.2377821332164816,
+              42.014163490783517
+            ],
+            [
+              2.2377722893212124,
+              42.014151495962423
+            ],
+            [
+              2.2377649746471397,
+              42.014137811169761
+            ],
+            [
+              2.237760470293086,
+              42.014122962304427
+            ],
+            [
+              2.2377589493588514,
+              42.014107519999996
+            ],
+            [
+              2.237760470293086,
+              42.014092077695565
+            ],
+            [
+              2.2377649746471397,
+              42.014077228830232
+            ],
+            [
+              2.2377722893212124,
+              42.014063544037569
+            ],
+            [
+              2.2377821332164816,
+              42.014051549216475
+            ],
+            [
+              2.2377941280375726,
+              42.014041705321212
+            ],
+            [
+              2.2378078128302379,
+              42.014034390647133
+            ],
+            [
+              2.2378226616955694,
+              42.014029886293081
+            ],
+            [
+              2.237838104,
+              42.014028365358847
+            ],
+            [
+              2.2378535463044309,
+              42.014029886293081
+            ],
+            [
+              2.2378683951697624,
+              42.014034390647133
+            ],
+            [
+              2.2378820799624277,
+              42.014041705321212
+            ],
+            [
+              2.2378940747835188,
+              42.014051549216475
+            ],
+            [
+              2.2379039186787879,
+              42.014063544037569
+            ],
+            [
+              2.2379112333528606,
+              42.014077228830232
+            ],
+            [
+              2.2379157377069143,
+              42.014092077695565
+            ],
+            [
+              2.2379172586411489,
+              42.014107519999996
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "tipo": "circle",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        },
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2376292,
+          42.0141376
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:56:46",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2376646,
+          42.0140768
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 14:59:46",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2376556,
+          42.0140992
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:11:49",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2376554,
+          42.0140992
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:11:50",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.237837,
+          42.0141216
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:12:13",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378386,
+          42.0141184
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:12:14",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378554,
+          42.0141344
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:17:15",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.237868,
+          42.0141664
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:22:15",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.237892,
+          42.0141568
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:23:54",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2379076,
+          42.0141408
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:26:22",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378912,
+          42.014096
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:32:47",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378914,
+          42.014096
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:32:48",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.237902,
+          42.0140608
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:37:48",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.237995,
+          42.0140608
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:41:33",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.23785,
+          42.0141216
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:46:34",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378864,
+          42.0140448
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:47:02",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378778,
+          42.0140832
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:52:03",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378792,
+          42.0140928
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:52:15",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378754,
+          42.0141216
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:57:16",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.23787,
+          42.014096
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:59:07",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378692,
+          42.014096
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:59:09",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378622,
+          42.0140992
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 15:59:17",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378556,
+          42.0140864
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 16:29:18",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.237822,
+          42.0141408
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 16:38:45",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2378218,
+          42.0141408
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 16:38:47",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Passatge Victorià Oliveras de la Riva, 13, 08512 Sant Hipòlit de Voltregà (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.259346,
+          41.9979584
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 16:43:47",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "66",
+        "_localizacion": "BV-4608, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.288666,
+          42.005184
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 16:48:48",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "8",
+        "_localizacion": "Avinguda Roma, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2952974666666663,
+          42.010782933333331
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 16:51:13",
+        "_hasta": "13/04/2016 17:24:37",
+        "_numeroelementos": "3",
+        "_porcentaje": "75",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Canigó, 37, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              2.29534607852929,
+              42.010782933333331
+            ],
+            [
+              2.2953451444659803,
+              42.010792417037266
+            ],
+            [
+              2.2953423781715814,
+              42.010801536287772
+            ],
+            [
+              2.2953378859532352,
+              42.010809940637174
+            ],
+            [
+              2.2953318404443737,
+              42.01081730711104
+            ],
+            [
+              2.2953244739705116,
+              42.0108233526199
+            ],
+            [
+              2.2953160696211086,
+              42.010827844838246
+            ],
+            [
+              2.2953069503705992,
+              42.010830611132647
+            ],
+            [
+              2.2952974666666663,
+              42.010831545195956
+            ],
+            [
+              2.2952879829627335,
+              42.010830611132647
+            ],
+            [
+              2.2952788637122241,
+              42.010827844838246
+            ],
+            [
+              2.295270459362821,
+              42.0108233526199
+            ],
+            [
+              2.295263092888959,
+              42.01081730711104
+            ],
+            [
+              2.2952570473800975,
+              42.010809940637174
+            ],
+            [
+              2.2952525551617513,
+              42.010801536287772
+            ],
+            [
+              2.2952497888673524,
+              42.010792417037266
+            ],
+            [
+              2.2952488548040426,
+              42.010782933333331
+            ],
+            [
+              2.2952497888673524,
+              42.0107734496294
+            ],
+            [
+              2.2952525551617513,
+              42.01076433037889
+            ],
+            [
+              2.2952570473800975,
+              42.010755926029489
+            ],
+            [
+              2.295263092888959,
+              42.010748559555623
+            ],
+            [
+              2.295270459362821,
+              42.010742514046761
+            ],
+            [
+              2.2952788637122241,
+              42.010738021828416
+            ],
+            [
+              2.2952879829627335,
+              42.010735255534016
+            ],
+            [
+              2.2952974666666663,
+              42.010734321470707
+            ],
+            [
+              2.2953069503705992,
+              42.010735255534016
+            ],
+            [
+              2.2953160696211086,
+              42.010738021828416
+            ],
+            [
+              2.2953244739705116,
+              42.010742514046761
+            ],
+            [
+              2.2953318404443737,
+              42.010748559555623
+            ],
+            [
+              2.2953378859532352,
+              42.010755926029489
+            ],
+            [
+              2.2953423781715814,
+              42.01076433037889
+            ],
+            [
+              2.2953451444659803,
+              42.0107734496294
+            ],
+            [
+              2.29534607852929,
+              42.010782933333331
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "tipo": "circle",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        },
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.295293,
+          42.0108416
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 16:51:13",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Canigó, 37, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.295293,
+          42.0107616
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 17:21:14",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Canigó, 37, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2953064,
+          42.0107456
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 17:24:37",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Canigó, 37, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2925128,
+          42.0083488
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 17:29:30",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "28",
+        "_localizacion": "Carrer Sogorb, 116, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908285098591552,
+          42.007632991549286
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 17:29:56",
+        "_hasta": "14/04/2016 12:28:27",
+        "_numeroelementos": "71",
+        "_porcentaje": "75",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              2.29098918148272,
+              42.007632991549286
+            ],
+            [
+              2.290986094222526,
+              42.007664337028068
+            ],
+            [
+              2.2909769510836222,
+              42.007694477917674
+            ],
+            [
+              2.2909621034317089,
+              42.007722255920633
+            ],
+            [
+              2.290942121853722,
+              42.00774660354385
+            ],
+            [
+              2.2909177742304987,
+              42.007766585121843
+            ],
+            [
+              2.2908899962275449,
+              42.007781432773754
+            ],
+            [
+              2.2908598553379353,
+              42.007790575912658
+            ],
+            [
+              2.2908285098591552,
+              42.007793663172848
+            ],
+            [
+              2.2907971643803751,
+              42.007790575912658
+            ],
+            [
+              2.2907670234907656,
+              42.007781432773754
+            ],
+            [
+              2.2907392454878117,
+              42.007766585121843
+            ],
+            [
+              2.2907148978645884,
+              42.00774660354385
+            ],
+            [
+              2.2906949162866015,
+              42.007722255920633
+            ],
+            [
+              2.2906800686346882,
+              42.007694477917674
+            ],
+            [
+              2.2906709254957844,
+              42.007664337028068
+            ],
+            [
+              2.2906678382355903,
+              42.007632991549286
+            ],
+            [
+              2.2906709254957844,
+              42.007601646070505
+            ],
+            [
+              2.2906800686346882,
+              42.0075715051809
+            ],
+            [
+              2.2906949162866015,
+              42.007543727177939
+            ],
+            [
+              2.2907148978645884,
+              42.007519379554722
+            ],
+            [
+              2.2907392454878117,
+              42.00749939797673
+            ],
+            [
+              2.2907670234907656,
+              42.007484550324818
+            ],
+            [
+              2.2907971643803751,
+              42.007475407185915
+            ],
+            [
+              2.2908285098591552,
+              42.007472319925725
+            ],
+            [
+              2.2908598553379353,
+              42.007475407185915
+            ],
+            [
+              2.2908899962275449,
+              42.007484550324818
+            ],
+            [
+              2.2909177742304987,
+              42.00749939797673
+            ],
+            [
+              2.290942121853722,
+              42.007519379554722
+            ],
+            [
+              2.2909621034317089,
+              42.007543727177939
+            ],
+            [
+              2.2909769510836222,
+              42.0075715051809
+            ],
+            [
+              2.290986094222526,
+              42.007601646070505
+            ],
+            [
+              2.29098918148272,
+              42.007632991549286
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "tipo": "circle",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        },
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908686,
+          42.0074816
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 17:29:56",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2909034,
+          42.0075072
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 17:34:15",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.290895,
+          42.0074432
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 17:39:10",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908774,
+          42.0075104
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 18:09:11",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908576,
+          42.0075264
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 18:12:51",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907994,
+          42.0075392
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 18:42:52",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907358,
+          42.0075712
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 18:46:14",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.290687,
+          42.0076288
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 18:51:08",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.29093,
+          42.0073888
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 18:56:02",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908396,
+          42.007488
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 19:00:56",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908338,
+          42.0074784
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 19:05:50",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908352,
+          42.0075648
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 19:14:33",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907934,
+          42.0075456
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 19:19:27",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908268,
+          42.0075616
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 19:31:29",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908326,
+          42.0075584
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 19:31:30",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908406,
+          42.007552
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 19:32:07",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "1",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.290732,
+          42.0075712
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 20:02:08",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907142,
+          42.0075456
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 20:32:08",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907496,
+          42.0076224
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 20:35:31",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.290755,
+          42.0077376
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 21:10:22",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "3",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907066,
+          42.0075744
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 21:48:41",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907466,
+          42.007504
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 22:18:41",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.290775,
+          42.0076832
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 22:27:06",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.290768,
+          42.0076384
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 22:32:01",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907762,
+          42.007824
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 23:06:51",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2906826,
+          42.007472
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 23:10:18",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908482,
+          42.0075392
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 23:15:12",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2906344,
+          42.0075872
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 23:45:13",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907126,
+          42.0076256
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "13/04/2016 23:53:50",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907548,
+          42.007728
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 00:23:51",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.290728,
+          42.0077024
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 01:07:20",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907122,
+          42.007584
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 01:15:43",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2906908,
+          42.0077088
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 02:00:23",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908048,
+          42.0076192
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 02:13:40",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908568,
+          42.0075008
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 02:43:41",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907528,
+          42.0075744
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 03:13:42",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2906892,
+          42.007664
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 04:01:45",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908302,
+          42.0076192
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 04:31:45",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908772,
+          42.007632
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 05:01:45",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907782,
+          42.0076832
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 05:04:59",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907924,
+          42.0076448
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 05:09:53",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907386,
+          42.0076032
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 05:44:43",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907712,
+          42.007584
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 06:18:23",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907646,
+          42.0076
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 06:21:48",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908098,
+          42.00752
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 07:06:26",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908742,
+          42.0077856
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 07:14:49",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.290763,
+          42.0076736
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 07:49:40",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907142,
+          42.0077088
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 07:53:04",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2907226,
+          42.0075392
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 08:23:05",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908596,
+          42.0076736
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 08:26:46",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908816,
+          42.0075712
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 08:36:35",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2906926,
+          42.0076928
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 09:06:36",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2906936,
+          42.0076928
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 09:06:37",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2910048,
+          42.0077088
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 09:07:04",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "4",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2909234,
+          42.0078048
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 09:10:00",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2909574,
+          42.0077312
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 09:14:56",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2909898,
+          42.0077408
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 09:19:50",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2909634,
+          42.00776
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 09:24:44",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2910144,
+          42.0078048
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 09:29:38",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2909822,
+          42.0077504
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 09:59:39",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2910342,
+          42.0077184
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 10:03:23",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908812,
+          42.0077376
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 10:33:24",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2909816,
+          42.007792
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 10:36:45",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2910686,
+          42.0077248
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 10:41:41",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2909154,
+          42.0077216
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 11:11:42",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2909622,
+          42.0077504
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 11:15:20",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908902,
+          42.0077664
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 11:20:15",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908636,
+          42.0076704
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 11:25:09",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2908764,
+          42.0077216
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 11:55:10",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2909918,
+          42.007744
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 12:25:10",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.2910134,
+          42.0077184
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "MARBELLA 2132-DFL",
+        "_idvehiculo": 2,
+        "fecha": "14/04/2016 12:28:27",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Carrer Sogorb, 81, 08560 Manlleu (Barcelona)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            2.2790572,
+            42.0026528
+          ],
+          [
+            2.2790754,
+            42.0026688
+          ],
+          [
+            2.2790742,
+            42.0026464
+          ],
+          [
+            2.2791026,
+            42.0026656
+          ],
+          [
+            2.278853,
+            42.0026816
+          ],
+          [
+            2.294602,
+            42.0007904
+          ],
+          [
+            2.294602,
+            42.0007904
+          ],
+          [
+            2.2957174,
+            42.0008896
+          ],
+          [
+            2.2957156,
+            42.000848
+          ],
+          [
+            2.2957228,
+            42.0008512
+          ],
+          [
+            2.2957228,
+            42.0008512
+          ],
+          [
+            2.2953286,
+            42.0108064
+          ],
+          [
+            2.295335,
+            42.0107648
+          ],
+          [
+            2.295331,
+            42.0107712
+          ],
+          [
+            2.2786138,
+            42.009488
+          ],
+          [
+            2.246675,
+            42.0008768
+          ],
+          [
+            2.2376292,
+            42.0141376
+          ],
+          [
+            2.2376646,
+            42.0140768
+          ],
+          [
+            2.2376556,
+            42.0140992
+          ],
+          [
+            2.2376554,
+            42.0140992
+          ],
+          [
+            2.237837,
+            42.0141216
+          ],
+          [
+            2.2378386,
+            42.0141184
+          ],
+          [
+            2.2378554,
+            42.0141344
+          ],
+          [
+            2.237868,
+            42.0141664
+          ],
+          [
+            2.237892,
+            42.0141568
+          ],
+          [
+            2.2379076,
+            42.0141408
+          ],
+          [
+            2.2378912,
+            42.014096
+          ],
+          [
+            2.2378914,
+            42.014096
+          ],
+          [
+            2.237902,
+            42.0140608
+          ],
+          [
+            2.237995,
+            42.0140608
+          ],
+          [
+            2.23785,
+            42.0141216
+          ],
+          [
+            2.2378864,
+            42.0140448
+          ],
+          [
+            2.2378778,
+            42.0140832
+          ],
+          [
+            2.2378792,
+            42.0140928
+          ],
+          [
+            2.2378754,
+            42.0141216
+          ],
+          [
+            2.23787,
+            42.014096
+          ],
+          [
+            2.2378692,
+            42.014096
+          ],
+          [
+            2.2378622,
+            42.0140992
+          ],
+          [
+            2.2378556,
+            42.0140864
+          ],
+          [
+            2.237822,
+            42.0141408
+          ],
+          [
+            2.2378218,
+            42.0141408
+          ],
+          [
+            2.259346,
+            41.9979584
+          ],
+          [
+            2.288666,
+            42.005184
+          ],
+          [
+            2.295293,
+            42.0108416
+          ],
+          [
+            2.295293,
+            42.0107616
+          ],
+          [
+            2.2953064,
+            42.0107456
+          ],
+          [
+            2.2925128,
+            42.0083488
+          ],
+          [
+            2.2908686,
+            42.0074816
+          ],
+          [
+            2.2909034,
+            42.0075072
+          ],
+          [
+            2.290895,
+            42.0074432
+          ],
+          [
+            2.2908774,
+            42.0075104
+          ],
+          [
+            2.2908576,
+            42.0075264
+          ],
+          [
+            2.2907994,
+            42.0075392
+          ],
+          [
+            2.2907358,
+            42.0075712
+          ],
+          [
+            2.290687,
+            42.0076288
+          ],
+          [
+            2.29093,
+            42.0073888
+          ],
+          [
+            2.2908396,
+            42.007488
+          ],
+          [
+            2.2908338,
+            42.0074784
+          ],
+          [
+            2.2908352,
+            42.0075648
+          ],
+          [
+            2.2907934,
+            42.0075456
+          ],
+          [
+            2.2908268,
+            42.0075616
+          ],
+          [
+            2.2908326,
+            42.0075584
+          ],
+          [
+            2.2908406,
+            42.007552
+          ],
+          [
+            2.290732,
+            42.0075712
+          ],
+          [
+            2.2907142,
+            42.0075456
+          ],
+          [
+            2.2907496,
+            42.0076224
+          ],
+          [
+            2.290755,
+            42.0077376
+          ],
+          [
+            2.2907066,
+            42.0075744
+          ],
+          [
+            2.2907466,
+            42.007504
+          ],
+          [
+            2.290775,
+            42.0076832
+          ],
+          [
+            2.290768,
+            42.0076384
+          ],
+          [
+            2.2907762,
+            42.007824
+          ],
+          [
+            2.2906826,
+            42.007472
+          ],
+          [
+            2.2908482,
+            42.0075392
+          ],
+          [
+            2.2906344,
+            42.0075872
+          ],
+          [
+            2.2907126,
+            42.0076256
+          ],
+          [
+            2.2907548,
+            42.007728
+          ],
+          [
+            2.290728,
+            42.0077024
+          ],
+          [
+            2.2907122,
+            42.007584
+          ],
+          [
+            2.2906908,
+            42.0077088
+          ],
+          [
+            2.2908048,
+            42.0076192
+          ],
+          [
+            2.2908568,
+            42.0075008
+          ],
+          [
+            2.2907528,
+            42.0075744
+          ],
+          [
+            2.2906892,
+            42.007664
+          ],
+          [
+            2.2908302,
+            42.0076192
+          ],
+          [
+            2.2908772,
+            42.007632
+          ],
+          [
+            2.2907782,
+            42.0076832
+          ],
+          [
+            2.2907924,
+            42.0076448
+          ],
+          [
+            2.2907386,
+            42.0076032
+          ],
+          [
+            2.2907712,
+            42.007584
+          ],
+          [
+            2.2907646,
+            42.0076
+          ],
+          [
+            2.2908098,
+            42.00752
+          ],
+          [
+            2.2908742,
+            42.0077856
+          ],
+          [
+            2.290763,
+            42.0076736
+          ],
+          [
+            2.2907142,
+            42.0077088
+          ],
+          [
+            2.2907226,
+            42.0075392
+          ],
+          [
+            2.2908596,
+            42.0076736
+          ],
+          [
+            2.2908816,
+            42.0075712
+          ],
+          [
+            2.2906926,
+            42.0076928
+          ],
+          [
+            2.2906936,
+            42.0076928
+          ],
+          [
+            2.2910048,
+            42.0077088
+          ],
+          [
+            2.2909234,
+            42.0078048
+          ],
+          [
+            2.2909574,
+            42.0077312
+          ],
+          [
+            2.2909898,
+            42.0077408
+          ],
+          [
+            2.2909634,
+            42.00776
+          ],
+          [
+            2.2910144,
+            42.0078048
+          ],
+          [
+            2.2909822,
+            42.0077504
+          ],
+          [
+            2.2910342,
+            42.0077184
+          ],
+          [
+            2.2908812,
+            42.0077376
+          ],
+          [
+            2.2909816,
+            42.007792
+          ],
+          [
+            2.2910686,
+            42.0077248
+          ],
+          [
+            2.2909154,
+            42.0077216
+          ],
+          [
+            2.2909622,
+            42.0077504
+          ],
+          [
+            2.2908902,
+            42.0077664
+          ],
+          [
+            2.2908636,
+            42.0076704
+          ],
+          [
+            2.2908764,
+            42.0077216
+          ],
+          [
+            2.2909918,
+            42.007744
+          ],
+          [
+            2.2910134,
+            42.0077184
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "tipo": "line",
+        "_type": "ORIGINAL",
+        "_style": {
+          "line": {
+            "color": "rgba(104, 77,131, 0.9)",
+            "width": 4
+          }
+        }
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            2.27907735,
+            42.0026584
+          ],
+          [
+            2.278853,
+            42.0026816
+          ],
+          [
+            2.294602,
+            42.0007904
+          ],
+          [
+            2.294602,
+            42.0007904
+          ],
+          [
+            2.29571965,
+            42.00086
+          ],
+          [
+            2.2953315333333335,
+            42.0107808
+          ],
+          [
+            2.2786138,
+            42.009488
+          ],
+          [
+            2.246675,
+            42.0008768
+          ],
+          [
+            2.237838104,
+            42.014107519999996
+          ],
+          [
+            2.259346,
+            41.9979584
+          ],
+          [
+            2.288666,
+            42.005184
+          ],
+          [
+            2.2952974666666663,
+            42.010782933333331
+          ],
+          [
+            2.2925128,
+            42.0083488
+          ],
+          [
+            2.2908285098591552,
+            42.007632991549286
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "tipo": "line",
+        "_type": "COMPACTADA",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        }
+      },
+      "type": "Feature"
+    }
+  ],
+  "type": "FeatureCollection"
+}

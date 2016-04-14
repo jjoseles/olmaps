@@ -65,9 +65,9 @@ UI.CustomScriptsMap = (function (mapUtils, layerConfig) {
             properties["url"] = url;
             try {
                 UI.MapVector.loadGeoJSONData(properties);
-            }
+           }
             catch (e) {
-                console.log(e)
+               console.log(e)
             }
 
         } else console.log('No se han definido valores de configuracion  el valor ' + configCode);

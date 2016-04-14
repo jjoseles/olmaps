@@ -1,0 +1,2838 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395798456140366,
+          37.593976252631563
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 13:39:50",
+        "_hasta": "14/04/2016 07:10:33",
+        "_numeroelementos": "57",
+        "_porcentaje": "75",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -5.73945888316687,
+              37.593976252631563
+            ],
+            [
+              -5.7394612074263742,
+              37.593999851234329
+            ],
+            [
+              -5.7394680908848965,
+              37.594022542956033
+            ],
+            [
+              -5.7394792690149874,
+              37.594043455766524
+            ],
+            [
+              -5.7394943122473761,
+              37.594061785998221
+            ],
+            [
+              -5.7395126424790774,
+              37.594076829230609
+            ],
+            [
+              -5.7395335552895679,
+              37.5940880073607
+            ],
+            [
+              -5.7395562470112669,
+              37.594094890819228
+            ],
+            [
+              -5.7395798456140366,
+              37.594097215078733
+            ],
+            [
+              -5.7396034442168062,
+              37.594094890819228
+            ],
+            [
+              -5.7396261359385052,
+              37.5940880073607
+            ],
+            [
+              -5.7396470487489957,
+              37.594076829230609
+            ],
+            [
+              -5.7396653789806971,
+              37.594061785998221
+            ],
+            [
+              -5.7396804222130857,
+              37.594043455766524
+            ],
+            [
+              -5.7396916003431766,
+              37.594022542956033
+            ],
+            [
+              -5.7396984838016989,
+              37.593999851234329
+            ],
+            [
+              -5.7397008080612029,
+              37.593976252631563
+            ],
+            [
+              -5.7396984838016989,
+              37.5939526540288
+            ],
+            [
+              -5.7396916003431766,
+              37.593929962307094
+            ],
+            [
+              -5.7396804222130857,
+              37.5939090494966
+            ],
+            [
+              -5.7396653789806971,
+              37.593890719264905
+            ],
+            [
+              -5.7396470487489957,
+              37.593875676032518
+            ],
+            [
+              -5.7396261359385052,
+              37.593864497902423
+            ],
+            [
+              -5.7396034442168062,
+              37.5938576144439
+            ],
+            [
+              -5.7395798456140366,
+              37.593855290184393
+            ],
+            [
+              -5.7395562470112669,
+              37.5938576144439
+            ],
+            [
+              -5.7395335552895679,
+              37.593864497902423
+            ],
+            [
+              -5.7395126424790774,
+              37.593875676032518
+            ],
+            [
+              -5.7394943122473761,
+              37.593890719264905
+            ],
+            [
+              -5.7394792690149874,
+              37.5939090494966
+            ],
+            [
+              -5.7394680908848965,
+              37.593929962307094
+            ],
+            [
+              -5.7394612074263742,
+              37.5939526540288
+            ],
+            [
+              -5.73945888316687,
+              37.593976252631563
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "tipo": "circle",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        },
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395164,
+          37.594016
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 13:39:50",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395132,
+          37.5940288
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 13:44:05",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395092,
+          37.5940064
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 13:49:32",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395144,
+          37.5939296
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 13:54:59",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395512,
+          37.5940096
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 14:25:00",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7394776,
+          37.5939744
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 14:55:00",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7394656,
+          37.594016
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 14:59:35",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395152,
+          37.5939488
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 15:29:36",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7394776,
+          37.5938784
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 15:59:36",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7394516,
+          37.5939072
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 16:04:09",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7394756,
+          37.5939456
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 16:09:37",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7394228,
+          37.5939232
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 16:15:06",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7394296,
+          37.5938752
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 16:20:33",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7393284,
+          37.5939264
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 16:26:00",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395264,
+          37.5939168
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 16:56:01",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7394492,
+          37.5939136
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 17:00:42",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7394716,
+          37.5939232
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 17:06:10",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395024,
+          37.5939392
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 17:36:11",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395092,
+          37.5939488
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 17:46:15",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7394748,
+          37.5939264
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 17:51:43",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.73958,
+          37.5940032
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 18:21:44",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395888,
+          37.594016
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 18:25:54",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395544,
+          37.5940032
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 18:31:23",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.739652,
+          37.5939328
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 19:01:24",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395692,
+          37.5939648
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 19:05:39",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395716,
+          37.593904
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 19:11:06",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395444,
+          37.5939936
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 19:41:07",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395616,
+          37.5939872
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 19:48:44",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395616,
+          37.5939872
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 19:48:45",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395548,
+          37.593968
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 19:50:50",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7397116,
+          37.5940896
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 19:53:23",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7397064,
+          37.5940352
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 20:52:24",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396804,
+          37.5939904
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 21:22:24",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396592,
+          37.5940512
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 21:52:25",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.739662,
+          37.594032
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 22:22:25",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7397036,
+          37.5940448
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 22:52:25",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7397644,
+          37.5938944
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 23:22:26",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7397016,
+          37.5939968
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "13/04/2016 23:52:26",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396496,
+          37.5939232
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 00:22:26",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396556,
+          37.5939168
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 00:34:50",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7395824,
+          37.594064
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 00:47:19",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "1",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396868,
+          37.5939744
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 01:17:20",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396404,
+          37.5939584
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 01:47:20",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396068,
+          37.5940448
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 02:17:20",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "2",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.739596,
+          37.5939712
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 02:47:20",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.739684,
+          37.5939872
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 03:17:20",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.739616,
+          37.5940224
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 03:47:21",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396192,
+          37.593984
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 04:17:21",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7397192,
+          37.5939488
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 04:47:21",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "1",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.739614,
+          37.5940224
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 05:17:21",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396348,
+          37.5940864
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 05:47:21",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396904,
+          37.5940448
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 06:17:21",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.739624,
+          37.5940288
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 06:47:21",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396296,
+          37.5939584
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:10:24",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396304,
+          37.5939584
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:10:25",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.739632,
+          37.593952
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:10:32",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7396304,
+          37.593952
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:10:33",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "Calle Amadeo Vives, 51, 41330 Tocina (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7561488,
+          37.5899808
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:15:34",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "49",
+        "_localizacion": "A-8005, 41320 Cantillana (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7862994,
+          37.583248800000007
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:19:06",
+        "_hasta": "14/04/2016 07:23:28",
+        "_numeroelementos": "4",
+        "_porcentaje": "75",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "A-8005, 41320 Cantillana (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -5.7862837709995709,
+              37.583248800000007
+            ],
+            [
+              -5.7862840713064321,
+              37.583251849066734
+            ],
+            [
+              -5.78628496068639,
+              37.583254780959535
+            ],
+            [
+              -5.7862864049610723,
+              37.583257483007415
+            ],
+            [
+              -5.7862883486278136,
+              37.58325985137219
+            ],
+            [
+              -5.78629071699259,
+              37.583261795038936
+            ],
+            [
+              -5.7862934190404713,
+              37.583263239313617
+            ],
+            [
+              -5.7862963509332737,
+              37.583264128693578
+            ],
+            [
+              -5.7862994,
+              37.583264429000437
+            ],
+            [
+              -5.7863024490667261,
+              37.583264128693578
+            ],
+            [
+              -5.7863053809595284,
+              37.583263239313617
+            ],
+            [
+              -5.78630808300741,
+              37.583261795038936
+            ],
+            [
+              -5.7863104513721861,
+              37.58325985137219
+            ],
+            [
+              -5.7863123950389275,
+              37.583257483007415
+            ],
+            [
+              -5.7863138393136095,
+              37.583254780959535
+            ],
+            [
+              -5.7863147286935677,
+              37.583251849066734
+            ],
+            [
+              -5.7863150290004288,
+              37.583248800000007
+            ],
+            [
+              -5.7863147286935677,
+              37.58324575093328
+            ],
+            [
+              -5.7863138393136095,
+              37.583242819040478
+            ],
+            [
+              -5.7863123950389275,
+              37.5832401169926
+            ],
+            [
+              -5.7863104513721861,
+              37.583237748627823
+            ],
+            [
+              -5.78630808300741,
+              37.583235804961078
+            ],
+            [
+              -5.7863053809595284,
+              37.5832343606864
+            ],
+            [
+              -5.7863024490667261,
+              37.583233471306436
+            ],
+            [
+              -5.7862994,
+              37.583233170999577
+            ],
+            [
+              -5.7862963509332737,
+              37.583233471306436
+            ],
+            [
+              -5.7862934190404713,
+              37.5832343606864
+            ],
+            [
+              -5.78629071699259,
+              37.583235804961078
+            ],
+            [
+              -5.7862883486278136,
+              37.583237748627823
+            ],
+            [
+              -5.7862864049610723,
+              37.5832401169926
+            ],
+            [
+              -5.78628496068639,
+              37.583242819040478
+            ],
+            [
+              -5.7862840713064321,
+              37.58324575093328
+            ],
+            [
+              -5.7862837709995709,
+              37.583248800000007
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "tipo": "circle",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        },
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7862776,
+          37.5832672
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:19:06",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "A-8005, 41320 Cantillana (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.78631,
+          37.5832448
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:23:23",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "A-8005, 41320 Cantillana (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7863064,
+          37.5832416
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:23:27",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "A-8005, 41320 Cantillana (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.7863036,
+          37.5832416
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:23:28",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "0",
+        "_localizacion": "A-8005, 41320 Cantillana (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.8391556,
+          37.5550912
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:28:29",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "86",
+        "_localizacion": "A-8005, 41310 Brenes (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.8871504,
+          37.5127328
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:33:30",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "82",
+        "_localizacion": "A-8005, 41300 La Rinconada (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.9234924,
+          37.4778048
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:38:30",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "56",
+        "_localizacion": "A-8005, 41300 La Rinconada (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -5.9564616,
+          37.4477856
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:43:31",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "76",
+        "_localizacion": "A-8005, 41015 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.00027,
+          37.4251296
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:48:31",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "71",
+        "_localizacion": "Ronda Supernorte, 41970 Santiponce (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.0119928,
+          37.398528
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:53:31",
+        "_conductor": null,
+        "contacto": "Arrancado",
+        "velocidad": "30",
+        "_localizacion": "Avenida Carlos III, 41092 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL",
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.0114584,
+          37.391827199999994
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:58:24",
+        "_hasta": "14/04/2016 11:55:16",
+        "_numeroelementos": "8",
+        "_porcentaje": "75",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "",
+        "_localizacion": "Calle Inca Garcilaso, 41092 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -6.0112014420541628,
+              37.391827199999994
+            ],
+            [
+              -6.0112063794290407,
+              37.391877330008391
+            ],
+            [
+              -6.0112210018131247,
+              37.39192553354868
+            ],
+            [
+              -6.0112447472763968,
+              37.39196995818584
+            ],
+            [
+              -6.0112767032940191,
+              37.392008896705974
+            ],
+            [
+              -6.0113156418141553,
+              37.392040852723596
+            ],
+            [
+              -6.0113600664513136,
+              37.39206459818687
+            ],
+            [
+              -6.0114082699916027,
+              37.392079220570956
+            ],
+            [
+              -6.0114584,
+              37.392084157945831
+            ],
+            [
+              -6.0115085300083981,
+              37.392079220570956
+            ],
+            [
+              -6.0115567335486872,
+              37.39206459818687
+            ],
+            [
+              -6.0116011581858455,
+              37.392040852723596
+            ],
+            [
+              -6.0116400967059818,
+              37.392008896705974
+            ],
+            [
+              -6.0116720527236041,
+              37.39196995818584
+            ],
+            [
+              -6.0116957981868762,
+              37.39192553354868
+            ],
+            [
+              -6.01171042057096,
+              37.391877330008391
+            ],
+            [
+              -6.011715357945838,
+              37.391827199999994
+            ],
+            [
+              -6.01171042057096,
+              37.3917770699916
+            ],
+            [
+              -6.0116957981868762,
+              37.391728866451309
+            ],
+            [
+              -6.0116720527236041,
+              37.391684441814149
+            ],
+            [
+              -6.0116400967059818,
+              37.391645503294015
+            ],
+            [
+              -6.0116011581858455,
+              37.391613547276393
+            ],
+            [
+              -6.0115567335486872,
+              37.391589801813119
+            ],
+            [
+              -6.0115085300083981,
+              37.391575179429033
+            ],
+            [
+              -6.0114584,
+              37.391570242054158
+            ],
+            [
+              -6.0114082699916027,
+              37.391575179429033
+            ],
+            [
+              -6.0113600664513136,
+              37.391589801813119
+            ],
+            [
+              -6.0113156418141553,
+              37.391613547276393
+            ],
+            [
+              -6.0112767032940191,
+              37.391645503294015
+            ],
+            [
+              -6.0112447472763968,
+              37.391684441814149
+            ],
+            [
+              -6.0112210018131247,
+              37.391728866451309
+            ],
+            [
+              -6.0112063794290407,
+              37.3917770699916
+            ],
+            [
+              -6.0112014420541628,
+              37.391827199999994
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "tipo": "circle",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        },
+        "_lineString": [
+          "COMPACTADA"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.0116476,
+          37.3919808
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 07:58:24",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "",
+        "_localizacion": "Calle Inca Garcilaso, 41092 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.0112428,
+          37.3917888
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 08:23:32",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Inca Garcilaso, 41092 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.0113988,
+          37.3918368
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 08:41:19",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "0",
+        "_localizacion": "Calle Inca Garcilaso, 41092 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.011496,
+          37.3912384
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 09:11:20",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "4",
+        "_localizacion": "Calle Inca Garcilaso, 41092 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.0114792,
+          37.3917856
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 09:23:00",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "3",
+        "_localizacion": "Calle Inca Garcilaso, 41092 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.0112996,
+          37.3919968
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 09:53:01",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "1",
+        "_localizacion": "Calle Inca Garcilaso, 41092 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.0113836,
+          37.3920224
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 09:57:17",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "5",
+        "_localizacion": "Calle Inca Garcilaso, 41092 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.0117196,
+          37.391968
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_tipo": "point",
+        "_empresa": null,
+        "_vehiculo": "TOLEDO 1234-FDS",
+        "_idvehiculo": 1,
+        "fecha": "14/04/2016 11:55:16",
+        "_conductor": null,
+        "contacto": "Apagado",
+        "velocidad": "",
+        "_localizacion": "Calle Inca Garcilaso, 41092 Sevilla (Sevilla)",
+        "_poi": "",
+        "_lineString": [
+          "ORIGINAL"
+        ]
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            -5.7395164,
+            37.594016
+          ],
+          [
+            -5.7395132,
+            37.5940288
+          ],
+          [
+            -5.7395092,
+            37.5940064
+          ],
+          [
+            -5.7395144,
+            37.5939296
+          ],
+          [
+            -5.7395512,
+            37.5940096
+          ],
+          [
+            -5.7394776,
+            37.5939744
+          ],
+          [
+            -5.7394656,
+            37.594016
+          ],
+          [
+            -5.7395152,
+            37.5939488
+          ],
+          [
+            -5.7394776,
+            37.5938784
+          ],
+          [
+            -5.7394516,
+            37.5939072
+          ],
+          [
+            -5.7394756,
+            37.5939456
+          ],
+          [
+            -5.7394228,
+            37.5939232
+          ],
+          [
+            -5.7394296,
+            37.5938752
+          ],
+          [
+            -5.7393284,
+            37.5939264
+          ],
+          [
+            -5.7395264,
+            37.5939168
+          ],
+          [
+            -5.7394492,
+            37.5939136
+          ],
+          [
+            -5.7394716,
+            37.5939232
+          ],
+          [
+            -5.7395024,
+            37.5939392
+          ],
+          [
+            -5.7395092,
+            37.5939488
+          ],
+          [
+            -5.7394748,
+            37.5939264
+          ],
+          [
+            -5.73958,
+            37.5940032
+          ],
+          [
+            -5.7395888,
+            37.594016
+          ],
+          [
+            -5.7395544,
+            37.5940032
+          ],
+          [
+            -5.739652,
+            37.5939328
+          ],
+          [
+            -5.7395692,
+            37.5939648
+          ],
+          [
+            -5.7395716,
+            37.593904
+          ],
+          [
+            -5.7395444,
+            37.5939936
+          ],
+          [
+            -5.7395616,
+            37.5939872
+          ],
+          [
+            -5.7395616,
+            37.5939872
+          ],
+          [
+            -5.7395548,
+            37.593968
+          ],
+          [
+            -5.7397116,
+            37.5940896
+          ],
+          [
+            -5.7397064,
+            37.5940352
+          ],
+          [
+            -5.7396804,
+            37.5939904
+          ],
+          [
+            -5.7396592,
+            37.5940512
+          ],
+          [
+            -5.739662,
+            37.594032
+          ],
+          [
+            -5.7397036,
+            37.5940448
+          ],
+          [
+            -5.7397644,
+            37.5938944
+          ],
+          [
+            -5.7397016,
+            37.5939968
+          ],
+          [
+            -5.7396496,
+            37.5939232
+          ],
+          [
+            -5.7396556,
+            37.5939168
+          ],
+          [
+            -5.7395824,
+            37.594064
+          ],
+          [
+            -5.7396868,
+            37.5939744
+          ],
+          [
+            -5.7396404,
+            37.5939584
+          ],
+          [
+            -5.7396068,
+            37.5940448
+          ],
+          [
+            -5.739596,
+            37.5939712
+          ],
+          [
+            -5.739684,
+            37.5939872
+          ],
+          [
+            -5.739616,
+            37.5940224
+          ],
+          [
+            -5.7396192,
+            37.593984
+          ],
+          [
+            -5.7397192,
+            37.5939488
+          ],
+          [
+            -5.739614,
+            37.5940224
+          ],
+          [
+            -5.7396348,
+            37.5940864
+          ],
+          [
+            -5.7396904,
+            37.5940448
+          ],
+          [
+            -5.739624,
+            37.5940288
+          ],
+          [
+            -5.7396296,
+            37.5939584
+          ],
+          [
+            -5.7396304,
+            37.5939584
+          ],
+          [
+            -5.739632,
+            37.593952
+          ],
+          [
+            -5.7396304,
+            37.593952
+          ],
+          [
+            -5.7561488,
+            37.5899808
+          ],
+          [
+            -5.7862776,
+            37.5832672
+          ],
+          [
+            -5.78631,
+            37.5832448
+          ],
+          [
+            -5.7863064,
+            37.5832416
+          ],
+          [
+            -5.7863036,
+            37.5832416
+          ],
+          [
+            -5.8391556,
+            37.5550912
+          ],
+          [
+            -5.8871504,
+            37.5127328
+          ],
+          [
+            -5.9234924,
+            37.4778048
+          ],
+          [
+            -5.9564616,
+            37.4477856
+          ],
+          [
+            -6.00027,
+            37.4251296
+          ],
+          [
+            -6.0119928,
+            37.398528
+          ],
+          [
+            -6.0116476,
+            37.3919808
+          ],
+          [
+            -6.0112428,
+            37.3917888
+          ],
+          [
+            -6.0113988,
+            37.3918368
+          ],
+          [
+            -6.011496,
+            37.3912384
+          ],
+          [
+            -6.0114792,
+            37.3917856
+          ],
+          [
+            -6.0112996,
+            37.3919968
+          ],
+          [
+            -6.0113836,
+            37.3920224
+          ],
+          [
+            -6.0117196,
+            37.391968
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "tipo": "line",
+        "_type": "ORIGINAL",
+        "_style": {
+          "line": {
+            "color": "rgba(104, 77,131, 0.9)",
+            "width": 4
+          }
+        }
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            -5.7395798456140366,
+            37.593976252631563
+          ],
+          [
+            -5.7561488,
+            37.5899808
+          ],
+          [
+            -5.7862994,
+            37.583248800000007
+          ],
+          [
+            -5.8391556,
+            37.5550912
+          ],
+          [
+            -5.8871504,
+            37.5127328
+          ],
+          [
+            -5.9234924,
+            37.4778048
+          ],
+          [
+            -5.9564616,
+            37.4477856
+          ],
+          [
+            -6.00027,
+            37.4251296
+          ],
+          [
+            -6.0119928,
+            37.398528
+          ],
+          [
+            -6.0114584,
+            37.391827199999994
+          ]
+        ],
+        "type": "LineString"
+      },
+      "properties": {
+        "tipo": "line",
+        "_type": "COMPACTADA",
+        "_style": {
+          "line": {
+            "color": "rgba(77 ,104,131, 0.9)",
+            "width": 4
+          }
+        }
+      },
+      "type": "Feature"
+    }
+  ],
+  "type": "FeatureCollection"
+}
