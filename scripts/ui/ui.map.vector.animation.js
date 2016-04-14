@@ -9,11 +9,12 @@ UI = window.UI || {};
 UI.MapVectorAnimation = (function (mapUtils, config) {
 
     var _animating = false;
-    var _speed = 1600; //
+    var _speed = 900; //
     var _coordinates;
     var _map;
     var _currentLayer;
     var _currenIndex = -1;
+    var _element;
     function getGeoMarker() {
        return  new ol.Feature({
             type: 'geoMarker',
@@ -67,7 +68,16 @@ UI.MapVectorAnimation = (function (mapUtils, config) {
 
                _currentLayer.getSource().forEachFeatureInExtent(feature.getGeometry().getExtent(), function(f) {
                  if( f.getGeometry().getType() == "Point")
+
                     UI.Feature.displayFeatureInfo(f,_map)
+                    if(f.get('_rotation'))
+                    {
+                       // console.log(f.get('_rotation'))
+                        //_map.getView().setRotation(f.get('_rotation'));
+                    }
+
+
+
                 });
 
 
@@ -85,13 +95,16 @@ UI.MapVectorAnimation = (function (mapUtils, config) {
         _map.render();
     };
 
-    function startAnimation(coordinates,layer) {
+    function startAnimation(coordinates,layer,element) {
+        var previousM = 0;
+        var deltaMean = 500;
         _coordinates = coordinates;
         _map = mapUtils.getMap();
         _currentLayer = layer;
-
+        _element = element;
+        var ls = new ol.geom.LineString(_coordinates);
         if (_animating) {
-            stopAnimation(false);
+            stopAnimation(false,element);
         } else {
             _animating = true;
             now = new Date().getTime();
@@ -106,9 +119,22 @@ UI.MapVectorAnimation = (function (mapUtils, config) {
              _map.getView().fit(extent, _map.getSize(),{"maxZoom": 16});
 
             _map.on('postcompose', moveFeature);
+
             _map.render();
         }
     }
+
+    function getCenterWithHeading(position, rotation, resolution) {
+        var size = _map.getSize();
+        var height = size[1];
+
+        return [
+            position[0] - Math.sin(rotation) * height * resolution * 1 / 4,
+            position[1] + Math.cos(rotation) * height * resolution * 1 / 4
+        ];
+    }
+
+
     function stopAnimation(ended) {
         _animating = false;
 
@@ -120,6 +146,9 @@ UI.MapVectorAnimation = (function (mapUtils, config) {
         //remove listener
       //  _map.getView().setCenter(coord);
         _map.un('postcompose', moveFeature);
+        _element.find("i").removeClass("fa-stop")
+        _element.find("i").addClass("fa-play")
+
     }
 
     return {

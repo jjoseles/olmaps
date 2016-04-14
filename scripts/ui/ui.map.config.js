@@ -35,6 +35,20 @@ UI.MapConfig = (function () {
         })
     });
 
+    var _hideStroke = new ol.style.Stroke({
+        color: "rgba(0,0,0,0)",
+        width: 0
+    });
+
+    var _hideFill =  new ol.style.Fill({
+        color: "rgba(0,0,0,0)"
+
+    });
+
+
+
+
+
     var _layerType = {
         ROUTE: 'ROUTE',
         POINT: 'POINT'
@@ -62,7 +76,9 @@ UI.MapConfig = (function () {
         hideLinesStyle: _hideLinesStyle,
         hidePointsStyle: _hidePointsStyle,
         hideImageStyle: _hideImageStyle,
-        rutaIconos : _rutaIconos
+        rutaIconos : _rutaIconos,
+        hideFill : _hideFill,
+        hideStroke: _hideStroke
 
     }
 })();

@@ -113,6 +113,25 @@ UI.MapVector = (function (mapUtils, config) {
                                         style.getImage().setOpacity(0)
                                 }
 
+                                if (currentZoom >= zoomToShowLabels) {
+
+                                    if (style.getText() != null)
+                                    {
+
+                                        style.getText().getStroke().setColor('rgba(0,0,0,1)')
+                                    }
+
+                                } else {
+
+                                    if (style.getText() != null)
+                                    {
+                                        style.getText().getStroke().setWidth(0)
+                                        style.getText().getStroke().setColor('rgba(0,0,0,0)')
+                                    }
+
+                                }
+
+
                                 //invisible si no se muestran puntos
 
                                 if (lyr.get('showPoints') == false)
@@ -134,7 +153,7 @@ UI.MapVector = (function (mapUtils, config) {
      * @desc Functión de estilo para las features de la capas de tipo POINT
      **/
     var LayerStyleFunctionForRouteLayers = function (feature) {
-
+        var layer = getVectorLayerByProperty("code",feature.get("_layerCode"))
         if (feature) {
             if (feature.get("_style")) {
                 if (feature.getGeometry().getType() == "LineString") {
@@ -162,6 +181,7 @@ UI.MapVector = (function (mapUtils, config) {
 
                         var jsonStyle = feature.get("_style");
                         if (jsonStyle.circle) {
+
                             var style = new ol.style.Style({
                                 image: new ol.style.Circle({
                                     radius: jsonStyle.circle.radius,
@@ -173,6 +193,18 @@ UI.MapVector = (function (mapUtils, config) {
                                         color: jsonStyle.circle.stroke.color,
                                         width: jsonStyle.circle.stroke.width
                                     }),
+
+
+
+                                }),
+                                text: new ol.style.Text({
+                                    fill: new ol.style.Fill({color: '#3C5C66'}),
+                                    stroke: new ol.style.Stroke({color: "#fff", width: 1}),
+                                    font: "bold 11px Open Sans",
+                                    textAlign: 'center',
+                                    textBaseline: 'bottom',
+                                    offsetX: 40,
+                                    offsetY: 10,
 
                                 }),
                             });
@@ -188,7 +220,17 @@ UI.MapVector = (function (mapUtils, config) {
                                         width: jsonStyle.circle.stroke.width
                                     }),
 
-                                })
+                                }),
+                                text: new ol.style.Text({
+                                    fill: new ol.style.Fill({color: '#3C5C66'}),
+                                    stroke: new ol.style.Stroke({color: "#fff", width: 1}),
+                                    font: "bold 11px Open Sans",
+                                    textAlign: 'center',
+                                    textBaseline: 'bottom',
+                                    offsetX: 40,
+                                    offsetY: 10,
+
+                                }),
                             });
                             feature.set("_defaultStyle", style);
                             feature.set("_interactionStyle", styleSelect);
@@ -239,11 +281,12 @@ UI.MapVector = (function (mapUtils, config) {
             }
 
             if (feature.getGeometry().getType() == "Point") {
+
                 return feature.get("_defaultStyle");
 
             }
             //var layer = feature.getLayer(UI.Map.getMap());
-            var layer = getVectorLayerByProperty("code",feature.get("_layerCode"))
+
             feature.set("_defaultStyle", layer.get('defaultStyle'));
             feature.set("_interactionStyle", layer.get('styleSelectInteraction'));
             return layer.get('defaultStyle')
@@ -387,7 +430,7 @@ UI.MapVector = (function (mapUtils, config) {
 
 
 
-
+        var layer = getVectorLayerByProperty("code",layerName);
 
         var lineStringFeatures = features.filter(function (f) {
             return f.getGeometry().getType() == "LineString";
@@ -414,6 +457,10 @@ UI.MapVector = (function (mapUtils, config) {
                     if (feats.length > 0) {
 
                         if(!feats[0].get("_style")) {
+                            var htmlText = "";
+                            layer.get("propertiesShowInLabels").forEach(function (text, idx, a) {
+                                htmlText +=  feats[0].get(text) + "\n";
+                            });
 
                             var featStyle = new ol.style.Style(
                                 {
@@ -426,13 +473,14 @@ UI.MapVector = (function (mapUtils, config) {
                                         opacity: 0
                                     }),
                                     text: new ol.style.Text({
-                                        fill: new ol.style.Fill({color: '#123963'}),
-                                        stroke: new ol.style.Stroke({color: "#fff", width: 1}),
+                                        fill: config.hideFill,
+                                        stroke:config.hideStroke,
                                         font: "12px Arial",
                                         textAlign: 'center',
                                         textBaseline: 'bottom',
                                         offsetX: 40,
-                                        offsetY: 10
+                                        offsetY: 10,
+                                        text: htmlText
                                     }),
                                 });
                             var featInteracionStyle =
@@ -447,19 +495,22 @@ UI.MapVector = (function (mapUtils, config) {
 
                                         }),
                                         text: new ol.style.Text({
-                                            fill: new ol.style.Fill({color: '#123963'}),
-                                            stroke: new ol.style.Stroke({color: "#fff", width: 1}),
+                                            fill: config.hideFill,
+                                            stroke:config.hideStroke,
                                             font: "12px Arial",
                                             textAlign: 'center',
                                             textBaseline: 'bottom',
                                             offsetX: 40,
-                                            offsetY: 10
+                                            offsetY: 10,
+                                            text: htmlText
                                         }),
 
                                     });
+
                             feats[0].setStyle(featStyle);
                             feats[0].set("_defaultStyle", featStyle);
                             feats[0].set("_interactionStyle", featInteracionStyle);
+                            feats[0].set("_rotation", -rotation)
                         }
                         else{
                             //No metemos arrow si viene estilo en el geoJson
@@ -738,8 +789,9 @@ UI.MapVector = (function (mapUtils, config) {
                     $(this).attr('data-type', "stop");
                     $(this).find("i").removeClass("fa-play")
                     $(this).find("i").addClass("fa-stop")
+                    var element =  $(this);
                     var coordinates = lineString[0].getGeometry().getCoordinates();
-                    UI.MapVectorAnimation.startAnimation(coordinates, layer);
+                    UI.MapVectorAnimation.startAnimation(coordinates, layer,element);
                 }
 
             }

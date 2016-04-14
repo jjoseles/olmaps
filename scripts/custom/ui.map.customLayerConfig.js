@@ -12,7 +12,7 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
                 'title': '',
                 'code': '',
                 'type': UI.MapConfig.layerType.ROUTE,
-              /*  'style': new ol.style.Style({
+               'style': new ol.style.Style({
                     image: new ol.style.Circle({
                         radius: 5,
                         fill: new ol.style.Fill({
@@ -68,7 +68,7 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
                         offsetX: 40,
                         offsetY: 10
                     })
-                }), */
+                }),
                 'showFeatureOverlayCallback': customOverlays.openPopoverSituacion,
 
                 'visibleInSwitcher': true,
