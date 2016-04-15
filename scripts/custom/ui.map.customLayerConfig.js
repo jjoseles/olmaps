@@ -77,7 +77,7 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
                 'showListInfoButton': true,
 
                 'zoomToShowPoints': 15,
-                'zoomToShowLabels': 19,
+                'zoomToShowLabels': 22,
                 'pointOverlayZoom': 19,
                 'showPoints': true,
                 'showLabels': true,

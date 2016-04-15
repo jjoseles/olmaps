@@ -12,21 +12,47 @@ UI.Overlay = (function (mapUtils) {
      * @private
      * @desc Crea un overlay para visualizar el popover
      **/
-    function createTooltipOverlay(code) {
-        var element = document.createElement('div');
-        $(element).addClass(code + "-tooltip-point-info");
-        $(element).addClass("tooltip-point-info");
-        //  marker
-        var marker = new ol.Overlay({
+    function createTooltipOverlay(feat) {
 
-            positioning: 'top-left',
-            element: element,
-            stopEvent: false
-        });
+        var existElement = $("#" + feat.getId() + ".tooltip-point-info.tooltip-static").length > 0;
+        if(!existElement) {
+            var element = document.createElement('div');
+            $(element).attr("id", feat.getId());
+            $(element).addClass("tooltip-point-info tooltip-static");
 
-        mapUtils.getMap().addOverlay(marker);
+            var simpleInfoHtml = "";
+            UI.MapVector.getVectorLayerByProperty('code',  feat.get('_layerCode')).get('propertiesShowInLabels').forEach(function (prop) {
+                simpleInfoHtml += feat.get(prop) + "<br/>"
+            });
 
-      return marker;
+            element.innerHTML = simpleInfoHtml;
+            //  marker
+            var marker = new ol.Overlay({
+                id:feat.getId(),
+                element: element,
+                offset: [0, -15],
+                positioning: 'bottom-center',
+                position: feat.getGeometry().getCoordinates()
+            });
+            mapUtils.getMap().addOverlay(marker);
+        }
+
+
+        return marker;
+
+
+    }
+    /**
+     * @private
+     * @desc Borra todos los tooltips de una capa
+     **/
+    function removeTooltipOverlay(feat)
+    {
+        var map = mapUtils.getMap();
+        var overlay = map.getOverlayById(feat.getId());
+        if(overlay)
+            map.removeOverlay(overlay);
+        map.render();
     }
     /**
      * @private
@@ -91,9 +117,10 @@ UI.Overlay = (function (mapUtils) {
 
 
     return {
-        addOverlayPoint: addOverlayPoint,
+      //  addOverlayPoint: addOverlayPoint,
 
         createBaseOverlay:createBaseOverlay,
-        createTooltipOverlay:createTooltipOverlay
+        createTooltipOverlay:createTooltipOverlay,
+        removeTooltipOverlay: removeTooltipOverlay
     }
 })(UI.Map);

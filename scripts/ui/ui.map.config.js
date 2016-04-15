@@ -37,11 +37,11 @@ UI.MapConfig = (function () {
 
     var _hideStroke = new ol.style.Stroke({
         color: "rgba(0,0,0,0)",
-        width: 0
+        width: 1
     });
 
     var _hideFill =  new ol.style.Fill({
-        color: "rgba(0,0,0,0)"
+        color: "rgba(255,255,255,0)"
 
     });
 

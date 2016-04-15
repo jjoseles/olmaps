@@ -32,11 +32,11 @@ UI.MapVector = (function (mapUtils, config) {
             text: new ol.style.Text({
                 fill: new ol.style.Fill({color: '#123963'}),
                 stroke: new ol.style.Stroke({color: "#fff", width: 1}),
-                font: "12px Arial",
-                textAlign: 'center',
-                textBaseline: 'bottom',
-                offsetX: 40,
-                offsetY: 10
+                font: "11px Verdana",
+                textAlign: 'start',
+                textBaseline: 'middle',
+                offsetX: 20,
+                offsetY: 0,
             }),
             stroke: new ol.style.Stroke({
                 width: 3,
@@ -68,11 +68,11 @@ UI.MapVector = (function (mapUtils, config) {
             text: new ol.style.Text({
                 fill: new ol.style.Fill({color: '#123963'}),
                 stroke: new ol.style.Stroke({color: "#fff", width: 1}),
-                font: "12px Arial",
-                textAlign: 'center',
-                textBaseline: 'bottom',
-                offsetX: 40,
-                offsetY: 10
+                font: "11px Verdana",
+                textAlign: 'start',
+                textBaseline: 'middle',
+                offsetX: 20,
+                offsetY: 0,
             }),
             //Color de las líneas
             stroke: new ol.style.Stroke({
@@ -115,19 +115,12 @@ UI.MapVector = (function (mapUtils, config) {
 
                                 if (currentZoom >= zoomToShowLabels) {
 
-                                    if (style.getText() != null)
-                                    {
+                                    UI.Feature.displayFeatureTooltipInfo(feature);
 
-                                        style.getText().getStroke().setColor('rgba(0,0,0,1)')
-                                    }
 
                                 } else {
 
-                                    if (style.getText() != null)
-                                    {
-                                        style.getText().getStroke().setWidth(0)
-                                        style.getText().getStroke().setColor('rgba(0,0,0,0)')
-                                    }
+                                    UI.Feature.removeFeatureTooltipInfo(feature);
 
                                 }
 
@@ -413,7 +406,7 @@ UI.MapVector = (function (mapUtils, config) {
         features.forEach(function (feat, idx, a) {
 
             feat.set("_layerCode", layerName);
-            feat.setId(Math.random() + 1);
+            feat.setId(UI.MapUtils.createUUID());
             feat.set("_isVisible", true);
             temFeatures.push(feat)
         });
@@ -460,6 +453,7 @@ UI.MapVector = (function (mapUtils, config) {
                             var htmlText = "";
                             layer.get("propertiesShowInLabels").forEach(function (text, idx, a) {
                                 htmlText +=  feats[0].get(text) + "\n";
+
                             });
 
                             var featStyle = new ol.style.Style(
@@ -475,11 +469,11 @@ UI.MapVector = (function (mapUtils, config) {
                                     text: new ol.style.Text({
                                         fill: config.hideFill,
                                         stroke:config.hideStroke,
-                                        font: "12px Arial",
-                                        textAlign: 'center',
-                                        textBaseline: 'bottom',
-                                        offsetX: 40,
-                                        offsetY: 10,
+                                        font: "11px Verdana",
+                                        textAlign: 'start',
+                                        textBaseline: 'middle',
+                                        offsetX: 20,
+                                        offsetY: 0,
                                         text: htmlText
                                     }),
                                 });
@@ -497,11 +491,11 @@ UI.MapVector = (function (mapUtils, config) {
                                         text: new ol.style.Text({
                                             fill: config.hideFill,
                                             stroke:config.hideStroke,
-                                            font: "12px Arial",
-                                            textAlign: 'center',
-                                            textBaseline: 'bottom',
-                                            offsetX: 40,
-                                            offsetY: 10,
+                                            font: "11px Verdana",
+                                            textAlign: 'start',
+                                            textBaseline: 'middle',
+                                            offsetX: 20,
+                                            offsetY: 0,
                                             text: htmlText
                                         }),
 

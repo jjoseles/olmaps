@@ -72,34 +72,17 @@ UI.Feature = (function (mapUtils) {
         }
     }
 
-    function displayFeatureTooltipInfo(layer) {
-        var source = layer.getSource();
-        var features = source.getFeatures();
+    function displayFeatureTooltipInfo(feat) {
 
+            if (feat.getGeometry().getType() == "Point") {
+                UI.Overlay.createTooltipOverlay(feat);
 
-        features.forEach(function (feat) {
-            var simpleInfoHtml = "";
-            layer.get('propertiesShowInSimpleInfo').forEach(function (prop) {
-                simpleInfoHtml += feat.get(prop)
-            });
-            var overlayTooltip = UI.Overlay.createTooltipOverlay(layer.get('code'));
-            if (overlayTooltip) {
-                var element = overlayTooltip.getElement();
-                if (feat.getGeometry().getType() == "Point")
-
-                    coordinate = feat.getGeometry().getCoordinates();
-                overlayTooltip.setPosition(coordinate);
-
-                // the keys are quoted to prevent renaming in ADVANCED mode.
-                $(element).popover({
-                    'placement': 'bottom',
-                    'animation': false,
-                    'html': true,
-                    'content': simpleInfoHtml
-                }).popover('show');
             }
-        });
 
+    }
+
+    function removeFeatureTooltipInfo(feat) {
+        UI.Overlay.removeTooltipOverlay(feat)
     }
 
     function displayFeatureInfo(feature,  map, pixelCoordinates) {
@@ -144,6 +127,7 @@ UI.Feature = (function (mapUtils) {
 
         displayFeatureInfo: displayFeatureInfo,
         showHidePointer: showHidePointer,
-        displayFeatureTooltipInfo: displayFeatureTooltipInfo
+        displayFeatureTooltipInfo: displayFeatureTooltipInfo,
+        removeFeatureTooltipInfo: removeFeatureTooltipInfo
     }
 })(UI.Map);
