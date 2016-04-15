@@ -1042,7 +1042,7 @@ UI.MapVector = (function (mapUtils, config) {
 
         if (typeof layerOptions.showFeaturesInfoCallback !== 'undefined')
             returnLayerOptions.showFeaturesInfoCallback = layerOptions.showFeaturesInfoCallback;
-        else
+
         //style
         if (typeof layerOptions.propertiesShowInLabels !== 'undefined')
             returnLayerOptions.propertiesShowInLabels = layerOptions.propertiesShowInLabels;

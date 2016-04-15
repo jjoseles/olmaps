@@ -426,5 +426,5 @@
     left: 50%;
 }
 .tooltip-static:before {
-    border-top-color: #ffcc33;
+    border-top-color: rgba(0, 0, 0, 0);;
 }
