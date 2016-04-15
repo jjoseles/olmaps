@@ -68,6 +68,8 @@ UI.MapConfig = (function () {
 
     var _rutaIconos = 'img/';
     var _resolutionInZeroZoom = '156543.03392804097';
+
+    var _maxPointInExtentForShowLabels = 100;
     return {
         layerType: _layerType,
         internalLayerType: _internalLayerType,
@@ -78,7 +80,8 @@ UI.MapConfig = (function () {
         hideImageStyle: _hideImageStyle,
         rutaIconos : _rutaIconos,
         hideFill : _hideFill,
-        hideStroke: _hideStroke
+        hideStroke: _hideStroke,
+        maxPointInExtentForShowLabels: _maxPointInExtentForShowLabels
 
     }
 })();

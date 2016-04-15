@@ -96,10 +96,12 @@ UI.MapVector = (function (mapUtils, config) {
 
             if(lyr.getSource())
             {
+                var featuresinExtent = lyr.getSource().getFeaturesInExtent(viewExtent).length;
                 lyr.getSource().forEachFeatureInExtent(viewExtent, function (feature) {
                     if (feature.getGeometry().getType() == "Point") {
                         var style = null;
                         style = feature.getStyle();
+
                         if(!feature.get("_style")) {
                             if (style) {
 
@@ -113,16 +115,7 @@ UI.MapVector = (function (mapUtils, config) {
                                         style.getImage().setOpacity(0)
                                 }
 
-                                if (currentZoom >= zoomToShowLabels) {
 
-                                    UI.Feature.displayFeatureTooltipInfo(feature);
-
-
-                                } else {
-
-                                    UI.Feature.removeFeatureTooltipInfo(feature);
-
-                                }
 
 
                                 //invisible si no se muestran puntos
@@ -130,6 +123,18 @@ UI.MapVector = (function (mapUtils, config) {
                                 if (lyr.get('showPoints') == false)
                                     style.getImage().setOpacity(0);
 
+                            }
+                            if(lyr.get('showLabels') ) {
+                                if (currentZoom >= zoomToShowLabels) {
+                                    if(featuresinExtent <= lyr.get('maxPointInExtentForShowLabels'))
+                                        UI.Feature.displayFeatureTooltipInfo(feature);
+                                    else UI.Feature.removeFeatureTooltipInfo(feature);
+
+                                } else {
+
+                                    UI.Feature.removeFeatureTooltipInfo(feature);
+
+                                }
                             }
                         }
                     }
@@ -397,7 +402,7 @@ UI.MapVector = (function (mapUtils, config) {
      * @public
      * @desc Private, añade estilos por defecto a las features
      **/
-    function AddSomeFeatureProperties(features, layerName) {
+    function AddSomeFeatureProperties(features, layerName,style,styleSelectInteraction) {
 
         //var layer = getVectorLayerByProperty("code", layerName);
         //  var layerStyle = layer.get('defaultStyle')
@@ -408,6 +413,8 @@ UI.MapVector = (function (mapUtils, config) {
             feat.set("_layerCode", layerName);
             feat.setId(UI.MapUtils.createUUID());
             feat.set("_isVisible", true);
+            feat.set("_defaultStyle", style)
+            feat.set("_styleSelectInteraction", styleSelectInteraction)
             temFeatures.push(feat)
         });
 
@@ -875,8 +882,9 @@ UI.MapVector = (function (mapUtils, config) {
             originalFeatures.forEach(function (feat, idx, a) {
                 //console.log(feat)
                 feat.setStyle(GetStyleHiddenVisibleForFeature(feat,visible))
+                UI.Feature.removeFeatureTooltipInfo(feat)
             });
-
+            UI.MapVector.showPointsInChangeResolution(mapUtils.getMap().getView().getZoom(), mapUtils.getMap().getView().calculateExtent(mapUtils.getMap().getSize()));
 
 
         });
@@ -1001,7 +1009,8 @@ UI.MapVector = (function (mapUtils, config) {
             'pointOverlayZoom': undefined,
             'showPoints': true,
             'showLabels': true,
-            'fitExtenxAfterLoad': false
+            'fitExtenxAfterLoad': false,
+            'maxPointInExtentForShowLabels': config.maxPointInExtentForShowLabels
 
         };
 
@@ -1057,6 +1066,11 @@ UI.MapVector = (function (mapUtils, config) {
         //zoomToShowLabels
         if (typeof layerOptions.zoomToShowLabels !== 'undefined')
             returnLayerOptions.zoomToShowLabels = layerOptions.zoomToShowLabels;
+
+        //zoomToShowLabels
+        if (typeof layerOptions.maxPointInExtentForShowLabels !== 'undefined')
+            returnLayerOptions.maxPointInExtentForShowLabels = layerOptions.maxPointInExtentForShowLabels;
+
         //pointOverlayZoom
         if (typeof layerOptions.pointOverlayZoom !== 'undefined')
             returnLayerOptions.pointOverlayZoom = layerOptions.pointOverlayZoom;
@@ -1074,7 +1088,7 @@ UI.MapVector = (function (mapUtils, config) {
         return returnLayerOptions;
     }
 
-    function getSource(url,code,type,pointOverlayZoom,fitExtenxAfterLoad)
+    function getSource(url,code,type,pointOverlayZoom,fitExtenxAfterLoad,style,styleSelectInteraction)
     {
 
         var source = new ol.source.Vector({
@@ -1086,7 +1100,7 @@ UI.MapVector = (function (mapUtils, config) {
 
 
                 //Añade id y nombre de la capa a las features
-                tempFeatures = AddSomeFeatureProperties(tempFeatures, code);
+                tempFeatures = AddSomeFeatureProperties(tempFeatures, code,style,styleSelectInteraction);
 
                 //Sólo capas de ruta
 
@@ -1130,7 +1144,7 @@ UI.MapVector = (function (mapUtils, config) {
             CreateInfoDetailContainer(paramOptions.code);
 
 
-            var source = getSource(options.url,options.code,options.type,options.pointOverlayZoom,options.fitExtenxAfterLoad);
+            var source = getSource(options.url,options.code,options.type,options.pointOverlayZoom,options.fitExtenxAfterLoad,options.style,options.styleSelectInteraction);
             //Elemento base para el overlay sobre las features
 
             var overlayFeatureInfo = UI.Overlay.createBaseOverlay(options.code);
@@ -1156,6 +1170,7 @@ UI.MapVector = (function (mapUtils, config) {
                 'showFeaturesInfoCallback': options.showFeaturesInfoCallback,
                 'showFeatureOverlayCallback': options.showFeatureOverlayCallback,
                 'propertiesShowInLabels': options.propertiesShowInLabels,
+                'maxPointInExtentForShowLabels': options.maxPointInExtentForShowLabels,
                 'showLabels': options.showLabels,
                 'showPoints': options.showPoints,
                 'zoomToShowPoints': options.zoomToShowPoints,

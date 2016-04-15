@@ -82,7 +82,8 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
                 'showPoints': true,
                 'showLabels': true,
                 'fitExtenxAfterLoad': true,
-                'loadInInit' : true
+                'loadInInit' : true,
+                'maxPointInExtentForShowLabels': 10
 
             }
         },
@@ -157,17 +158,18 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
                 'showFeatureOverlayCallback': customOverlays.openPopoverPosicionCiudades,
 
                 'visibleInSwitcher': true,
-                'propertiesShowInLabels': ['CITY_NAME'],
+                'propertiesShowInLabels': ['nombre'],
 
                 'showListInfoButton': true,
 
                 'zoomToShowPoints': 5,
-                'zoomToShowLabels': 19,
+                'zoomToShowLabels': 12,
                 'pointOverlayZoom': 8,
                 'showPoints': true,
-                'showLabels': false,
+                'showLabels': true,
                 'fitExtenxAfterLoad': false,
-                'loadInInit' : true
+                'loadInInit' : true,
+                'maxPointInExtentForShowLabels': 50
 
             }
         },
@@ -242,17 +244,18 @@ UI.CustomLayerConfig = (function (customOverlays, config) {
                 'showFeatureOverlayCallback': customOverlays.openPopoverPosicionCiudades,
 
                 'visibleInSwitcher': true,
-                'propertiesShowInLabels': ['CITY_NAME'],
+                'propertiesShowInLabels': ['nombre'],
 
                 'showListInfoButton': true,
                 //Aparecem siempre
                 'zoomToShowPoints': 0,
-                'zoomToShowLabels': 0,
+                'zoomToShowLabels': 12,
                 'pointOverlayZoom': 8,
                 'showPoints': true,
                 'showLabels': true,
                 'fitExtenxAfterLoad': true,
-                'loadInInit' : false
+                'loadInInit' : false,
+                'maxPointInExtentForShowLabels': 50
 
             }
         }

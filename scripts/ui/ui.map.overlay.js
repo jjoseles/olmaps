@@ -21,20 +21,49 @@ UI.Overlay = (function (mapUtils) {
             $(element).addClass("tooltip-point-info tooltip-static");
 
             var simpleInfoHtml = "";
-            UI.MapVector.getVectorLayerByProperty('code',  feat.get('_layerCode')).get('propertiesShowInLabels').forEach(function (prop) {
+            var layer = UI.MapVector.getVectorLayerByProperty('code',  feat.get('_layerCode'));
+
+            layer.get('propertiesShowInLabels').forEach(function (prop) {
                 simpleInfoHtml += feat.get(prop) + "<br/>"
             });
+            var addOverlay = true;
+            var color = "";
 
-            element.innerHTML = simpleInfoHtml;
-            //  marker
-            var marker = new ol.Overlay({
-                id:feat.getId(),
-                element: element,
-                offset: [0, -15],
-                positioning: 'bottom-center',
-                position: feat.getGeometry().getCoordinates()
-            });
-            mapUtils.getMap().addOverlay(marker);
+                if(feat.getStyle()!=null)
+                {
+                    if(feat.getStyle().getImage() instanceof ol.style.Icon) {
+                        color = layer.get("defaultStyle").getStroke().getColor();
+
+                    }
+                    else    color = feat.getStyle().getImage().getFill().getColor();
+                } else if( feat.get("_defaultStyle") !=null)
+                {
+                    if(feat.get("_defaultStyle").getImage() instanceof ol.style.Icon)
+                    {
+                        color = layer.get("defaultStyle").getStroke().getColor();
+
+                    }
+
+                    else  color = feat.get("_defaultStyle").getImage().getFill().getColor();
+
+
+                }else {
+                    layer.get("defaultStyle").getImage().getFill().getColor();
+                }
+            if (color == "rgba(0,0,0,0)") addOverlay = false;
+            if(addOverlay) {
+                $(element).attr("style", " background-color:" + color)
+                element.innerHTML = simpleInfoHtml;
+                //  marker
+                var marker = new ol.Overlay({
+                    id: feat.getId(),
+                    element: element,
+                    offset: [0, -15],
+                    positioning: 'bottom-center',
+                    position: feat.getGeometry().getCoordinates()
+                });
+                mapUtils.getMap().addOverlay(marker);
+            }
         }
 
 
