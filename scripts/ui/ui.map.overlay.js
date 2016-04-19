@@ -26,6 +26,8 @@ UI.Overlay = (function (mapUtils) {
             layer.get('propertiesShowInLabels').forEach(function (prop) {
                 simpleInfoHtml += feat.get(prop) + "<br/>"
             });
+
+            simpleInfoHtmlDivider = UI.MapUtils.stringDivider(simpleInfoHtml, 25, '<br/>')
             var addOverlay = true;
             var color = "";
 
@@ -48,12 +50,12 @@ UI.Overlay = (function (mapUtils) {
 
 
                 }else {
-                    layer.get("defaultStyle").getImage().getFill().getColor();
+                    color = layer.get("defaultStyle").getImage().getFill().getColor();
                 }
             if (color == "rgba(0,0,0,0)") addOverlay = false;
             if(addOverlay) {
                 $(element).attr("style", " background-color:" + color)
-                element.innerHTML = simpleInfoHtml;
+                element.innerHTML = simpleInfoHtmlDivider;
                 //  marker
                 var marker = new ol.Overlay({
                     id: feat.getId(),

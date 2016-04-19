@@ -91,56 +91,55 @@ UI.MapVector = (function (mapUtils, config) {
 
         getVectorLayers().forEach(function (lyr, idx, a) {
 
-            var zoomToShowPoints = lyr.get('zoomToShowPoints');
-            var zoomToShowLabels = lyr.get('zoomToShowLabels');
+            if(lyr.getVisible()) {
 
-            if(lyr.getSource())
-            {
-                var featuresinExtent = lyr.getSource().getFeaturesInExtent(viewExtent).length;
-                lyr.getSource().forEachFeatureInExtent(viewExtent, function (feature) {
-                    if (feature.getGeometry().getType() == "Point") {
-                        var style = null;
-                        style = feature.getStyle();
+                var zoomToShowPoints = lyr.get('zoomToShowPoints');
+                var zoomToShowLabels = lyr.get('zoomToShowLabels');
 
-                        if(!feature.get("_style")) {
-                            if (style) {
+                if (lyr.getSource()) {
+                    var featuresinExtent = lyr.getSource().getFeaturesInExtent(viewExtent).length;
+                    lyr.getSource().forEachFeatureInExtent(viewExtent, function (feature) {
+                        if (feature.getGeometry().getType() == "Point") {
+                            var style = null;
+                            style = feature.getStyle();
 
-                                if (currentZoom >= zoomToShowPoints) {
+                            if (!feature.get("_style")) {
+                                if (style) {
 
-                                    if (style.getImage() != null)
-                                        style.getImage().setOpacity(1)
-                                } else {
+                                    if (currentZoom >= zoomToShowPoints) {
 
-                                    if (style.getImage() != null)
-                                        style.getImage().setOpacity(0)
+                                        if (style.getImage() != null)
+                                            style.getImage().setOpacity(1)
+                                    } else {
+
+                                        if (style.getImage() != null)
+                                            style.getImage().setOpacity(0)
+                                    }
+
+
+                                    //invisible si no se muestran puntos
+
+                                    if (lyr.get('showPoints') == false)
+                                        style.getImage().setOpacity(0);
+
                                 }
+                                if (lyr.get('showLabels')) {
+                                    if (currentZoom >= zoomToShowLabels) {
+                                        if (featuresinExtent <= lyr.get('maxPointInExtentForShowLabels'))
+                                            UI.Feature.displayFeatureTooltipInfo(feature);
+                                        else UI.Feature.removeFeatureTooltipInfo(feature);
 
+                                    } else {
 
+                                        UI.Feature.removeFeatureTooltipInfo(feature);
 
-
-                                //invisible si no se muestran puntos
-
-                                if (lyr.get('showPoints') == false)
-                                    style.getImage().setOpacity(0);
-
-                            }
-                            if(lyr.get('showLabels') ) {
-                                if (currentZoom >= zoomToShowLabels) {
-                                    if(featuresinExtent <= lyr.get('maxPointInExtentForShowLabels'))
-                                        UI.Feature.displayFeatureTooltipInfo(feature);
-                                    else UI.Feature.removeFeatureTooltipInfo(feature);
-
-                                } else {
-
-                                    UI.Feature.removeFeatureTooltipInfo(feature);
-
+                                    }
                                 }
                             }
                         }
-                    }
-                });
+                    });
+                }
             }
-
 
         });
         mapUtils.getMap().renderSync();
@@ -151,8 +150,9 @@ UI.MapVector = (function (mapUtils, config) {
      * @desc Functión de estilo para las features de la capas de tipo POINT
      **/
     var LayerStyleFunctionForRouteLayers = function (feature) {
-        var layer = getVectorLayerByProperty("code",feature.get("_layerCode"))
+
         if (feature) {
+            var layer = getVectorLayerByProperty("code",feature.get("_layerCode"))
             if (feature.get("_style")) {
                 if (feature.getGeometry().getType() == "LineString") {
                     var jsonStyle = feature.get("_style");
@@ -739,7 +739,44 @@ UI.MapVector = (function (mapUtils, config) {
 
     }
 
+    function removeTooltipsLabels(layer)
+    {
+        //No está visible Hay que quitar las etiquetas. De todas las features
+        getVectorFeaturesCollection(layer).forEach(function (feat, idx, a) {
+            UI.Feature.removeFeatureTooltipInfo(feat)
 
+            });
+    }
+
+
+    function addTooltipsLabels(layer)
+    {
+        var currentMap = mapUtils.getMap();
+        var view = currentMap.getView();
+        var currentZoom =view .getZoom();
+        var viewExtent =  view.calculateExtent(currentMap.getSize())
+        var zoomToShowLabels = layer.get('zoomToShowLabels');
+        if (layer.getSource()) {
+            var featuresinExtent = layer.getSource().getFeaturesInExtent(viewExtent).length;
+            layer.getSource().forEachFeatureInExtent(viewExtent, function (feature) {
+                if (feature.getGeometry().getType() == "Point") {
+                    //Sólo las del extent de la vista
+                    if (layer.get('showLabels')) {
+                        if (currentZoom >= zoomToShowLabels) {
+                            if (featuresinExtent <= layer.get('maxPointInExtentForShowLabels'))
+                                UI.Feature.displayFeatureTooltipInfo(feature);
+                            else UI.Feature.removeFeatureTooltipInfo(feature);
+
+                        } else {
+
+                            UI.Feature.removeFeatureTooltipInfo(feature);
+
+                        }
+                    }
+                }
+            });
+        }
+    }
     /**
      * @private
      * @desc Prepara los eventos sobre los elementos del mapa para vectores
@@ -755,8 +792,9 @@ UI.MapVector = (function (mapUtils, config) {
             var targetCode = $(this).attr('data-vector-code');
             var layer = getVectorLayerByProperty("code", targetCode);
             layer.setSource(layer.get("customSource"))
+            removeTooltipsLabels(layer);
             layer.set("loadInInit",true);
-
+            addTooltipsLabels(layer);
         });
 
         //Carga el source de la capa a petición del usuario
@@ -766,7 +804,7 @@ UI.MapVector = (function (mapUtils, config) {
             var targetCode = $(this).attr('data-vector-code');
 
             var layer = getVectorLayerByProperty("code", targetCode);
-
+            removeTooltipsLabels(layer);
             reloadLayerSource(targetCode,layer.getSource().get('customUrl'))
 
 
@@ -899,13 +937,16 @@ UI.MapVector = (function (mapUtils, config) {
             layer.setVisible(!layer.getVisible());
 
             if (!layer.getVisible()) {
+                //Si la capa no está visible quitamos los overlays
+                removeTooltipsLabels(layer);
                 $(this).removeClass("btn-success");
                 $(this).addClass("btn-danger");
-                //Si la capa no está visible quitamos los overlays
+
                 var $element = $("." + targetCode + "-tooltip-point-info");
                 $element.popover('hide');
             }
             else {
+                addTooltipsLabels(layer);
                 $(this).removeClass("btn-danger");
                 $(this).addClass("btn-success");
             }

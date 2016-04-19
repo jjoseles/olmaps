@@ -161,7 +161,7 @@ UI.Map = (function (config) {
                 minZoom: 5
             }),
 
-            target: mapId,
+            target: 'map',
 
         });
 

@@ -96730,23 +96730,7 @@
       },
       "type": "Feature"
     },
-    {
-      "geometry": {
-        "coordinates": [
-          2.28231,
-          41.99489
-        ],
-        "type": "Point"
-      },
-      "properties": {
-        "_tipo": "point",
-        "_generico": "Genérico",
-        "categoria": "Gasolineras",
-        "subcategoria": "",
-        "nombre": "MOVIL TER, S.A. "
-      },
-      "type": "Feature"
-    },
+
     {
       "geometry": {
         "coordinates": [

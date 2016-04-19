@@ -94,9 +94,10 @@ UI.Feature = (function (mapUtils) {
             var pointOverlayZoom = map.getView().getZoom();
 
             var features = UI.MapVector.getVectorFeaturesCollection(layer);
-            /* features.forEach(function (feat, idx, a) {
-             feat.setStyle(feat.get('_defaultStyle'));
-             });*/
+             features.forEach(function (feat, idx, a) {
+                 if(feature.getGeometry().getType() == "Point")
+                         feat.setStyle(feat.get('_defaultStyle'));
+             });
             var coordinate;
             var overlay = layer.get('overlayFeatureInfo');
             if (overlay) {
