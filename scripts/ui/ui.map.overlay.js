@@ -29,32 +29,36 @@ UI.Overlay = (function (mapUtils) {
 
             simpleInfoHtmlDivider = UI.MapUtils.stringDivider(simpleInfoHtml, 25, '<br/>')
             var addOverlay = true;
-            var color = "";
-
-                if(feat.getStyle()!=null)
-                {
-                    if(feat.getStyle().getImage() instanceof ol.style.Icon) {
-                        color = layer.get("defaultStyle").getStroke().getColor();
+            var labelColor = layer.get('labelColor');
+            if(labelColor == "") {
+                if (feat.getStyle() != null) {
+                    if (feat.getStyle().getImage() instanceof ol.style.Icon) {
+                        labelColor = layer.get("defaultStyle").getStroke().getColor();
 
                     }
-                    else    color = feat.getStyle().getImage().getFill().getColor();
-                } else if( feat.get("_defaultStyle") !=null)
-                {
-                    if(feat.get("_defaultStyle").getImage() instanceof ol.style.Icon)
-                    {
-                        color = layer.get("defaultStyle").getStroke().getColor();
+                    else    labelColor = feat.getStyle().getImage().getFill().getColor();
+                } else if (feat.get("_defaultStyle") != null) {
+                    if (feat.get("_defaultStyle").getImage() instanceof ol.style.Icon) {
+                        labelColor = layer.get("defaultStyle").getStroke().getColor();
 
                     }
 
-                    else  color = feat.get("_defaultStyle").getImage().getFill().getColor();
+                    else  labelColor = feat.get("_defaultStyle").getImage().getFill().getColor();
 
 
-                }else {
-                    color = layer.get("defaultStyle").getImage().getFill().getColor();
+                } else {
+                    labelColor = layer.get("defaultStyle").getImage().getFill().getColor();
                 }
-            if (color == "rgba(0,0,0,0)") addOverlay = false;
+            }
+            if (labelColor == "rgba(0,0,0,0)") addOverlay = false;
+
+
             if(addOverlay) {
-                $(element).attr("style", " background-color:" + color)
+
+                var labelTextColor = layer.get('labelTextColor');
+                if(labelTextColor != "")
+                    $(element).attr("style", " background-color:" + labelColor + ";color:" + labelTextColor);
+                else $(element).attr("style", " background-color:" + labelColor);
                 element.innerHTML = simpleInfoHtmlDivider;
                 //  marker
                 var marker = new ol.Overlay({

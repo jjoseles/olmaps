@@ -117,6 +117,7 @@ UI.Feature = (function (mapUtils) {
             }
             // Sacamos la interacción select por defecto de la capa
             feature.setStyle(feature.get("_interactionStyle"));
+            //displayFeatureTooltipInfo(feature)
 
            /*   extent = feature.getGeometry().getExtent();
              map.getView().fit(extent, map.getSize(),{"maxZoom": pointOverlayZoom}); */

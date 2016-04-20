@@ -8,6 +8,10 @@ UI = window.UI || {};
  **/
 UI.MapVector = (function (mapUtils, config) {
 
+    /**
+     * @private
+     * @desc obtiene las capas de tipo vector
+     **/
     function getVectorLayers() {
 
         return mapUtils.getMap().getLayers().getArray().filter(function (lyr) {
@@ -94,10 +98,10 @@ UI.MapVector = (function (mapUtils, config) {
             if(lyr.getVisible()) {
 
                 var zoomToShowPoints = lyr.get('zoomToShowPoints');
-                var zoomToShowLabels = lyr.get('zoomToShowLabels');
+
 
                 if (lyr.getSource()) {
-                    var featuresinExtent = lyr.getSource().getFeaturesInExtent(viewExtent).length;
+
                     lyr.getSource().forEachFeatureInExtent(viewExtent, function (feature) {
                         if (feature.getGeometry().getType() == "Point") {
                             var style = null;
@@ -123,15 +127,15 @@ UI.MapVector = (function (mapUtils, config) {
                                         style.getImage().setOpacity(0);
 
                                 }
-                                if (lyr.get('showLabels')) {
+                                 var zoomToShowLabels = lyr.get('zoomToShowLabels');
+                                if (lyr.get('showLabels') && lyr.get('areVisibleLabels')) {
                                     if (currentZoom >= zoomToShowLabels) {
+
+                                        var featuresinExtent = lyr.getSource().getFeaturesInExtent(viewExtent).length;
                                         if (featuresinExtent <= lyr.get('maxPointInExtentForShowLabels'))
                                             UI.Feature.displayFeatureTooltipInfo(feature);
                                         else UI.Feature.removeFeatureTooltipInfo(feature);
 
-                                    } else {
-
-                                        UI.Feature.removeFeatureTooltipInfo(feature);
 
                                     }
                                 }
@@ -630,7 +634,7 @@ UI.MapVector = (function (mapUtils, config) {
                                 var map = mapUtils.getMap();
 
 
-                                map.getView().fit(feats[0].getGeometry().getExtent(), map.getSize(), {"maxZoom": 9});
+                                map.getView().fit(feats[0].getGeometry().getExtent(), map.getSize(), {"maxZoom": 19});
                                 map.renderSync();
                                 UI.Feature.displayFeatureInfo(feats[0], mapUtils.getMap());
                             }
@@ -695,6 +699,12 @@ UI.MapVector = (function (mapUtils, config) {
                     retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='refresh' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Recargar\"  class=\"btn btn-xs btn-info\">" +
                         "<i class=\"ace-icon icon-only bigger-110 fa fa-refresh\"></i>" +
                         "</a>";
+                    if (lyr.get('showLabels') == true) {
+                        retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='showLabels' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Mostrar información\"  class=\"btn btn-xs btn-danger\">" +
+                            "<i class=\"ace-icon icon-only bigger-110 fa fa-tag\"></i>" +
+                            "</a>";
+
+                    }
                 }
                 if (lyr.get('loadInInit') == false) {
                     retHtml += "<a role=\"button\" data-position=\"auto\" data-vector-action='load' data-vector-code='" + lyr.get('code') + "' data-rel=\"tooltip\" data-original-title=\"Cargar datos \"  class=\"btn btn-xs btn-info\">" +
@@ -756,26 +766,39 @@ UI.MapVector = (function (mapUtils, config) {
         var currentZoom =view .getZoom();
         var viewExtent =  view.calculateExtent(currentMap.getSize())
         var zoomToShowLabels = layer.get('zoomToShowLabels');
-        if (layer.getSource()) {
-            var featuresinExtent = layer.getSource().getFeaturesInExtent(viewExtent).length;
-            layer.getSource().forEachFeatureInExtent(viewExtent, function (feature) {
-                if (feature.getGeometry().getType() == "Point") {
-                    //Sólo las del extent de la vista
-                    if (layer.get('showLabels')) {
-                        if (currentZoom >= zoomToShowLabels) {
-                            if (featuresinExtent <= layer.get('maxPointInExtentForShowLabels'))
-                                UI.Feature.displayFeatureTooltipInfo(feature);
-                            else UI.Feature.removeFeatureTooltipInfo(feature);
+        if (layer.get('showLabels')) {
+            if (currentZoom >= zoomToShowLabels) {
 
-                        } else {
+                    if (layer.getSource()) {
+                        var featuresinExtent = layer.getSource().getFeaturesInExtent(viewExtent).length;
+                        if (featuresinExtent <= layer.get('maxPointInExtentForShowLabels')) {
+                            layer.getSource().forEachFeatureInExtent(viewExtent, function (feature) {
+                                if (feature.getGeometry().getType() == "Point") {
+                                    //Sólo las del extent de la vista
 
-                            UI.Feature.removeFeatureTooltipInfo(feature);
 
+                                    UI.Feature.displayFeatureTooltipInfo(feature);
+
+
+                                }
+                            });
                         }
-                    }
+                        else {
+                            UI.messageAndDialogs.showMessage("Demasiados puntos en la vista actual. Sólo se permiten " + layer.get('maxPointInExtentForShowLabels') + " puntos sobre los que mostrar etiquetas",UI.errorStates.ERROR,"Demasiados puntos para mostrar etiquetas")
+                            removeTooltipsLabels(layer);
+                            return false;
+                       }
                 }
-            });
+            }
+            else {
+                UI.messageAndDialogs.showMessage("Poco zoom para mostrar etiquetas, zoom permitido para la capa " + zoomToShowLabels,UI.errorStates.ERROR,"Poco zoom")
+                removeTooltipsLabels(layer);
+                return false;
+            }
+            return true;
+
         }
+        return false;
     }
     /**
      * @private
@@ -794,7 +817,7 @@ UI.MapVector = (function (mapUtils, config) {
             layer.setSource(layer.get("customSource"))
             removeTooltipsLabels(layer);
             layer.set("loadInInit",true);
-            addTooltipsLabels(layer);
+           // addTooltipsLabels(layer);
         });
 
         //Carga el source de la capa a petición del usuario
@@ -810,6 +833,33 @@ UI.MapVector = (function (mapUtils, config) {
 
         });
 
+
+        $(nRow).find("[data-vector-action='showLabels']").click(function () {
+
+            $(this).tooltip('hide');
+            var targetCode = $(this).attr('data-vector-code');
+
+            var layer = getVectorLayerByProperty("code", targetCode);
+
+
+
+            if ($(this).hasClass("btn-success")) {
+                $(this).removeClass("btn-success");
+                $(this).addClass("btn-danger");
+                layer.set('areVisibleLabels',false)
+                removeTooltipsLabels(layer);
+            }
+            else {
+                if( addTooltipsLabels(layer)) {
+                    $(this).removeClass("btn-danger");
+                    $(this).addClass("btn-success");
+                    layer.set('areVisibleLabels', true);
+
+                }
+            }
+
+
+        });
         //Animación de la ruta
         $(nRow).find("[data-vector-action='animate']").click(function () {
 
@@ -946,7 +996,8 @@ UI.MapVector = (function (mapUtils, config) {
                 $element.popover('hide');
             }
             else {
-                addTooltipsLabels(layer);
+                if(layer.get('areVisibleLabels'))
+                     addTooltipsLabels(layer);
                 $(this).removeClass("btn-danger");
                 $(this).addClass("btn-success");
             }
@@ -1051,7 +1102,8 @@ UI.MapVector = (function (mapUtils, config) {
             'showPoints': true,
             'showLabels': true,
             'fitExtenxAfterLoad': false,
-            'maxPointInExtentForShowLabels': config.maxPointInExtentForShowLabels
+            'maxPointInExtentForShowLabels': config.maxPointInExtentForShowLabels,
+            'labelColor' : ''
 
         };
 
@@ -1091,6 +1143,14 @@ UI.MapVector = (function (mapUtils, config) {
         //style
         if (typeof layerOptions.style !== 'undefined')
             returnLayerOptions.style = layerOptions.style;
+
+        if (typeof layerOptions.labelColor !== 'undefined')
+            returnLayerOptions.labelColor = layerOptions.labelColor;
+
+        if (typeof layerOptions.labelTextColor !== 'undefined')
+            returnLayerOptions.labelTextColor = layerOptions.labelTextColor;
+
+
         //styleSelectInteraction
         if (typeof layerOptions.styleSelectInteraction !== 'undefined')
             returnLayerOptions.styleSelectInteraction = layerOptions.styleSelectInteraction;
@@ -1158,7 +1218,10 @@ UI.MapVector = (function (mapUtils, config) {
                 //FitExtendOnLoad
                 if (fitExtenxAfterLoad)
                     if (tempFeatures.length > 0) {
-                        mapUtils.getMap().getView().fit(this.getExtent(), mapUtils.getMap().getSize(), {"maxZoom": pointOverlayZoom});
+                        if (pointOverlayZoom == -1)
+                            mapUtils.getMap().getView().fit(this.getExtent(), mapUtils.getMap().getSize(), { "maxZoom": mapUtils.getMap().getView().getZoom() });
+                        else
+                            mapUtils.getMap().getView().fit(this.getExtent(), mapUtils.getMap().getSize(), { "maxZoom": pointOverlayZoom });
 
                     }
 
@@ -1216,7 +1279,10 @@ UI.MapVector = (function (mapUtils, config) {
                 'showPoints': options.showPoints,
                 'zoomToShowPoints': options.zoomToShowPoints,
                 'zoomToShowLabels': options.zoomToShowLabels,
-                'pointOverlayZoom': options.pointOverlayZoom
+                'pointOverlayZoom': options.pointOverlayZoom,
+                'labelColor':options.labelColor,
+                'labelTextColor': options.labelTextColor,
+                'areVisibleLabels': false
             });
 
 
@@ -1225,6 +1291,7 @@ UI.MapVector = (function (mapUtils, config) {
             mapUtils.getMap().addLayer(vectorLayer);
 
             renderVectorSwitcher();
+           
             return vectorLayer;
 
         }

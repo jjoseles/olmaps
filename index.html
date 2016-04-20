@@ -92,6 +92,7 @@
 <script src="thirty-party/bootstrap/js/bootstrap.min.js"></script>
 <script src="thirty-party/ol/ol-debug.js"></script>
 <script src="http://cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+<script src="thirty-party/jquery.gritter.js"></script>
 <script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyAZH-whAk0IwQoKzruViuPCxPxBA0etCbI"></script>
 <script src="thirty-party/ol/ol3gm.js"></script>
@@ -124,56 +125,38 @@
         var mapa;
         mapa = UI.Map.init("map", UI.CustomScriptsMap.createPointCallback);
 
-     /*  UI.CustomScriptsMap.loadData(
+       UI.CustomScriptsMap.loadData(
          'http://www.acuriousanimal.com/thebookofopenlayers3/data/world_cities.json',
          'Ciudades del mundo',
-         'POSICION_CIUDADES',
+         'PUNTOS_DE_INTERES_GENERICOS',
          'CITIES'
-         ); */
+         );
 
 
 
-       /* UI.CustomScriptsMap.loadData(
+       UI.CustomScriptsMap.loadData(
                 'http://localhost:63342/olmaps/data/UKSomeCities.json',
                 'Ciudades de Reino Unido',
-                'POSICION_CIUDADES_UK',
+                'PUNTOS_DE_INTERES',
                 'UKCITIES'
-        );*/
-
-
-      UI.CustomScriptsMap.loadData(
-         'http://localhost:63342/olmaps/data/PoisGenericos.json',
-         'Pois genéricos',
-         'POSICION_CIUDADES',
-         'POIS'
-         );
-        UI.CustomScriptsMap.loadData(
-                'http://localhost:63342/olmaps/data/Pois.json',
-                'Pois empresa',
-                'POSICION_CIUDADES_UK',
-                'POIS EMPRESA'
         );
 
-/*
+
+
+
+
         UI.CustomScriptsMap.loadData(
-                'http://localhost:63342/olmaps/data/ROUTE.json',
+                'http://localhost:63342/olmaps/data/SEVILLA.json',
                 'Una ruta',
                 'SITUACION',
-                'UNARUTA'
-        ); */
-
-
-        var layer = UI.CustomScriptsMap.loadData(
-                'http://localhost:63342/olmaps/data/SEVILLA.json',
-                'Ruta Sevilla',
-                'SITUACION',
-                'Ruta Sevilla'
+                'sevilla'
         );
-        var layer = UI.CustomScriptsMap.loadData(
+
+        UI.CustomScriptsMap.loadData(
                 'http://localhost:63342/olmaps/data/BARCELONA.json',
-                'Ruta Barcelona',
+                'Una ruta',
                 'SITUACION',
-                'Ruta Barcelona'
+                'barcelona'
         );
 
 
