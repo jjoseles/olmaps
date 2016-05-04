@@ -2,7 +2,17 @@
 
 UI.CustomOverlays = (function (mapUtils) {
 
+    var openPopoverPosicion = function (featureProperties, layerProperties, element, coordinate) {
 
+        console.log("DSAFdasd")
+        if (featureProperties) {
+
+
+            var header = '<code>' + layerProperties["title"] + " " + layerProperties["code"] + " " + layerProperties["customType"] + '</code>';
+            var content = "XXXXX";
+            mapUtils.openPopover(element, header, content);
+        }
+    };
     /**
      * @private
      * @desc callback sobre el click de una de las ciudades
@@ -57,7 +67,8 @@ UI.CustomOverlays = (function (mapUtils) {
 
 
         openPopoverPosicionCiudades: openPopoverPosicionCiudades,
-        openPopoverSituacion: openPopoverSituacion
+        openPopoverSituacion: openPopoverSituacion,
+        openPopoverPosicion:openPopoverPosicion
 
     }
 })(UI.MapUtils);

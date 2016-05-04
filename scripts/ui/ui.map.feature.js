@@ -93,11 +93,18 @@ UI.Feature = (function (mapUtils) {
         if (layer) {
             var pointOverlayZoom = map.getView().getZoom();
 
-            var features = UI.MapVector.getVectorFeaturesCollection(layer);
-             features.forEach(function (feat, idx, a) {
-                 if(feature.getGeometry().getType() == "Point")
-                         feat.setStyle(feat.get('_defaultStyle'));
-             });
+            // Vuelve a dejar los demás puntos con el estilo original
+            if (feature.get("_lineString")) {
+            }
+            else
+            {
+                var features = UI.MapVector.getVectorFeaturesCollection(layer);
+                features.forEach(function (feat, idx, a) {
+                    if(feature.getGeometry().getType() == "Point")
+                        feat.setStyle(feat.get('_defaultStyle'));
+                });
+            }
+
             var coordinate;
             var overlay = layer.get('overlayFeatureInfo');
             if (overlay) {
