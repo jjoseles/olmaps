@@ -829,8 +829,9 @@ UI.MapVector = (function (mapUtils, config) {
             var layer = getVectorLayerByProperty("code", targetCode);
             removeTooltipsLabels(layer);
             reloadLayerSource(targetCode,layer.getSource().get('customUrl'))
+            if( layer.get('areVisibleLabels'))
 
-
+                addTooltipsLabels(layer)
         });
 
 
